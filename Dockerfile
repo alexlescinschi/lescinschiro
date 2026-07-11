@@ -23,8 +23,12 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+
+# ponytail: ensure media dir exists and is writable
+RUN mkdir -p public/media && chmod 777 public/media
+
 RUN mkdir .next
-RUN chown nextjs:nodejs .next
+RUN chown nextjs:nodejs .next public/media
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
