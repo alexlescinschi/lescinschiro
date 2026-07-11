@@ -7,15 +7,22 @@ import { Media } from './collections/Media'
 import { Servicii } from './collections/Servicii'
 import { Proiecte } from './collections/Proiecte'
 
-// ponytail: sqlite local, postgres pe railway / vps
-const db = process.env.DATABASE_URI
-  ? postgresAdapter({ pool: { connectionString: process.env.DATABASE_URI }, push: true })
-  : sqliteAdapter({ client: { url: 'file:./payload.db' } })
+// ponytail: sqlite local, postgres pe vps
+// Function to avoid build-time evaluation of process.env
+function getDB() {
+  if (process.env.DATABASE_URI) {
+    return postgresAdapter({
+      pool: { connectionString: process.env.DATABASE_URI },
+      push: true,
+    })
+  }
+  return sqliteAdapter({ client: { url: 'file:./payload.db' } })
+}
 
 export default buildConfig({
   editor: lexicalEditor(),
   collections: [Media, Servicii, Proiecte],
   secret: process.env.PAYLOAD_SECRET || '',
-  db,
+  db: getDB(),
   sharp,
 })
