@@ -201,7 +201,15 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
           <div className="svc-features__grid">
             {feats.map((f: any) => (
               <div className="svc-feature" key={f.titlu || f.id} data-reveal>
-                {f.icon && <span className="svc-feature__icon">{f.icon}</span>}
+                {f.icon && (
+                  <span className="svc-feature__icon">
+                    {String(f.icon).trim().startsWith("<svg") ? (
+                      <span dangerouslySetInnerHTML={{ __html: f.icon }} />
+                    ) : (
+                      f.icon
+                    )}
+                  </span>
+                )}
                 <h3 className="svc-feature__title">{f.titlu}</h3>
                 {f.descriere && <p className="svc-feature__desc">{f.descriere}</p>}
               </div>

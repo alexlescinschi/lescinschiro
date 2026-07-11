@@ -54,14 +54,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await getPage(slug);
   if (!page) return { title: "Pagina nu a fost găsită" };
 
-  const seo = (page as any).seo || {};
+  const metaTitle = `${page.titlu} — LESCINSCHI`;
+  const metaDesc = (page.descriereScurta as string) || "";
   return {
-    title: seo.titluSEO || `${page.titlu} — LESCINSCHI`,
-    description: seo.descriereSEO || page.descriereScurta || "",
+    title: metaTitle,
+    description: metaDesc,
     alternates: { canonical: `/servicii/${slug}` },
     openGraph: {
-      title: seo.titluSEO || `${page.titlu} — LESCINSCHI`,
-      description: seo.descriereSEO || (page.descriereScurta as string) || "",
+      title: metaTitle,
+      description: metaDesc,
       images: page.imagine && typeof page.imagine === "object" && "url" in page.imagine
         ? [(page.imagine as { url: string }).url]
         : [],

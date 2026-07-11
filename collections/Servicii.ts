@@ -1,15 +1,36 @@
 import type { CollectionConfig } from 'payload'
 
+function slugFromTitle(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/[ăâ]/g, 'a').replace(/[î]/g, 'i').replace(/[șş]/g, 's').replace(/[țţ]/g, 't')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
 export const Servicii: CollectionConfig = {
   slug: 'servicii',
   labels: { singular: 'Serviciu', plural: 'Servicii' },
   admin: { useAsTitle: 'titlu' },
   fields: [
     { name: 'titlu', type: 'text', required: true },
-    { name: 'slug', type: 'text', required: true, unique: true, admin: { position: 'sidebar' } },
+    {
+      name: 'slug',
+      type: 'text',
+      unique: true,
+      admin: { position: 'sidebar' },
+      hooks: {
+        beforeChange: [
+          ({ data }) => {
+            if (data?.titlu) data.slug = slugFromTitle(data.titlu as string)
+            return data?.slug
+          },
+        ],
+      },
+    },
     { name: 'categorie', type: 'text', admin: { position: 'sidebar' } },
     { name: 'imagine', type: 'upload', relationTo: 'media', required: true },
-    { name: 'descriereScurta', type: 'textarea', label: 'Descriere scurtă' },
+    { name: 'descriereScurta', type: 'textarea', label: 'Descriere scurtă (și SEO description)' },
     { name: 'heroTitlu', type: 'text', label: 'Hero — titlu' },
     { name: 'heroSubtitlu', type: 'text', label: 'Hero — subtitlu' },
     { name: 'heroCuvantInel', type: 'text', label: 'Hero — cuvântul încercuit cu lime', admin: { position: 'sidebar' } },
@@ -35,7 +56,7 @@ export const Servicii: CollectionConfig = {
       type: 'array',
       label: 'Avantaje / Features',
       fields: [
-        { name: 'icon', type: 'text', required: true, label: 'Icon (emoji sau SVG)' },
+        { name: 'icon', type: 'textarea', label: 'Icon (emoji sau cod SVG)' },
         { name: 'titlu', type: 'text', required: true },
         { name: 'descriere', type: 'textarea' },
       ],
@@ -80,17 +101,6 @@ export const Servicii: CollectionConfig = {
       name: 'deliverables',
       type: 'text',
       label: 'Deliverables (separate prin virgulă)',
-    },
-
-    {
-      name: 'seo',
-      type: 'group',
-      label: 'SEO',
-      admin: { position: 'sidebar' },
-      fields: [
-        { name: 'titluSEO', type: 'text', label: 'Titlu SEO' },
-        { name: 'descriereSEO', type: 'textarea', label: 'Descriere SEO' },
-      ],
     },
   ],
 }
