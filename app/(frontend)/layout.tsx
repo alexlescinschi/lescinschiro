@@ -4,6 +4,8 @@ import { site } from "@/data/content";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 import Intro from "@/components/Intro";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 // Font global: Helvetica Neue (cdnfonts) — montat via @import în globals.css.
 
@@ -51,7 +53,11 @@ export default function FrontendLayout({ children }: Readonly<{ children: React.
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Intro />
       <Cursor />
-      <SmoothScroll>{children}</SmoothScroll>
+      <SmoothScroll>
+        <Nav />
+        {children}
+        <Footer />
+      </SmoothScroll>
     </>
   );
 }

@@ -267,9 +267,9 @@ h2.section-title {
 .process__track { display: flex; gap: clamp(30px, 5vw, 90px); padding-inline: var(--pad-x); will-change: transform; }
 .process__panel { flex: 0 0 auto; width: min(80vw, 520px); }
 .process__step { font-size: 0.8rem; color: var(--lime); letter-spacing: 0.14em; }
-.process__title { font-size: clamp(2rem, 5vw, 3.4rem); text-transform: uppercase; line-height: 1; margin: 18px 0; }
+.process__title { font-size: clamp(1.4rem, 3.5vw, 2.2rem); text-transform: uppercase; line-height: 1; margin: 14px 0; }
 .process__desc { font-size: var(--fs-lead); color: rgba(255,255,255,0.6); max-width: 34ch; }
-.process__intro { flex: 0 0 auto; width: min(80vw, 420px); display: flex; align-items: center; }
+.process__intro { flex: 0 0 auto; width: min(80vw, 420px); display: flex; align-items: flex-start; }
 .deliverables { flex: 0 0 auto; width: min(80vw, 460px); align-self: center; }
 .deliverables h3 { font-size: 1rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; }
 .deliverables__item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); font-size: 1.15rem; }
@@ -503,19 +503,6 @@ h2.section-title {
 .svc-intg__item { border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; padding: 5px 14px; font-size: 0.85rem; letter-spacing: 0.02em; }
 @media (max-width: 600px) {
   .svc-intg { grid-template-columns: 1fr; gap: 10px; }
-}
-
-/* ============ Pagină serviciu — Proces ============ */
-.svc-process__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 36px); margin-top: 3rem; }
-.svc-process__step { display: flex; flex-direction: column; gap: 12px; }
-.svc-process__n { font-size: 0.8rem; color: var(--lime); letter-spacing: 0.14em; }
-.svc-process__name { font-size: 1.15rem; text-transform: uppercase; font-weight: 600; line-height: 1; margin: 0; }
-.svc-process__desc { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.45; }
-@media (max-width: 860px) {
-  .svc-process__grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .svc-process__grid { grid-template-columns: 1fr; }
 }
 
 /* ============ Pagină serviciu — Prețuri ============ */

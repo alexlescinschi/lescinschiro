@@ -2,14 +2,19 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { process, deliverables } from "@/data/content";
+import { process as defaultSteps, deliverables as defaultDeliverables } from "@/data/content";
 
-export default function Process() {
+interface Props {
+  steps?: { step: string; title: string; desc: string }[];
+  deliverables?: string[];
+}
+
+export default function Process({ steps = defaultSteps, deliverables = defaultDeliverables }: Props) {
   const root = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (matchMedia("(max-width: 720px)").matches) return; // ponytail: pe mobil = stivă verticală; nu re-calculăm la resize
+    if (matchMedia("(max-width: 720px)").matches) return;
     gsap.registerPlugin(ScrollTrigger);
     const el = track.current, sec = root.current;
     if (!el || !sec) return;
@@ -40,7 +45,7 @@ export default function Process() {
               <h2 className="section-title">Cum lucrăm</h2>
             </div>
           </div>
-          {process.map((p) => (
+          {steps.map((p) => (
             <div className="process__panel" key={p.step}>
               <div className="process__step">{p.step}</div>
               <h3 className="process__title">{p.title}</h3>

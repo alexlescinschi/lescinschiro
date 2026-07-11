@@ -152,6 +152,7 @@ export interface Servicii {
   descriereScurta?: string | null;
   heroTitlu?: string | null;
   heroSubtitlu?: string | null;
+  heroCuvantInel?: string | null;
   continut?: {
     root: {
       type: string;
@@ -168,6 +169,46 @@ export interface Servicii {
     [k: string]: unknown;
   } | null;
   pret?: string | null;
+  tipuri?:
+    | {
+        titlu: string;
+        subtitlu?: string | null;
+        descriere?: string | null;
+        logouri?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        icon: string;
+        titlu: string;
+        descriere?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  integrari?:
+    | {
+        eticheta: string;
+        elemente: string;
+        id?: string | null;
+      }[]
+    | null;
+  preturi?:
+    | {
+        nume: string;
+        pret?: string | null;
+        include?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  faq?:
+    | {
+        intrebare: string;
+        raspuns: string;
+        id?: string | null;
+      }[]
+    | null;
+  deliverables?: string | null;
   seo?: {
     titluSEO?: string | null;
     descriereSEO?: string | null;
@@ -345,8 +386,49 @@ export interface ServiciiSelect<T extends boolean = true> {
   descriereScurta?: T;
   heroTitlu?: T;
   heroSubtitlu?: T;
+  heroCuvantInel?: T;
   continut?: T;
   pret?: T;
+  tipuri?:
+    | T
+    | {
+        titlu?: T;
+        subtitlu?: T;
+        descriere?: T;
+        logouri?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        icon?: T;
+        titlu?: T;
+        descriere?: T;
+        id?: T;
+      };
+  integrari?:
+    | T
+    | {
+        eticheta?: T;
+        elemente?: T;
+        id?: T;
+      };
+  preturi?:
+    | T
+    | {
+        nume?: T;
+        pret?: T;
+        include?: T;
+        id?: T;
+      };
+  faq?:
+    | T
+    | {
+        intrebare?: T;
+        raspuns?: T;
+        id?: T;
+      };
+  deliverables?: T;
   seo?:
     | T
     | {

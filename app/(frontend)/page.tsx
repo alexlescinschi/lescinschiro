@@ -1,4 +1,3 @@
-import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
@@ -10,7 +9,6 @@ import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import SelectedWorks from "@/components/SelectedWorks";
-import Footer from "@/components/Footer";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
@@ -43,22 +41,18 @@ export default async function Home() {
   const projects = await getProjects();
 
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
-        <Services />
-        <Portfolio projects={projects} />
-        <WhyUs />
-        <Process />
-        <Integrations />
-        <AI />
-        <Pricing />
-        <Testimonials />
-        <Contact />
-        <SelectedWorks projects={projects.slice(0, 3)} />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Hero />
+      <Services />
+      <Portfolio projects={projects} />
+      <WhyUs />
+      <Process />
+      <Integrations />
+      <AI />
+      <Pricing />
+      <Testimonials />
+      <Contact />
+      <SelectedWorks projects={projects.slice(0, 3)} />
+    </main>
   );
 }
