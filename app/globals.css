@@ -456,15 +456,15 @@ h2.section-title {
 
 /* ============ Pagină serviciu — Hero ============ */
 .svc-hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--pad-x) 90px; position: relative; overflow: hidden; }
-.svc-hero__title { font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; font-weight: 600; }
+.svc-hero__title { font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; font-weight: 600; position: relative; z-index: 2; }
 .svc-hero__line { display: block; overflow: hidden; }
 .svc-hero__line-inner { display: block; }
 .svc-hero__ring-word { position: relative; display: inline-block; color: var(--white); }
 .svc-hero__ring { position: absolute; inset: -14% -8% -18% -8%; width: 116%; height: 150%; overflow: visible; pointer-events: none; }
 .svc-hero__ring path { fill: none; stroke: var(--lime); stroke-width: 3; stroke-linecap: round; }
-.svc-hero__sub { align-self: flex-end; max-width: 36ch; margin-top: 3rem; text-align: right; font-size: var(--fs-lead); color: rgba(255,255,255,0.82); }
-.svc-hero__ctas { display: flex; gap: 12px; margin-top: 2.4rem; flex-wrap: wrap; }
-.svc-stamp { position: absolute; left: var(--pad-x); bottom: 30px; display: flex; align-items: center; gap: 8px; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); }
+.svc-hero__sub { align-self: flex-end; max-width: 36ch; margin-top: 3rem; text-align: right; font-size: var(--fs-lead); color: rgba(255,255,255,0.82); position: relative; z-index: 2; }
+.svc-hero__ctas { display: flex; gap: 12px; margin-top: 2.4rem; flex-wrap: wrap; position: relative; z-index: 2; }
+.svc-stamp { position: absolute; left: var(--pad-x); bottom: 30px; display: flex; align-items: center; gap: 8px; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); z-index: 2; }
 
 /* ============ Pagină serviciu — Intro ============ */
 .svc-intro__text { font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5; max-width: 48ch; color: rgba(255,255,255,0.82); }
