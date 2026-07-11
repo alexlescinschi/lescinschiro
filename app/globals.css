@@ -454,6 +454,100 @@ h2.section-title {
   font-weight: 600;
 }
 
+/* ============ Pagină serviciu — Hero ============ */
+.svc-hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--pad-x) 90px; position: relative; }
+.svc-hero__title { font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; font-weight: 600; }
+.svc-hero__line { display: block; overflow: hidden; }
+.svc-hero__line-inner { display: block; }
+.svc-hero__ring-word { position: relative; display: inline-block; color: var(--white); }
+.svc-hero__ring { position: absolute; inset: -14% -8% -18% -8%; width: 116%; height: 150%; overflow: visible; pointer-events: none; }
+.svc-hero__ring path { fill: none; stroke: var(--lime); stroke-width: 3; stroke-linecap: round; }
+.svc-hero__sub { align-self: flex-end; max-width: 36ch; margin-top: 3rem; text-align: right; font-size: var(--fs-lead); color: rgba(255,255,255,0.82); }
+.svc-hero__ctas { display: flex; gap: 12px; margin-top: 2.4rem; flex-wrap: wrap; }
+.svc-stamp { position: absolute; left: var(--pad-x); bottom: 30px; display: flex; align-items: center; gap: 8px; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); }
+
+/* ============ Pagină serviciu — Intro ============ */
+.svc-intro__text { font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5; max-width: 48ch; color: rgba(255,255,255,0.82); }
+
+/* ============ Pagină serviciu — Tipuri magazine ============ */
+.svc-types__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); margin-top: 3rem; }
+.svc-type { border: 1px solid var(--line); border-radius: 0; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 12px; transition: border-color 0.4s var(--ease); }
+.svc-type:hover { border-color: var(--white); }
+.svc-type__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.svc-type__tag { border: 1px solid var(--white); border-radius: 9999px; padding: 4px 12px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.04em; }
+.svc-type__title { font-size: clamp(1.5rem, 3vw, 2.2rem); text-transform: uppercase; font-weight: 600; line-height: 1; margin: 0; }
+.svc-type__label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); }
+.svc-type__desc { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.5; flex: 1; }
+@media (max-width: 860px) {
+  .svc-types__grid { grid-template-columns: 1fr; }
+}
+
+/* ============ Pagină serviciu — Features ============ */
+.svc-features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 50px); margin-top: 3rem; }
+.svc-feature { display: flex; flex-direction: column; gap: 8px; }
+.svc-feature__icon { font-size: 1.5rem; margin-bottom: 4px; }
+.svc-feature__title { font-size: 1.1rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.03em; margin: 0; }
+.svc-feature__desc { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.45; }
+@media (max-width: 860px) {
+  .svc-features__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .svc-features__grid { grid-template-columns: 1fr; }
+}
+
+/* ============ Pagină serviciu — Integrări ============ */
+.svc-integrations__list { margin-top: 3rem; }
+.svc-intg { display: grid; grid-template-columns: 180px 1fr; gap: 20px; align-items: baseline; padding: clamp(16px, 2.5vw, 28px) 0; border-bottom: 1px solid var(--line); }
+.svc-intg__label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: var(--gray); }
+.svc-intg__items { display: flex; flex-wrap: wrap; gap: 10px; }
+.svc-intg__item { border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; padding: 5px 14px; font-size: 0.85rem; letter-spacing: 0.02em; }
+@media (max-width: 600px) {
+  .svc-intg { grid-template-columns: 1fr; gap: 10px; }
+}
+
+/* ============ Pagină serviciu — Proces ============ */
+.svc-process__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 36px); margin-top: 3rem; }
+.svc-process__step { display: flex; flex-direction: column; gap: 12px; }
+.svc-process__n { font-size: 0.8rem; color: var(--lime); letter-spacing: 0.14em; }
+.svc-process__name { font-size: 1.15rem; text-transform: uppercase; font-weight: 600; line-height: 1; margin: 0; }
+.svc-process__desc { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.45; }
+@media (max-width: 860px) {
+  .svc-process__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .svc-process__grid { grid-template-columns: 1fr; }
+}
+
+/* ============ Pagină serviciu — Prețuri ============ */
+.svc-pricing__list { margin-top: 3rem; border-top: 1px solid var(--line); }
+.svc-price { display: grid; grid-template-columns: 1fr 1.4fr auto; gap: 24px; align-items: center; padding: clamp(24px, 3vw, 40px) 0; border-bottom: 1px solid var(--line); transition: padding-left 0.4s var(--ease); }
+@media (hover: hover) { .svc-price:hover { padding-left: 20px; } }
+.svc-price__name { font-size: clamp(1.3rem, 2.8vw, 1.9rem); text-transform: uppercase; font-weight: 600; }
+.svc-price__items { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+.svc-price__items span::before { content: "— "; color: var(--gray); }
+.svc-price__from { font-size: 1.1rem; white-space: nowrap; color: rgba(255,255,255,0.8); }
+.svc-price__from small { display: block; font-size: 0.7rem; color: var(--gray); text-align: right; }
+@media (max-width: 720px) {
+  .svc-price { grid-template-columns: 1fr; gap: 12px; }
+  .svc-price__from { text-align: left; }
+  .svc-price__from small { text-align: left; }
+}
+
+/* ============ Pagină serviciu — FAQ ============ */
+.svc-faq__list { margin-top: 3rem; border-top: 1px solid var(--line); }
+.svc-faq__item { border-bottom: 1px solid var(--line); }
+.svc-faq__btn {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: clamp(18px, 2.5vw, 28px) 0; text-align: left;
+  font-size: clamp(1rem, 1.6vw, 1.15rem); font-weight: 600;
+  color: var(--white); cursor: pointer; background: none; border: none;
+  transition: color 0.3s;
+}
+.svc-faq__btn:hover { color: var(--lime); }
+.svc-faq__arrow { flex-shrink: 0; transition: transform 0.3s var(--ease); }
+.svc-faq__body { overflow: hidden; transition: max-height 0.4s var(--ease); }
+.svc-faq__text { padding-bottom: clamp(18px, 2.5vw, 28px); font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.55; max-width: 56ch; }
+
 /* ============ Reduced motion ============ */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }

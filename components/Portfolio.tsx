@@ -13,7 +13,15 @@ type Project = {
   href: string;
 };
 
-export default function Portfolio({ projects }: { projects: Project[] }) {
+export default function Portfolio({
+  projects,
+  eyebrow = "Portofoliu",
+  title = "Proiecte",
+}: {
+  projects: Project[];
+  eyebrow?: string;
+  title?: string;
+}) {
   const root = useRef<HTMLElement>(null);
   const [ready, setReady] = useState(false);
 
@@ -120,10 +128,10 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   return (
     <section className="section container" id="portofoliu" ref={root}>
       <span className="eyebrow" data-reveal>
-        Portofoliu
+        {eyebrow}
       </span>
       <h2 className="section-title" data-reveal>
-        Proiecte
+        {title}
       </h2>
 
       <div className="wk__grid">
