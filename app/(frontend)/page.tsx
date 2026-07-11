@@ -17,20 +17,26 @@ import config from "@payload-config";
 export const dynamic = "force-dynamic";
 
 // ponytail: projects din Payload CMS, nu hardcodate
+// Graceful fallback if DB not yet migrated — returns empty array
 async function getProjects() {
-  const payload = await getPayload({ config });
-  const { docs } = await payload.find({
-    collection: "proiecte",
-    depth: 1,
-    limit: 20,
-    sort: "-createdAt",
-  });
-  return docs.map((p) => ({
-    name: p.titlu as string,
-    tag: (p.categorie === "magazin-online" ? "Magazin online" : p.categorie === "corporativ" ? "Corporativ" : "Landing page") as string,
-    img: (p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : "",
-    href: (p.linkLive as string) || "",
-  }));
+  try {
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "proiecte",
+      depth: 1,
+      limit: 20,
+      sort: "-createdAt",
+    });
+    return docs.map((p) => ({
+      name: p.titlu as string,
+      tag: (p.categorie === "magazin-online" ? "Magazin online" : p.categorie === "corporativ" ? "Corporativ" : "Landing page") as string,
+      img: (p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : "",
+      href: (p.linkLive as string) || "",
+    }));
+  } catch {
+    // DB not migrated yet — admin login will trigger push
+    return [];
+  }
 }
 
 export default async function Home() {
