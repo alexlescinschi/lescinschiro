@@ -7,9 +7,9 @@ import { Media } from './collections/Media'
 import { Servicii } from './collections/Servicii'
 import { Proiecte } from './collections/Proiecte'
 
-// ponytail: sqlite local, postgres pe railway
+// ponytail: sqlite local, postgres pe railway / vps
 const db = process.env.DATABASE_URI
-  ? postgresAdapter({ pool: { connectionString: process.env.DATABASE_URI } })
+  ? postgresAdapter({ pool: { connectionString: process.env.DATABASE_URI }, push: true })
   : sqliteAdapter({ client: { url: 'file:./payload.db' } })
 
 export default buildConfig({
