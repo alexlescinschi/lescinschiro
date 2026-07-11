@@ -17,6 +17,18 @@ async function getPage(slug: string) {
   return docs[0] || null;
 }
 
+async function getHeroImages(categorie?: string) {
+  const payload = await getPayload({ config });
+  const query: any = { collection: "proiecte", depth: 1, limit: 9, sort: "-createdAt" };
+  if (categorie) query.where = { categorie: { equals: categorie } };
+  const { docs } = await payload.find(query);
+  return docs.map((p: any) =>
+    p.imagine && typeof p.imagine === "object" && "url" in p.imagine
+      ? (p.imagine as { url: string }).url
+      : ""
+  ).filter(Boolean);
+}
+
 async function getProjects() {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
@@ -63,6 +75,7 @@ export default async function ServiciuPage({ params }: Props) {
   if (!page) notFound();
 
   const projects = slug === "magazine-online" ? await getProjects() : [];
+  const heroImages = slug === "magazine-online" ? await getHeroImages("magazin-online") : [];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -81,7 +94,7 @@ export default async function ServiciuPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServicePage page={page as any} projects={projects} />
+      <ServicePage page={page as any} projects={projects} heroImages={heroImages} />
     </>
   );
 }

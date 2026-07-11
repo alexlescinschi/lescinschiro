@@ -53,7 +53,7 @@ function parseCsv(s: string): string[] {
 
 // ---- componenta principală ----
 
-export default function ServicePage({ page, projects }: { page: any; projects: Project[] }) {
+export default function ServicePage({ page, projects, heroImages = [] }: { page: any; projects: Project[]; heroImages?: string[] }) {
   const heroRef = useRef<HTMLElement>(null);
   const heroTitle = page.heroTitlu || (page.titlu ? `${page.titlu} care CONVERTESC` : "Servicii");
   const heroSub = page.heroSubtitlu || page.descriereScurta || "";
@@ -76,6 +76,19 @@ export default function ServicePage({ page, projects }: { page: any; projects: P
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.registerPlugin(ScrollTrigger);
+
+    // crossfade background (like home hero)
+    const bgImgs = heroRef.current?.querySelectorAll<HTMLElement>(".hero__bg-img");
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    if (bgImgs && bgImgs.length > 1) {
+      let idx = 0;
+      intervalId = setInterval(() => {
+        bgImgs[idx].classList.remove("is-active");
+        idx = (idx + 1) % bgImgs.length;
+        bgImgs[idx].classList.add("is-active");
+      }, 3500);
+    }
+
     const ctx = gsap.context(() => {
       gsap.set(".svc-hero__line-inner", { yPercent: 105 });
       gsap.set(".svc-hero__ring path", { strokeDasharray: 1, strokeDashoffset: 1 });
@@ -85,7 +98,10 @@ export default function ServicePage({ page, projects }: { page: any; projects: P
         .to(".svc-hero__ring path", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, "-=0.3")
         .to(".svc-hero__sub, .svc-hero__ctas, .svc-stamp", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.1 }, "-=0.6");
     }, heroRef);
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      if (intervalId) clearInterval(intervalId);
+    };
   }, []);
 
   const toggleFaq = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -117,6 +133,16 @@ export default function ServicePage({ page, projects }: { page: any; projects: P
     <>
       {/* ====== HERO ====== */}
       <section className="svc-hero" ref={heroRef}>
+        {heroImages.length > 0 && (
+          <>
+            <div className="hero__bg" aria-hidden="true">
+              {heroImages.map((src, i) => (
+                <div key={src} className={`hero__bg-img${i === 0 ? " is-active" : ""}`} style={{ backgroundImage: `url(${src})` }} />
+              ))}
+            </div>
+            <div className="hero__scrim" aria-hidden="true" />
+          </>
+        )}
         <h1 className="svc-hero__title">
           <span className="svc-hero__line"><span className="svc-hero__line-inner">{before}</span></span>
           <span className="svc-hero__line"><span className="svc-hero__line-inner">

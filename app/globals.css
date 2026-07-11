@@ -455,7 +455,7 @@ h2.section-title {
 }
 
 /* ============ Pagină serviciu — Hero ============ */
-.svc-hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--pad-x) 90px; position: relative; }
+.svc-hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--pad-x) 90px; position: relative; overflow: hidden; }
 .svc-hero__title { font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; font-weight: 600; }
 .svc-hero__line { display: block; overflow: hidden; }
 .svc-hero__line-inner { display: block; }
