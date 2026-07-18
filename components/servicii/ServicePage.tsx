@@ -2,6 +2,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import LiveClock from "@/components/LiveClock";
 import Portfolio from "@/components/Portfolio";
 import Process from "@/components/Process";
@@ -235,11 +236,20 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
         </section>
       )}
 
+      {/* ====== CONȚINUT SEO (richText din CMS) ====== */}
+      {page.continut && (
+        <section className="svc-prose section container" data-reveal>
+          <RichText data={page.continut} />
+        </section>
+      )}
+
       {/* ====== PROCES ====== */}
       <Process deliverables={deliv} />
 
-      {/* ====== PORTOFOLIU ====== */}
-      <Portfolio projects={projects} eyebrow={page.titlu || "Portofoliu"} title="Proiecte realizate" />
+      {/* ====== PORTOFOLIU (doar dacă există proiecte în categoria paginii) ====== */}
+      {projects.length > 0 && (
+        <Portfolio projects={projects} eyebrow={page.titlu || "Portofoliu"} title="Proiecte realizate" />
+      )}
 
       {/* ====== PREȚURI ====== */}
       {pricing.length > 0 && (

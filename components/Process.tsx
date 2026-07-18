@@ -43,6 +43,7 @@ export default function Process({ steps = defaultSteps, deliverables = defaultDe
             <div>
               <span className="eyebrow">Proces</span>
               <h2 className="section-title">Cum lucrăm</h2>
+              <a className="process__link" href="/proces">Vezi detalii →</a>
             </div>
           </div>
           {steps.map((p) => (

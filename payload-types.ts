@@ -146,8 +146,9 @@ export interface Media {
 export interface Servicii {
   id: number;
   titlu: string;
-  slug: string;
+  slug?: string | null;
   categorie?: string | null;
+  metaTitlu?: string | null;
   imagine: number | Media;
   descriereScurta?: string | null;
   heroTitlu?: string | null;
@@ -180,7 +181,7 @@ export interface Servicii {
     | null;
   features?:
     | {
-        icon: string;
+        icon?: string | null;
         titlu: string;
         descriere?: string | null;
         id?: string | null;
@@ -209,10 +210,6 @@ export interface Servicii {
       }[]
     | null;
   deliverables?: string | null;
-  seo?: {
-    titluSEO?: string | null;
-    descriereSEO?: string | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -382,6 +379,7 @@ export interface ServiciiSelect<T extends boolean = true> {
   titlu?: T;
   slug?: T;
   categorie?: T;
+  metaTitlu?: T;
   imagine?: T;
   descriereScurta?: T;
   heroTitlu?: T;
@@ -429,12 +427,6 @@ export interface ServiciiSelect<T extends boolean = true> {
         id?: T;
       };
   deliverables?: T;
-  seo?:
-    | T
-    | {
-        titluSEO?: T;
-        descriereSEO?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }

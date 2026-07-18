@@ -53,3 +53,6 @@ next-env.d.ts
 
 # payload local db
 payload.db
+
+# audit-uri clienți (sensibil)
+seo_works/

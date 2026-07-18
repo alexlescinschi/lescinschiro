@@ -29,6 +29,7 @@ export const Servicii: CollectionConfig = {
       },
     },
     { name: 'categorie', type: 'text', admin: { position: 'sidebar' } },
+    { name: 'metaTitlu', type: 'text', label: 'Meta title (SEO — dacă e gol, se folosește titlul)', admin: { position: 'sidebar' } },
     { name: 'imagine', type: 'upload', relationTo: 'media', required: true },
     { name: 'descriereScurta', type: 'textarea', label: 'Descriere scurtă (și SEO description)' },
     { name: 'heroTitlu', type: 'text', label: 'Hero — titlu' },

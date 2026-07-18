@@ -29,18 +29,24 @@ async function getHeroImages(categorie?: string) {
   ).filter(Boolean);
 }
 
-async function getProjects() {
+const CATEGORIE_LABEL: Record<string, string> = {
+  "magazin-online": "Magazin online",
+  corporativ: "Corporativ",
+  "landing-page": "Landing page",
+};
+
+async function getProjects(categorie: string) {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
     collection: "proiecte",
-    where: { categorie: { equals: "magazin-online" } },
+    where: { categorie: { equals: categorie } },
     depth: 1,
     limit: 10,
     sort: "-createdAt",
   });
   return docs.map((p) => ({
     name: (p.titlu as string) || "",
-    tag: "Magazin online",
+    tag: CATEGORIE_LABEL[categorie] || "",
     img:
       p.imagine && typeof p.imagine === "object" && "url" in p.imagine
         ? (p.imagine as { url: string }).url
@@ -54,10 +60,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await getPage(slug);
   if (!page) return { title: "Pagina nu a fost găsită" };
 
-  const metaTitle = `${page.titlu} — LESCINSCHI`;
+  const metaTitle = (page as any).metaTitlu || `${page.titlu} — LESCINSCHI`;
   const metaDesc = (page.descriereScurta as string) || "";
   return {
-    title: metaTitle,
+    title: { absolute: metaTitle }, // metaTitlu conține deja brandul — nu aplica template-ul din layout
     description: metaDesc,
     alternates: { canonical: `/servicii/${slug}` },
     openGraph: {
@@ -75,8 +81,9 @@ export default async function ServiciuPage({ params }: Props) {
   const page = await getPage(slug);
   if (!page) notFound();
 
-  const projects = slug === "magazine-online" ? await getProjects() : [];
-  const heroImages = slug === "magazine-online" ? await getHeroImages("magazin-online") : [];
+  const categorie = (page.categorie as string) || "";
+  const projects = categorie ? await getProjects(categorie) : [];
+  const heroImages = categorie ? await getHeroImages(categorie) : [];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -89,11 +96,45 @@ export default async function ServiciuPage({ params }: Props) {
       : undefined,
   };
 
+  // FAQ rich snippets în Google
+  const faq = (page.faq as { intrebare: string; raspuns: string }[] | undefined) || [];
+  const faqLd = faq.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((f) => ({
+          "@type": "Question",
+          name: f.intrebare,
+          acceptedAnswer: { "@type": "Answer", text: f.raspuns },
+        })),
+      }
+    : null;
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Acasă", item: "/" },
+      { "@type": "ListItem", position: 2, name: "Servicii", item: "/#servicii" },
+      { "@type": "ListItem", position: 3, name: page.titlu },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <ServicePage page={page as any} projects={projects} heroImages={heroImages} />
     </>

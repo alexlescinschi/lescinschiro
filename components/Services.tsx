@@ -32,13 +32,21 @@ export default function Services() {
       <span className="eyebrow" data-reveal>Servicii</span>
       <h2 className="section-title" data-reveal>Tot ce ai nevoie ca să vinzi online</h2>
       <div className="services__list">
-        {services.map((s) => (
-          <div className="srv" key={s.n} data-reveal>
-            <span className="srv__n">{s.n}</span>
-            <span className="srv__title">{s.title}</span>
-            <span className="srv__desc">{s.desc}</span>
-          </div>
-        ))}
+        {services.map((s) => {
+          const inner = (
+            <>
+              <span className="srv__n">{s.n}</span>
+              <span className="srv__title">{s.title}</span>
+              <span className="srv__desc">{s.desc}</span>
+            </>
+          );
+          // rândurile cu pagină proprie devin linkuri (SEO intern + navigare)
+          return "href" in s && s.href ? (
+            <a className="srv" key={s.n} href={s.href} data-reveal>{inner}</a>
+          ) : (
+            <div className="srv" key={s.n} data-reveal>{inner}</div>
+          );
+        })}
       </div>
       <div className="srv-preview" ref={previewRef} aria-hidden />
     </section>

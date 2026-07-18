@@ -274,6 +274,12 @@ h2.section-title {
 .deliverables h3 { font-size: 1rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; }
 .deliverables__item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); font-size: 1.15rem; }
 .deliverables__item::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); flex: none; }
+.process__link {
+  display: inline-block; margin-top: 1.4rem; font-size: 0.95rem;
+  border-bottom: 1px solid var(--lime); padding-bottom: 2px;
+  transition: opacity 0.3s var(--ease);
+}
+.process__link:hover { opacity: 0.7; }
 /* fallback dacă pinning nu se aplică (mobil / reduced motion) */
 @media (max-width: 720px) {
   .process__pin { height: auto; display: block; }
@@ -535,9 +541,336 @@ h2.section-title {
 .svc-faq__body { overflow: hidden; transition: max-height 0.4s var(--ease); }
 .svc-faq__text { padding-bottom: clamp(18px, 2.5vw, 28px); font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.55; max-width: 56ch; }
 
+/* ============ Proză SEO (richText din CMS) ============ */
+.svc-prose { max-width: 76ch; }
+.svc-prose h2 { font-family: var(--font-head); font-weight: 500; font-size: var(--fs-h2); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; margin-top: clamp(50px, 8vw, 100px); }
+.svc-prose h2:first-child { margin-top: 0; }
+.svc-prose h3 { font-family: var(--font-head); font-weight: 500; font-size: clamp(1.3rem, 2.4vw, 1.8rem); text-transform: uppercase; margin-top: 2.2rem; }
+.svc-prose p { margin-top: 1.4rem; font-size: var(--fs-lead); line-height: 1.6; color: rgba(255, 255, 255, 0.7); }
+.svc-prose ul, .svc-prose ol { margin-top: 1.4rem; padding-left: 1.2em; color: rgba(255, 255, 255, 0.7); font-size: var(--fs-lead); line-height: 1.6; }
+.svc-prose li { margin-top: 0.5rem; }
+.svc-prose li::marker { color: var(--lime); }
+.svc-prose strong { color: var(--white); font-weight: 500; }
+.svc-prose a { border-bottom: 1px solid var(--lime); }
+
 /* ============ Reduced motion ============ */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
   .intro { display: none; }
   .marquee__track { animation: none; }
 }
+
+/* ============ Pagina /contact ============ */
+.ch-hero__title {
+  font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase;
+  position: relative; z-index: 2;
+}
+.ch-hero__aside {
+  font-size: var(--fs-lead); max-width: 42ch; margin-top: 2.2rem; color: rgba(255,255,255,0.78);
+  position: relative; z-index: 2;
+}
+
+/* 2. Canale rapide */
+.ch-channels { padding-top: 0; }
+.ch-channels__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line);
+  border-block: 1px solid var(--line);
+}
+.ch-channel {
+  background: var(--black); padding: 2.4rem 1.8rem; display: grid; gap: 0.8rem;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+.ch-channel:hover { background: var(--white); color: var(--black); }
+.ch-channel__icon { display: inline-flex; }
+.ch-channel__label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); }
+.ch-channel:hover .ch-channel__label { color: rgba(0,0,0,0.5); }
+.ch-channel__value { font-size: 1.15rem; font-weight: 500; word-break: break-word; }
+
+/* 3. Detalii + Hartă */
+.ch-details { padding-top: 0; }
+.ch-details__grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
+.ch-details__info { display: grid; gap: 2rem; }
+.ch-row { display: grid; gap: 0.25rem; padding-bottom: 1.6rem; border-bottom: 1px solid var(--line); }
+.ch-row__k { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.4rem; }
+.ch-row__v { font-size: 1.15rem; }
+.ch-row__v a { border-bottom: 1px solid transparent; transition: border-color 0.3s var(--ease); }
+.ch-row__v a:hover { border-color: var(--lime); }
+.ch-details__map { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; aspect-ratio: 4 / 3; }
+.ch-details__map iframe { width: 100%; height: 100%; border: 0; filter: invert(0.92) hue-rotate(180deg) grayscale(0.3); }
+
+/* 4. Formular */
+.ch-form__title { margin-bottom: 2.4rem; }
+.ch-form__form { max-width: 760px; display: grid; gap: 24px; }
+.ch-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ch-form__form .field input,
+.ch-form__form .field textarea,
+.ch-form__form .field select {
+  font-size: 1.1rem; padding: 14px 2px; color: var(--white);
+  background: transparent; border: 0; border-bottom: 1px solid var(--line);
+  border-radius: 0; transition: border-color 0.3s var(--ease);
+}
+.ch-form__form .field select { appearance: none; cursor: pointer; }
+.ch-form__form .field select option { background: var(--black); color: var(--white); }
+.ch-form__form .field input:focus,
+.ch-form__form .field textarea:focus,
+.ch-form__form .field select:focus { outline: none; border-color: var(--lime); }
+.ch-form__submit { justify-self: start; margin-top: 4px; }
+
+/* 5. FAQ */
+.ch-faq { padding-top: 0; }
+.ch-faq__list { display: grid; gap: 1px; background: var(--line); border-block: 1px solid var(--line); max-width: 900px; }
+.ch-faq__item { background: var(--black); padding: 1.8rem 0.5rem; }
+.ch-faq__item summary {
+  cursor: pointer; list-style: none; font-size: 1.2rem; font-weight: 500;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.ch-faq__item summary::-webkit-details-marker { display: none; }
+.ch-faq__item summary::after { content: "+"; font-size: 1.4rem; color: var(--gray); transition: transform 0.3s var(--ease); }
+.ch-faq__item[open] summary::after { transform: rotate(45deg); color: var(--lime); }
+.ch-faq__item p { margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 60ch; }
+
+/* 6. CTA final */
+.ch-final__inner { text-align: center; display: grid; gap: 1.6rem; justify-items: center; }
+.ch-final__title { font-size: var(--fs-h1); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; }
+.ch-final__alt { color: rgba(255,255,255,0.6); font-size: 0.95rem; }
+
+@media (max-width: 900px) {
+  .ch-channels__grid { grid-template-columns: 1fr 1fr; }
+  .ch-details__grid { grid-template-columns: 1fr; }
+  .ch-form__row { grid-template-columns: 1fr; }
+  .ch-form__submit { justify-self: stretch; text-align: center; justify-content: center; }
+}
+@media (max-width: 560px) {
+  .ch-channels__grid { grid-template-columns: 1fr; }
+}
+
+/* ============ Pagina /portofoliu — filtre ============ */
+.pf__filters {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin: 2.4rem 0 3.2rem; padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+.pf__filter {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.7rem 1.4rem; border-radius: 9999px;
+  border: 1px solid var(--line);
+  font-size: 0.9rem; font-weight: 500; color: var(--white);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.pf__filter:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+.pf__filter.is-active { background: var(--lime); color: var(--black); border-color: var(--lime); }
+.pf__count {
+  font-size: 0.72rem; opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+.pf__empty { padding: 4rem 0; color: rgba(255,255,255,0.5); text-align: center; }
+
+/* ============ Pagina /proces ============ */
+.pp-hero__title {
+  font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase;
+  position: relative; z-index: 2;
+}
+.pp-hero__aside {
+  font-size: var(--fs-lead); max-width: 42ch; margin-top: 2.2rem; color: rgba(255,255,255,0.78);
+  position: relative; z-index: 2;
+}
+
+/* 2. Etape verticale alternate */
+.pp-steps { display: grid; gap: 0; }
+.pp-step {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem;
+  padding-block: clamp(3rem, 7vw, 6rem);
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.pp-step--rev .pp-step__num { order: 2; text-align: left; }
+.pp-step__num {
+  font-size: clamp(5rem, 14vw, 11rem); line-height: 0.85; font-weight: 500;
+  color: rgba(255,255,255,0.1); letter-spacing: -0.03em; text-align: right;
+}
+.pp-step__title {
+  font-size: clamp(1.6rem, 4vw, 2.6rem); text-transform: uppercase;
+  line-height: 1; letter-spacing: -0.02em; margin-bottom: 1rem;
+}
+.pp-step__desc { font-size: var(--fs-lead); color: rgba(255,255,255,0.7); max-width: 50ch; margin-bottom: 1.8rem; }
+.pp-step__list { list-style: none; display: grid; gap: 0.7rem; margin-bottom: 1.8rem; }
+.pp-step__list li {
+  font-size: 1rem; color: rgba(255,255,255,0.85);
+  padding-left: 1.4rem; position: relative;
+}
+.pp-step__list li::before {
+  content: ""; position: absolute; left: 0; top: 0.6em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--lime);
+}
+.pp-step__meta {
+  display: flex; flex-wrap: wrap; gap: 1.4rem; padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem; color: rgba(255,255,255,0.7);
+}
+.pp-step__meta strong { color: var(--white); font-weight: 500; margin-right: 0.3em; }
+
+/* 3. Timeline SVG */
+.pp-timeline__line { width: 100%; height: 80px; display: block; }
+.pp-timeline__weeks {
+  display: grid; grid-template-columns: repeat(8, 1fr); margin-top: -1.4rem;
+}
+.pp-timeline__wk { display: grid; justify-items: center; gap: 0.5rem; position: relative; }
+.pp-timeline__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); }
+.pp-timeline__label { font-size: 0.78rem; color: var(--gray); letter-spacing: 0.08em; }
+.pp-timeline__phase {
+  position: absolute; bottom: -2.2rem; font-size: 0.85rem; color: var(--white);
+  white-space: nowrap;
+}
+
+/* 4. Deliverables grilă */
+.pp-deliver__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line);
+  border-block: 1px solid var(--line);
+}
+.pp-deliver__item {
+  background: var(--black); padding: 2.2rem 1.6rem;
+  display: flex; flex-direction: column; gap: 0.9rem;
+  transition: background 0.4s var(--ease);
+}
+.pp-deliver__item:hover { background: rgba(255,255,255,0.03); }
+.pp-deliver__icon { font-size: 1.8rem; }
+.pp-deliver__label { font-size: 1.1rem; font-weight: 500; }
+
+/* 5. Principii */
+.pp-principles__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+}
+.pp-principle { display: grid; gap: 0.8rem; }
+.pp-principle__icon { font-size: 1.8rem; }
+.pp-principle__title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: -0.01em; }
+.pp-principle__desc { font-size: 0.95rem; color: rgba(255,255,255,0.65); }
+
+/* 6. FAQ — reuse .ch-faq pattern */
+.pp-faq__list { display: grid; gap: 1px; background: var(--line); border-block: 1px solid var(--line); max-width: 900px; }
+.pp-faq__item { background: var(--black); padding: 1.8rem 0.5rem; }
+.pp-faq__item summary {
+  cursor: pointer; list-style: none; font-size: 1.2rem; font-weight: 500;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.pp-faq__item summary::-webkit-details-marker { display: none; }
+.pp-faq__item summary::after { content: "+"; font-size: 1.4rem; color: var(--gray); transition: transform 0.3s var(--ease); }
+.pp-faq__item[open] summary::after { transform: rotate(45deg); color: var(--lime); }
+.pp-faq__item p { margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 60ch; }
+
+/* 7. CTA final */
+.pp-final__inner { text-align: center; display: grid; gap: 1.6rem; justify-items: center; }
+.pp-final__title { font-size: var(--fs-h1); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; }
+.pp-final__btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+@media (max-width: 800px) {
+  .pp-step { grid-template-columns: 1fr; gap: 1rem; }
+  .pp-step__num, .pp-step--rev .pp-step__num { text-align: left; font-size: clamp(4rem, 18vw, 7rem); }
+  .pp-deliver__grid { grid-template-columns: 1fr 1fr; }
+  .pp-principles__grid { grid-template-columns: 1fr 1fr; }
+  .pp-timeline__weeks { grid-template-columns: repeat(4, 1fr); gap: 1.5rem 0; }
+}
+@media (max-width: 520px) {
+  .pp-deliver__grid { grid-template-columns: 1fr; }
+  .pp-principles__grid { grid-template-columns: 1fr; }
+}
+
+/* ============ Pagina /despre-noi ============ */
+.ab-hero__title {
+  font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase;
+  position: relative; z-index: 2;
+}
+.ab-hero__aside {
+  font-size: var(--fs-lead); max-width: 46ch; margin-top: 2.2rem; color: rgba(255,255,255,0.78);
+  position: relative; z-index: 2;
+}
+
+/* 2. Povestea */
+.ab-story__grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+.ab-story__text { display: grid; gap: 1.6rem; max-width: 60ch; }
+.ab-story__text p { font-size: var(--fs-lead); line-height: 1.55; color: rgba(255,255,255,0.82); }
+.ab-story__text p:first-child::first-letter {
+  font-size: 3.2em; line-height: 0.8; float: left; padding-right: 0.12em; padding-top: 0.06em;
+  color: var(--lime); font-weight: 500;
+}
+
+/* 3. Stats */
+.ab-stats { padding-top: 0; }
+.ab-stats__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line);
+  border-block: 1px solid var(--line);
+}
+.ab-stat { background: var(--black); padding: 2.4rem 1.6rem; display: grid; gap: 0.5rem; }
+.ab-stat__num { font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.02em; font-weight: 500; }
+.ab-stat__num span { display: inline; }
+.ab-stat__label { font-size: 0.85rem; color: var(--gray); }
+
+/* 4. Principii */
+.ab-principles__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.ab-principle { display: grid; gap: 0.8rem; }
+.ab-principle__icon { font-size: 1.8rem; }
+.ab-principle__title { font-size: 1.2rem; text-transform: uppercase; letter-spacing: -0.01em; }
+.ab-principle__desc { font-size: 0.95rem; color: rgba(255,255,255,0.65); }
+
+/* 5. Stack */
+.ab-stack__lead { font-size: var(--fs-lead); max-width: 60ch; color: rgba(255,255,255,0.82); margin-bottom: 2.4rem; }
+.ab-stack__grid { display: grid; gap: 1px; background: var(--line); border-block: 1px solid var(--line); max-width: 900px; }
+.ab-stack__row {
+  background: var(--black); padding: 1.2rem 0.5rem;
+  display: grid; grid-template-columns: 140px 1fr; gap: 1rem; align-items: baseline;
+}
+.ab-stack__k { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gray); }
+.ab-stack__v { font-size: 1.05rem; }
+.ab-stack__note { margin-top: 2.4rem; font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 70ch; }
+.ab-stack__note strong { color: var(--white); }
+
+/* 6. Fondator */
+.ab-founder__grid { display: grid; grid-template-columns: 240px 1fr; gap: 3rem; align-items: start; }
+.ab-founder__avatar { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; aspect-ratio: 1; }
+.ab-founder__name { font-size: clamp(1.8rem, 4vw, 2.6rem); text-transform: uppercase; line-height: 1; letter-spacing: -0.02em; }
+.ab-founder__role { font-size: 0.85rem; color: var(--lime); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.6rem; margin-bottom: 1.6rem; }
+.ab-founder__bio { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 1.2rem; max-width: 60ch; }
+.ab-founder__loc { font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-top: 0.4rem; }
+
+/* 7. Clienți */
+.ab-clients__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-block: 1px solid var(--line); max-width: 900px; }
+.ab-client {
+  background: var(--black); padding: 1.6rem 1.4rem; font-size: 1.15rem; font-weight: 500;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+.ab-client:hover { background: var(--white); color: var(--black); }
+.ab-clients__more {
+  display: inline-block; margin-top: 2.4rem; font-size: 1rem;
+  border-bottom: 1px solid var(--lime); padding-bottom: 2px;
+}
+
+/* 8. FAQ */
+.ab-faq__list { display: grid; gap: 1px; background: var(--line); border-block: 1px solid var(--line); max-width: 900px; }
+.ab-faq__item { background: var(--black); padding: 1.8rem 0.5rem; }
+.ab-faq__item summary {
+  cursor: pointer; list-style: none; font-size: 1.2rem; font-weight: 500;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.ab-faq__item summary::-webkit-details-marker { display: none; }
+.ab-faq__item summary::after { content: "+"; font-size: 1.4rem; color: var(--gray); transition: transform 0.3s var(--ease); }
+.ab-faq__item[open] summary::after { transform: rotate(45deg); color: var(--lime); }
+.ab-faq__item p { margin-top: 1rem; color: rgba(255,255,255,0.7); max-width: 60ch; }
+
+/* 9. CTA final */
+.ab-final__inner { text-align: center; display: grid; gap: 1.6rem; justify-items: center; }
+.ab-final__title { font-size: var(--fs-h1); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; }
+.ab-final__btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+@media (max-width: 800px) {
+  .ab-story__grid { grid-template-columns: 1fr; gap: 1rem; }
+  .ab-stats__grid { grid-template-columns: 1fr 1fr; }
+  .ab-principles__grid { grid-template-columns: 1fr 1fr; }
+  .ab-clients__grid { grid-template-columns: 1fr 1fr; }
+  .ab-founder__grid { grid-template-columns: 1fr; }
+  .ab-founder__avatar { max-width: 200px; }
+}
+@media (max-width: 520px) {
+  .ab-stats__grid { grid-template-columns: 1fr; }
+  .ab-principles__grid { grid-template-columns: 1fr; }
+  .ab-clients__grid { grid-template-columns: 1fr; }
+}
+
