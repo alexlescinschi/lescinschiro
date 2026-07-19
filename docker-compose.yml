@@ -1,11 +1,12 @@
-# ponytail: 3 servicii — app (Next.js standalone), db (Postgres), caddy (HTTPS terminator).
-# Caddy obține automat certificat Let's Encrypt pentru lescinschi.ro.
+# ponytail: 2 servicii — app (Next.js standalone) + db (Postgres).
+# HTTPS e terminat la Cloudflare edge (proxy ON). App ascultă direct pe 80.
 services:
   app:
     build: .
-    # ponytail: port 3000 expus doar intern — acces public prin Caddy pe 80/443.
-    expose:
-      - "3000"
+    ports:
+      # ponytail: 80 expus public — Cloudflare origin pe port standard.
+      # UFW pe VPS permite doar de la IP-urile Cloudflare (vezi /root/setup-firewall.sh).
+      - "80:3000"
     env_file:
       - .env
     environment:
@@ -35,22 +36,6 @@ services:
       retries: 5
     restart: unless-stopped
 
-  caddy:
-    image: caddy:2-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - app
-
 volumes:
   pgdata:
   uploads:
-  caddy_data:
-  caddy_config:

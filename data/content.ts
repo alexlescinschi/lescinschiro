@@ -4,8 +4,8 @@
 export const site = {
   name: "LESCINSCHI",
   // ponytail: schimbă cu domeniul real de producție când e cumpărat
-  domain: "https://lescinschi.ro",
-  email: "alex@lescinschi.ro",
+  domain: "https://lescinschi.art",
+  email: "alex@lescinschi.art",
   phone: "+40 730 304 478",        // RO
   phoneMD: "+373 67 550 980",      // MD
   whatsapp: "40730304478",
