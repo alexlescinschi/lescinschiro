@@ -1,0 +1,23 @@
+# ponytail: HTTPS automat pentru lescinschi.ro + www.
+# Caddy obține certificat Let's Encrypt la prima cerere și îl reînnoiește singur.
+
+lescinschi.ro, www.lescinschi.ro {
+	reverse_proxy app:3000
+	encode gzip zstd
+
+	# ponytail: cache pentru assets statice Next.js (immutable)
+	@nextStatic path /_next/static/*
+	header @nextStatic Cache-Control "public, max-age=31536000, immutable"
+
+	# Securitate de bază
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}

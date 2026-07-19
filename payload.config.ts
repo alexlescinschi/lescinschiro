@@ -7,14 +7,15 @@ import { Media } from './collections/Media'
 import { Servicii } from './collections/Servicii'
 import { Proiecte } from './collections/Proiecte'
 import { Blog } from './collections/Blog'
+import { migrations } from './migrations'
 
-// ponytail: sqlite local, postgres pe vps
-// Function to avoid build-time evaluation of process.env
+// ponytail: sqlite local (push automat), postgres pe vps (prodMigrations la boot).
+// push:true e ignorat când NODE_ENV=production; prodMigrations îl înlocuiește.
 function getDB() {
   if (process.env.DATABASE_URI) {
     return postgresAdapter({
       pool: { connectionString: process.env.DATABASE_URI },
-      push: true,
+      prodMigrations: migrations,
     })
   }
   return sqliteAdapter({ client: { url: 'file:./payload.db' } })

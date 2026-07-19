@@ -56,3 +56,8 @@ payload.db
 
 # audit-uri clienți (sensibil)
 seo_works/
+
+# agent sessions / plans
+.zcode/
+.claude/
+.opencode/
