@@ -31,7 +31,7 @@ async function main() {
     process.exit(0)
   }
 
-  const imagineId = 4
+  const imagineId = 1
 
   const doc = await payload.create({
     collection: 'servicii',

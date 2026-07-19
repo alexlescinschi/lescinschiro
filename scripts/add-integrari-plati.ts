@@ -41,7 +41,7 @@ async function main() {
   }
 
   // imagine: reuse id 4 (svc-mag-1.png) — ponytail: temporar, schimbi din admin
-  const imagineId = 4
+  const imagineId = 1
 
   const doc = await payload.create({
     collection: 'servicii',

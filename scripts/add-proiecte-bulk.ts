@@ -1,12 +1,12 @@
 // Insert bulk: proiectele reale ale agenției.
 // ponytail: run once with `npx tsx --env-file=.env scripts/add-proiecte-bulk.ts`
-// Toate primesc imagine_id=4 (svc-mag-1.png) — schimbi din admin pentru fiecare.
+// Toate primesc imagine_id=1 (prima media din DB) — schimbi din admin pentru fiecare.
 // Idempotent: skip pe slug existent. Sare peste climatperfect (deja în DB).
 import { getPayload } from 'payload'
 import config from '../payload.config'
 
 type Cat = 'magazin-online' | 'corporativ' | 'landing-page'
-const IMAGINE_ID = 4
+const IMAGINE_ID = 1
 
 function slugify(s: string) {
   return s
