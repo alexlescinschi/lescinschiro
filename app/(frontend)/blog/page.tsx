@@ -53,7 +53,12 @@ export default async function Page() {
     where: {
       and: [
         { _status: { equals: "published" } },
-        { publicatLa: { less_than_equal: new Date().toISOString() } },
+        {
+          or: [
+            { publicatLa: { less_than_equal: new Date().toISOString() } },
+            { publicatLa: { exists: false } },
+          ],
+        },
       ],
     },
   });

@@ -24,13 +24,10 @@ export default function Hero() {
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
-      gsap.set(".line__inner", { yPercent: 105 });
-      gsap.set(".ring path", { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set(".hero__aside, .hero__ctas, .stamp", { opacity: 0, y: 20 });
       const tl = gsap.timeline({ delay: 1.3 }); // după cortina de intrare
-      tl.to(".line__inner", { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.12 })
-        .to(".ring path", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, "-=0.3")
-        .to(".hero__aside, .hero__ctas, .stamp", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.1 }, "-=0.6");
+      tl.fromTo(".line__inner", { yPercent: 105 }, { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.12 })
+        .fromTo(".ring path", { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, "-=0.3")
+        .fromTo(".hero__aside, .hero__ctas, .stamp", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.1 }, "-=0.6");
     }, root);
     return () => ctx.revert();
   }, []);

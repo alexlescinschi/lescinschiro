@@ -13,16 +13,14 @@ export default function ProcessPage() {
   const root = useRef<HTMLElement>(null);
 
   // Hero mask-reveal + inel lime (ca Hero / Contact).
+  // ponytail: gsap.fromTo garantează starea finală.
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
-      gsap.set(".pp-hero .line__inner", { yPercent: 105 });
-      gsap.set(".pp-hero .ring path", { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set(".pp-hero__aside", { opacity: 0, y: 20 });
       const tl = gsap.timeline({ delay: 0.3 });
-      tl.to(".pp-hero .line__inner", { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.12 })
-        .to(".pp-hero .ring path", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, "-=0.3")
-        .to(".pp-hero__aside", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.5");
+      tl.fromTo(".pp-hero .line__inner", { yPercent: 105 }, { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.12 })
+        .fromTo(".pp-hero .ring path", { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, "-=0.3")
+        .fromTo(".pp-hero__aside", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.5");
     }, root);
     return () => ctx.revert();
   }, []);

@@ -34,6 +34,9 @@ export default function Portfolio({
   useEffect(() => {
     if (!ready) return;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // ponytail: efectul elastic are sens doar pe desktop cu mouse;
+    // pe touch cauzează jank (forced reflow per frame) și .wk__link e oricum ascuns.
+    if (matchMedia("(max-width: 1024px), (pointer: coarse)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
 

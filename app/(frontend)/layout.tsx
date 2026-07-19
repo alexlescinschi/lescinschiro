@@ -51,6 +51,11 @@ export default function FrontendLayout({ children }: Readonly<{ children: React.
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {/* ponytail: dacă JS nu rulează, [data-reveal] rămâne opacity:0 ascuns.
+          Acest noscript forțează vizibilitatea fără animație. */}
+      <noscript>
+        <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
+      </noscript>
       <Intro />
       <Cursor />
       <SmoothScroll>

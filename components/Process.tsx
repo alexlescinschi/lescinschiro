@@ -14,7 +14,7 @@ export default function Process({ steps = defaultSteps, deliverables = defaultDe
   const track = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (matchMedia("(max-width: 720px)").matches) return;
+    if (matchMedia("(max-width: 1024px)").matches) return; // touch & tablet: derulează vertical
     gsap.registerPlugin(ScrollTrigger);
     const el = track.current, sec = root.current;
     if (!el || !sec) return;

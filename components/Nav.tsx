@@ -8,13 +8,15 @@ export default function Nav() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  // ponytail: portal la body ca să scape de Lenis wrapper care strică position:fixed
+  // ponytail: portal la body ca să scape de Lenis wrapper care strică position:fixed.
+  // inert (React 19) când e închis → link-urile nu sunt focusabile din greșeală.
   const menuEl = (
     <div
       className={`menu${open ? " open" : ""}`}
       role="dialog"
       aria-modal={open}
       aria-hidden={!open}
+      inert={!open ? true : undefined}
     >
       <button className="menu__close" aria-label="Închide meniul" onClick={() => setOpen(false)}>×</button>
       <ul className="menu__list">

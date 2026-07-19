@@ -16,16 +16,14 @@ export default function AboutPage() {
   const root = useRef<HTMLElement>(null);
 
   // Hero mask-reveal + inel lime.
+  // ponytail: gsap.fromTo garantează starea finală.
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
-      gsap.set(".ab-hero .line__inner", { yPercent: 105 });
-      gsap.set(".ab-hero .ring path", { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set(".ab-hero__aside", { opacity: 0, y: 20 });
       const tl = gsap.timeline({ delay: 0.3 });
-      tl.to(".ab-hero .line__inner", { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.12 })
-        .to(".ab-hero .ring path", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, "-=0.3")
-        .to(".ab-hero__aside", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.5");
+      tl.fromTo(".ab-hero .line__inner", { yPercent: 105 }, { yPercent: 0, duration: 1, ease: "power4.out", stagger: 0.12 })
+        .fromTo(".ab-hero .ring path", { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, "-=0.3")
+        .fromTo(".ab-hero__aside", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.5");
     }, root);
     return () => ctx.revert();
   }, []);

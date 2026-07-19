@@ -37,6 +37,8 @@ export default function PortfolioPage({ projects }: { projects: Project[] }) {
   useEffect(() => {
     if (!ready) return;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // ponytail: elastic doar pe desktop cu mouse (vezi Portfolio.tsx).
+    if (matchMedia("(max-width: 1024px), (pointer: coarse)").matches) return;
     gsap.registerPlugin(ScrollTrigger);
 
     const el = root.current;
