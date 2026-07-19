@@ -5,6 +5,9 @@ import type { Metadata } from "next";
 import BlogArticle from "@/components/BlogArticle";
 import { site } from "@/data/content";
 
+// ponytail: nu prerandera la build (DB inaccesibil în Docker build stage)
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ slug: string }> };
 
 async function getPost(slug: string) {

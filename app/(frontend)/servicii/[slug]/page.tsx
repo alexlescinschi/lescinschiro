@@ -4,6 +4,9 @@ import config from "@payload-config";
 import type { Metadata } from "next";
 import ServicePage from "@/components/servicii/ServicePage";
 
+// ponytail: nu prerandera la build (DB inaccesibil în Docker build stage)
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ slug: string }> };
 
 async function getPage(slug: string) {

@@ -3,6 +3,9 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 import { site } from "@/data/content";
 
+// ponytail: nu prerandera la build (DB inaccesibil în Docker build stage)
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const payload = await getPayload({ config });
   const [servicii, blog] = await Promise.all([
