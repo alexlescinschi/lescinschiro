@@ -70,6 +70,7 @@ export interface Config {
     media: Media;
     servicii: Servicii;
     proiecte: Proiecte;
+    blog: Blog;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     servicii: ServiciiSelect<false> | ServiciiSelect<true>;
     proiecte: ProiecteSelect<false> | ProiecteSelect<true>;
+    blog: BlogSelect<false> | BlogSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -249,6 +251,42 @@ export interface Proiecte {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog".
+ */
+export interface Blog {
+  id: number;
+  titlu: string;
+  slug?: string | null;
+  categorie: 'magazin-online' | 'seo' | 'web-design' | 'integrari' | 'ai-automatizari' | 'sfaturi';
+  excerpt: string;
+  autor?: string | null;
+  publicatLa?: string | null;
+  coverImage: number | Media;
+  continut: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  seo?: {
+    titluSEO?: string | null;
+    descriereSEO?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -307,6 +345,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'proiecte';
         value: number | Proiecte;
+      } | null)
+    | ({
+        relationTo: 'blog';
+        value: number | Blog;
       } | null)
     | ({
         relationTo: 'users';
@@ -450,6 +492,29 @@ export interface ProiecteSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog_select".
+ */
+export interface BlogSelect<T extends boolean = true> {
+  titlu?: T;
+  slug?: T;
+  categorie?: T;
+  excerpt?: T;
+  autor?: T;
+  publicatLa?: T;
+  coverImage?: T;
+  continut?: T;
+  seo?:
+    | T
+    | {
+        titluSEO?: T;
+        descriereSEO?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

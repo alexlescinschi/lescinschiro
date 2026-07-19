@@ -27,6 +27,7 @@ export const nav = [
   { label: "Proiecte", href: "#portofoliu" },
   { label: "Proces", href: "#proces" },
   { label: "Prețuri", href: "#preturi" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
 

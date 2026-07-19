@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { Media } from './collections/Media'
 import { Servicii } from './collections/Servicii'
 import { Proiecte } from './collections/Proiecte'
+import { Blog } from './collections/Blog'
 
 // ponytail: sqlite local, postgres pe vps
 // Function to avoid build-time evaluation of process.env
@@ -21,7 +22,7 @@ function getDB() {
 
 export default buildConfig({
   editor: lexicalEditor(),
-  collections: [Media, Servicii, Proiecte],
+  collections: [Media, Servicii, Proiecte, Blog],
   secret: process.env.PAYLOAD_SECRET || '',
   db: getDB(),
   sharp,

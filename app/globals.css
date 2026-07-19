@@ -874,3 +874,88 @@ h2.section-title {
   .ab-clients__grid { grid-template-columns: 1fr; }
 }
 
+/* ============ Blog — listă ============ */
+.blog__lead {
+  font-size: var(--fs-lead); max-width: 60ch; margin-top: 1.4rem; margin-bottom: 1rem;
+  color: rgba(255,255,255,0.7);
+}
+.blog__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;
+}
+.blog-card {
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+  background: var(--black); transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.blog-card:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-4px); }
+.blog-card__link { display: grid; gap: 0; }
+.blog-card__media { aspect-ratio: 16 / 10; overflow: hidden; background: rgba(255,255,255,0.04); }
+.blog-card__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.blog-card:hover .blog-card__img { transform: scale(1.05); }
+.blog-card__body { padding: 1.6rem; display: grid; gap: 0.7rem; }
+.blog-card__meta {
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+  font-size: 0.78rem; color: var(--gray); letter-spacing: 0.04em;
+}
+.blog-card__cat { color: var(--lime); font-weight: 500; }
+.blog-card__title {
+  font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; font-weight: 500;
+  transition: color 0.3s var(--ease);
+}
+.blog-card:hover .blog-card__title { color: var(--lime); }
+.blog-card__excerpt { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+.blog-card__foot {
+  display: flex; gap: 0.5rem; font-size: 0.8rem; color: var(--gray); margin-top: 0.4rem;
+  padding-top: 1rem; border-top: 1px solid var(--line);
+}
+
+@media (max-width: 900px) { .blog__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .blog__grid { grid-template-columns: 1fr; } }
+
+/* ============ Blog — articol ============ */
+.ba-hero__breadcrumb { margin-bottom: 1.6rem; }
+.ba-hero__breadcrumb a { font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color 0.3s var(--ease); }
+.ba-hero__breadcrumb a:hover { color: var(--lime); }
+.ba-hero__title {
+  font-size: var(--fs-h1); line-height: 0.98; letter-spacing: -0.02em; text-transform: none;
+  margin-bottom: 1.6rem; max-width: 18ch;
+}
+.ba-hero__meta {
+  display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center;
+  font-size: 0.92rem; color: rgba(255,255,255,0.65);
+}
+.ba-cover { margin-top: 2rem; }
+.ba-cover img {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+/* Rich text prose (copiat din .svc-prose, adaptat pentru articole) */
+.ba-prose { max-width: 76ch; }
+.ba-prose h2 {
+  font-family: var(--font-head); font-weight: 500;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem); line-height: 1; letter-spacing: -0.02em;
+  text-transform: uppercase; margin-top: clamp(40px, 6vw, 70px);
+}
+.ba-prose h2:first-child { margin-top: 0; }
+.ba-prose h3 {
+  font-family: var(--font-head); font-weight: 500; font-size: 1.3rem;
+  text-transform: uppercase; margin-top: 2.4rem; letter-spacing: -0.01em;
+}
+.ba-prose p { margin-top: 1.3rem; font-size: var(--fs-lead); line-height: 1.65; color: rgba(255,255,255,0.78); }
+.ba-prose p:first-of-type { margin-top: 0; }
+.ba-prose ul, .ba-prose ol { margin-top: 1.3rem; padding-left: 1.4rem; color: rgba(255,255,255,0.78); }
+.ba-prose li { margin-top: 0.6rem; line-height: 1.55; }
+.ba-prose li::marker { color: var(--lime); }
+.ba-prose strong { color: var(--white); font-weight: 500; }
+.ba-prose a { border-bottom: 1px solid var(--lime); transition: opacity 0.3s var(--ease); }
+.ba-prose a:hover { opacity: 0.7; }
+.ba-prose blockquote {
+  border-left: 2px solid var(--lime); padding-left: 1.4rem; margin: 2rem 0;
+  font-size: 1.2rem; font-style: italic; color: rgba(255,255,255,0.85);
+}
+
+/* CTA final articol */
+.ba-cta__inner { text-align: center; display: grid; gap: 1.6rem; justify-items: center; border-top: 1px solid var(--line); padding-top: var(--pad-y); }
+.ba-cta__title { font-size: var(--fs-h2); line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; max-width: 22ch; }
+.ba-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
