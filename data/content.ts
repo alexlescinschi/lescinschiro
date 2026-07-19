@@ -41,6 +41,10 @@ export const services = [
   { n: "07", title: "Integrări API", desc: "ERP, CRM, eMAG, SmartBill, Oblio. Dacă are API, îl conectăm.", href: "/servicii/integrari-api" },
   { n: "08", title: "SEO România", desc: "Optimizare tehnică și de conținut pentru piața din România.", href: "/servicii/seo-romania" },
   { n: "09", title: "AI & Automatizări", desc: "Chatbot, automatizări de comenzi, generare de conținut.", href: "/servicii/ai-automatizari" },
+  { n: "10", title: "Social Media Management", desc: "Facebook, Instagram, TikTok, LinkedIn. Strategie, content, reclame plătite.", href: "/servicii/social-media-management" },
+  { n: "11", title: "Reclame Google Ads", desc: "Search, Shopping, Display, YouTube. Plătești doar la click. ROAS urmărit.", href: "/servicii/reclame-google-ads" },
+  { n: "12", title: "Reclame Meta", desc: "Facebook & Instagram Ads. Lookalike, retargeting, creative care scală.", href: "/servicii/reclame-meta" },
+  { n: "13", title: "Filmări & Montare video", desc: "Clipuri produs, brand films, reclame video. Cinema + storytelling.", href: "/servicii/filmari-video" },
 ];
 
 // Imagini reale de pe lescinschi.art (descărcate în public/work).
