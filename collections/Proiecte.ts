@@ -7,7 +7,8 @@ export const Proiecte: CollectionConfig = {
   fields: [
     { name: 'titlu', type: 'text', required: true },
     { name: 'slug', type: 'text', required: true, unique: true, admin: { position: 'sidebar' } },
-    { name: 'imagine', type: 'upload', relationTo: 'media', required: true },
+    // @ts-expect-error allowEdit works at runtime but missing from Payload 3 upload field types
+    { name: 'imagine', type: 'upload', relationTo: 'media', required: true, admin: { allowEdit: false } },
     {
       name: 'categorie',
       type: 'select',
