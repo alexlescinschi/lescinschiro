@@ -127,7 +127,7 @@ h2.section-title {
 .ring-word .ring path { fill: none; stroke: var(--lime); stroke-width: 3; stroke-linecap: round; }
 
 .hero__aside {
-  max-width: 30ch; margin-top: 3rem;
+  max-width: 30ch; margin-top: 1rem;
   font-size: var(--fs-lead); color: rgba(255,255,255,0.82);
 }
 .hero__ctas { display: flex; gap: 12px; margin-top: 2.4rem; flex-wrap: wrap; }
