@@ -110,12 +110,15 @@ h2.section-title {
 
 /* ============ Hero ============ */
 .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 120px var(--pad-x) 90px; position: relative; overflow: hidden; }
-/* fundal cu poze de proiect care se schimbă (crossfade) + scrim pt lizibilitate */
-.hero__bg { position: absolute; inset: 0; z-index: 0; }
-.hero__bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.4s var(--ease); }
-.hero__bg-img.is-active { opacity: 1; }
-.hero__scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,0.64) 0%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.9) 100%); }
-.hero__title, .hero__aside, .hero__ctas { position: relative; z-index: 2; }
+/* Split: stânga texte, dreapta slider vertical lent (marquee pe Y) */
+.hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 72px); align-items: center; position: relative; z-index: 2; }
+.hero__content { display: flex; flex-direction: column; align-items: flex-start; }
+.hero__slider { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; height: min(76vh, 700px); }
+.hero__slider::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0) 16%, rgba(0,0,0,0) 84%, rgba(0,0,0,0.38)); }
+.hero__slider-col { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; }
+.hero__slider-track { display: flex; flex-direction: column; gap: 14px; animation: hero-scroll var(--speed, 60s) linear infinite; will-change: transform; }
+.hero__slide { aspect-ratio: 3 / 4; background-size: cover; background-position: center; }
+@keyframes hero-scroll { from { transform: translateY(-50%); } to { transform: translateY(0); } }
 .hero__title { font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; }
 .line { display: block; overflow: hidden; }
 .line__inner { display: block; }
@@ -124,7 +127,7 @@ h2.section-title {
 .ring-word .ring path { fill: none; stroke: var(--lime); stroke-width: 3; stroke-linecap: round; }
 
 .hero__aside {
-  align-self: flex-end; max-width: 30ch; margin-top: 3rem; text-align: right;
+  max-width: 30ch; margin-top: 3rem;
   font-size: var(--fs-lead); color: rgba(255,255,255,0.82);
 }
 .hero__ctas { display: flex; gap: 12px; margin-top: 2.4rem; flex-wrap: wrap; }
@@ -133,6 +136,10 @@ h2.section-title {
   display: flex; align-items: center; gap: 8px; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.7);
 }
 .stamp svg { width: 13px; height: 13px; }
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero__slider { height: 46vh; width: 100%; }
+}
 
 /* ============ Servicii ============ */
 .services__list { border-top: 1px solid var(--line); }
