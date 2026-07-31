@@ -16,7 +16,7 @@ function Slides({ imgs }: { imgs: string[] }) {
   return (
     <>
       {list.map((src, i) => (
-        <div key={i} className="hero__slide" style={{ backgroundImage: `url(${src})` }} />
+        <img key={i} className="hero__slide" src={src} alt="" loading="lazy" />
       ))}
     </>
   );
@@ -68,12 +68,12 @@ export default function Hero() {
 
         <div className="hero__slider" aria-hidden="true">
           <div className="hero__slider-col">
-            <div className="hero__slider-track" style={{ ["--speed" as string]: "60s" }}>
+            <div className="hero__slider-track" style={{ ["--speed" as string]: "75s" }}>
               <Slides imgs={COLS[0]} />
             </div>
           </div>
           <div className="hero__slider-col">
-            <div className="hero__slider-track" style={{ ["--speed" as string]: "80s" }}>
+            <div className="hero__slider-track" style={{ ["--speed" as string]: "100s" }}>
               <Slides imgs={COLS[1]} />
             </div>
           </div>
