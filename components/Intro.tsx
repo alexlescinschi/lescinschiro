@@ -22,7 +22,7 @@ export default function Intro() {
 
   return (
     <div className="intro" ref={ref} aria-hidden>
-      <div className="intro__word"><span>{site.name}</span></div>
+      <div className="intro__word"><span>{site.brand}</span></div>
     </div>
   );
 }

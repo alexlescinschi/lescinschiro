@@ -3,6 +3,7 @@
 
 export const site = {
   name: "LESCINSCHI",
+  brand: "LESCINSCHI.ART", // afișat în intro și logo (SEO/metadata folosesc `name`)
   // ponytail: schimbă cu domeniul real de producție când e cumpărat
   domain: "https://lescinschi.art",
   email: "alex@lescinschi.art",

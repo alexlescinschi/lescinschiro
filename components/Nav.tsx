@@ -32,7 +32,7 @@ export default function Nav() {
   return (
     <>
       <header className="nav">
-        <a className="nav__logo" href="#top">{site.name}</a>
+        <a className="nav__logo" href="/">{site.brand}</a>
         <div className="nav__right">
           <nav className="nav__pills" aria-label="Principal">
             {nav.map((n) => (
