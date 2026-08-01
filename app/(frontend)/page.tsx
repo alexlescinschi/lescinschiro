@@ -60,13 +60,18 @@ async function getServices() {
       limit: 50,
       sort: "ordine",
     });
-    return docs.map((s: any) => ({
-      title: s.titlu as string,
-      desc: (s.descriereScurta as string) || "",
-      href: `/servicii/${s.slug}`,
-      // hover pe home = prima imagine din conținut (richText); cât timp nu există, rămâne gradient
-      image: firstImageFromRichText(s.continut),
-    }));
+    return docs.map((s: any) => {
+      const imagine = s.imagine && typeof s.imagine === "object" && "url" in s.imagine
+        ? (s.imagine as { url: string }).url
+        : "";
+      return {
+        title: s.titlu as string,
+        desc: (s.descriereScurta as string) || "",
+        href: `/servicii/${s.slug}`,
+        // hover pe home = prima imagine din conținut (richText); dacă nu există → imaginea din câmpul „Imagine"
+        image: firstImageFromRichText(s.continut) || imagine,
+      };
+    });
   } catch {
     return [];
   }
