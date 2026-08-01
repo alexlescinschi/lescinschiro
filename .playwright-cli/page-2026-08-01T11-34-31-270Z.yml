@@ -1,0 +1,498 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "LESCINSCHI" [ref=e3]:
+      - /url: "#top"
+    - navigation "Principal" [ref=e5]:
+      - link "Servicii" [ref=e6]:
+        - /url: "#servicii"
+      - link "Proiecte" [ref=e7]:
+        - /url: "#portofoliu"
+      - link "Proces" [ref=e8]:
+        - /url: "#proces"
+      - link "Prețuri" [ref=e9]:
+        - /url: "#preturi"
+      - link "Blog" [ref=e10]:
+        - /url: /blog
+      - link "Contact" [ref=e11]:
+        - /url: "#contact"
+  - main [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e15]:
+        - heading "Site-uri care aduc clienți" [level=1] [ref=e16]:
+          - generic [ref=e17]: Site-uri care
+          - generic [ref=e20]:
+            - text: aduc
+            - generic [ref=e21]: clienți
+        - paragraph [ref=e22]: Creăm site-uri, magazine online și landing page-uri optimizate SEO pentru România — cu plăți, curierat și automatizări AI incluse.
+        - generic [ref=e23]:
+          - link "Cere o ofertă" [ref=e24]:
+            - /url: "#contact"
+          - link "Mesaj WhatsApp" [ref=e25]:
+            - /url: https://wa.me/40730304478
+      - generic [ref=e33]: BUCUREȘTI_14:34:30
+    - generic [ref=e38]:
+      - generic [ref=e39]: Servicii
+      - heading "Tot ce ai nevoie ca să vinzi online" [level=2] [ref=e40]
+      - generic [ref=e41]:
+        - link "01 Creare site-uri De la landing la platformă. Design pe brandul tău, rapid, optimizat pentru Google." [ref=e42]:
+          - /url: /servicii/site-uri-de-prezentare
+          - generic [ref=e43]: "01"
+          - generic [ref=e44]: Creare site-uri
+          - generic [ref=e45]: De la landing la platformă. Design pe brandul tău, rapid, optimizat pentru Google.
+        - link "02 Magazine online Catalog, coș, checkout, plăți, curierat, facturare — gata de vânzare." [ref=e46]:
+          - /url: /servicii/magazine-online
+          - generic [ref=e47]: "02"
+          - generic [ref=e48]: Magazine online
+          - generic [ref=e49]: Catalog, coș, checkout, plăți, curierat, facturare — gata de vânzare.
+        - 'link "03 Landing page-uri O pagină, un obiectiv: conversie. Viteză maximă și tracking pentru campanii." [ref=e50]':
+          - /url: /servicii/landing-page-uri
+          - generic [ref=e51]: "03"
+          - generic [ref=e52]: Landing page-uri
+          - generic [ref=e53]: "O pagină, un obiectiv: conversie. Viteză maximă și tracking pentru campanii."
+        - link "04 Site-uri corporative Prezență profesională, structură clară, multilingv și SEO local." [ref=e54]:
+          - /url: /servicii/site-uri-de-prezentare
+          - generic [ref=e55]: "04"
+          - generic [ref=e56]: Site-uri corporative
+          - generic [ref=e57]: Prezență profesională, structură clară, multilingv și SEO local.
+        - link "05 Integrări plăți Netopia, PayU, Stripe, PayPal, Revolut + bănci din România. 3D Secure." [ref=e58]:
+          - /url: /servicii/integrari-plati-online
+          - generic [ref=e59]: "05"
+          - generic [ref=e60]: Integrări plăți
+          - generic [ref=e61]: Netopia, PayU, Stripe, PayPal, Revolut + bănci din România. 3D Secure.
+        - link "06 Integrări curierat FAN Courier, Cargus, Sameday, DPD, Nova Poshta — AWB și tracking automat." [ref=e62]:
+          - /url: /servicii/integrari-curierat
+          - generic [ref=e63]: "06"
+          - generic [ref=e64]: Integrări curierat
+          - generic [ref=e65]: FAN Courier, Cargus, Sameday, DPD, Nova Poshta — AWB și tracking automat.
+        - link "07 Integrări API ERP, CRM, eMAG, SmartBill, Oblio. Dacă are API, îl conectăm." [ref=e66]:
+          - /url: /servicii/integrari-api
+          - generic [ref=e67]: "07"
+          - generic [ref=e68]: Integrări API
+          - generic [ref=e69]: ERP, CRM, eMAG, SmartBill, Oblio. Dacă are API, îl conectăm.
+        - link "08 SEO România Optimizare tehnică și de conținut pentru piața din România." [ref=e70]:
+          - /url: /servicii/seo-romania
+          - generic [ref=e71]: "08"
+          - generic [ref=e72]: SEO România
+          - generic [ref=e73]: Optimizare tehnică și de conținut pentru piața din România.
+        - link "09 AI & Automatizări Chatbot, automatizări de comenzi, generare de conținut." [ref=e74]:
+          - /url: /servicii/ai-automatizari
+          - generic [ref=e75]: "09"
+          - generic [ref=e76]: AI & Automatizări
+          - generic [ref=e77]: Chatbot, automatizări de comenzi, generare de conținut.
+        - link "10 Social Media Management Facebook, Instagram, TikTok, LinkedIn. Strategie, content, reclame plătite." [ref=e78]:
+          - /url: /servicii/social-media-management
+          - generic [ref=e79]: "10"
+          - generic [ref=e80]: Social Media Management
+          - generic [ref=e81]: Facebook, Instagram, TikTok, LinkedIn. Strategie, content, reclame plătite.
+        - link "11 Reclame Google Ads Search, Shopping, Display, YouTube. Plătești doar la click. ROAS urmărit." [ref=e82]:
+          - /url: /servicii/reclame-google-ads
+          - generic [ref=e83]: "11"
+          - generic [ref=e84]: Reclame Google Ads
+          - generic [ref=e85]: Search, Shopping, Display, YouTube. Plătești doar la click. ROAS urmărit.
+        - link "12 Reclame Meta Facebook & Instagram Ads. Lookalike, retargeting, creative care scală." [ref=e86]:
+          - /url: /servicii/reclame-meta
+          - generic [ref=e87]: "12"
+          - generic [ref=e88]: Reclame Meta
+          - generic [ref=e89]: Facebook & Instagram Ads. Lookalike, retargeting, creative care scală.
+        - link "13 Filmări & Montare video Clipuri produs, brand films, reclame video. Cinema + storytelling." [ref=e90]:
+          - /url: /servicii/filmari-video
+          - generic [ref=e91]: "13"
+          - generic [ref=e92]: Filmări & Montare video
+          - generic [ref=e93]: Clipuri produs, brand films, reclame video. Cinema + storytelling.
+    - generic [ref=e94]:
+      - generic [ref=e95]: Portofoliu
+      - heading "Proiecte" [level=2] [ref=e96]
+      - generic [ref=e97]:
+        - article [ref=e101]:
+          - figure [ref=e102]:
+            - img "Reusable Bottle — Landing page" [ref=e103]
+          - link "Reusable Bottle Vezi site-ul" [ref=e104]:
+            - /url: https://readymag.website/u40993028/1423327
+            - generic: Reusable Bottle
+            - generic: Vezi site-ul
+        - article [ref=e108]:
+          - figure [ref=e109]:
+            - img "Gur Gury — Landing page" [ref=e110]
+          - link "Gur Gury Vezi site-ul" [ref=e111]:
+            - /url: https://gur-gury.space/en
+            - generic: Gur Gury
+            - generic: Vezi site-ul
+        - article [ref=e115]:
+          - figure [ref=e116]:
+            - img "Balcon — Landing page" [ref=e117]
+          - link "Balcon Vezi site-ul" [ref=e118]:
+            - /url: https://balcon.md
+            - generic: Balcon
+            - generic: Vezi site-ul
+        - article [ref=e122]:
+          - figure [ref=e123]:
+            - img "Hostess Training — Landing page" [ref=e124]
+          - link "Hostess Training Vezi site-ul" [ref=e125]:
+            - /url: https://hostesstraining.md
+            - generic: Hostess Training
+            - generic: Vezi site-ul
+        - article [ref=e129]:
+          - figure [ref=e130]:
+            - img "Hostess Chișinău — Landing page" [ref=e131]
+          - link "Hostess Chișinău Vezi site-ul" [ref=e132]:
+            - /url: https://hostesschisinau.md
+            - generic: Hostess Chișinău
+            - generic: Vezi site-ul
+        - article [ref=e136]:
+          - figure [ref=e137]:
+            - img "JTA Logistics — Landing page" [ref=e138]
+          - link "JTA Logistics Vezi site-ul" [ref=e139]:
+            - /url: https://jtalogisticsllc.com
+            - generic: JTA Logistics
+            - generic: Vezi site-ul
+        - article [ref=e143]:
+          - figure [ref=e144]:
+            - img "Plan de Afaceri — Landing page" [ref=e145]
+          - link "Plan de Afaceri Vezi site-ul" [ref=e146]:
+            - /url: https://plandeafaceri.md
+            - generic: Plan de Afaceri
+            - generic: Vezi site-ul
+        - article [ref=e150]:
+          - figure [ref=e151]:
+            - img "Business Plan — Landing page" [ref=e152]
+          - link "Business Plan Vezi site-ul" [ref=e153]:
+            - /url: https://business-plan.md
+            - generic: Business Plan
+            - generic: Vezi site-ul
+        - article [ref=e157]:
+          - figure [ref=e158]:
+            - img "Axean — Corporativ" [ref=e159]
+          - link "Axean Vezi site-ul" [ref=e160]:
+            - /url: https://axean.us
+            - generic: Axean
+            - generic: Vezi site-ul
+        - article [ref=e164]:
+          - figure [ref=e165]:
+            - img "Consar House — Corporativ" [ref=e166]
+          - link "Consar House Vezi site-ul" [ref=e167]:
+            - /url: https://consarhouse.md
+            - generic: Consar House
+            - generic: Vezi site-ul
+        - article [ref=e171]:
+          - figure [ref=e172]:
+            - img "Spa Hostess — Corporativ" [ref=e173]
+          - link "Spa Hostess Vezi site-ul" [ref=e174]:
+            - /url: https://spahostess.md
+            - generic: Spa Hostess
+            - generic: Vezi site-ul
+        - article [ref=e178]:
+          - figure [ref=e179]:
+            - img "Peisagist 360 — Corporativ" [ref=e180]
+          - link "Peisagist 360 Vezi site-ul" [ref=e181]:
+            - /url: https://peisagist360.com
+            - generic: Peisagist 360
+            - generic: Vezi site-ul
+        - article [ref=e185]:
+          - figure [ref=e186]:
+            - img "IC Cardiologie — Corporativ" [ref=e187]
+          - link "IC Cardiologie Vezi site-ul" [ref=e188]:
+            - /url: https://icardiologie.md
+            - generic: IC Cardiologie
+            - generic: Vezi site-ul
+        - article [ref=e192]:
+          - figure [ref=e193]:
+            - img "Astronic — Corporativ" [ref=e194]
+          - link "Astronic Vezi site-ul" [ref=e195]:
+            - /url: https://astronic.md
+            - generic: Astronic
+            - generic: Vezi site-ul
+        - article [ref=e199]:
+          - figure [ref=e200]:
+            - img "Gear Systems — Corporativ" [ref=e201]
+          - link "Gear Systems Vezi site-ul" [ref=e202]:
+            - /url: https://gearsystems.md
+            - generic: Gear Systems
+            - generic: Vezi site-ul
+        - article [ref=e206]:
+          - figure [ref=e207]:
+            - img "Superdent — Corporativ" [ref=e208]
+          - link "Superdent Vezi site-ul" [ref=e209]:
+            - /url: https://superdent.clinic
+            - generic: Superdent
+            - generic: Vezi site-ul
+        - article [ref=e213]:
+          - figure [ref=e214]:
+            - img "Agenție Hostess — Corporativ" [ref=e215]
+          - link "Agenție Hostess Vezi site-ul" [ref=e216]:
+            - /url: https://agentiehostess.md
+            - generic: Agenție Hostess
+            - generic: Vezi site-ul
+        - article [ref=e220]:
+          - figure [ref=e221]:
+            - img "Franzoni — Magazin online" [ref=e222]
+          - link "Franzoni Vezi site-ul" [ref=e223]:
+            - /url: https://franzoni.md
+            - generic: Franzoni
+            - generic: Vezi site-ul
+        - article [ref=e227]:
+          - figure [ref=e228]:
+            - img "Riguti — Magazin online" [ref=e229]
+          - link "Riguti Vezi site-ul" [ref=e230]:
+            - /url: https://riguti.com
+            - generic: Riguti
+            - generic: Vezi site-ul
+        - article [ref=e234]:
+          - figure [ref=e235]:
+            - img "RNS Auto — Magazin online" [ref=e236]
+          - link "RNS Auto Vezi site-ul" [ref=e237]:
+            - /url: https://rnsauto.md
+            - generic: RNS Auto
+            - generic: Vezi site-ul
+    - generic [ref=e238]:
+      - generic [ref=e239]: De ce noi
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e242]: 0+
+          - generic [ref=e243]: proiecte livrate
+        - generic [ref=e244]:
+          - generic [ref=e245]: "0"
+          - generic [ref=e246]: "țări: MD · RO · FR · US"
+        - generic [ref=e247]:
+          - generic [ref=e248]: 0h
+          - generic [ref=e249]: răspuns la ofertă
+        - generic [ref=e250]:
+          - generic [ref=e251]: 0%
+          - generic [ref=e252]: cod al tău, pe GitHub
+    - generic [ref=e256]:
+      - generic [ref=e258]:
+        - generic [ref=e259]: Proces
+        - heading "Cum lucrăm" [level=2] [ref=e260]
+        - link "Vezi detalii →" [ref=e261]:
+          - /url: /proces
+      - generic [ref=e262]:
+        - generic [ref=e263]: "01"
+        - heading "Brief & ofertă" [level=3] [ref=e264]
+        - paragraph [ref=e265]: Discutăm obiectivele. Primești o ofertă fixă în 24-48h.
+      - generic [ref=e266]:
+        - generic [ref=e267]: "02"
+        - heading "Design & structură" [level=3] [ref=e268]
+        - paragraph [ref=e269]: Machetă aprobată înainte de orice linie de cod.
+      - generic [ref=e270]:
+        - generic [ref=e271]: "03"
+        - heading "Dezvoltare & integrări" [level=3] [ref=e272]
+        - paragraph [ref=e273]: Site, plăți, curierat, API și SEO tehnic.
+      - generic [ref=e274]:
+        - generic [ref=e275]: "04"
+        - heading "Lansare & suport" [level=3] [ref=e276]
+        - paragraph [ref=e277]: Testare, publicare, training și mentenanță lunară.
+      - generic [ref=e278]:
+        - heading "Ce primești" [level=3] [ref=e279]
+        - generic [ref=e280]: Site live și rapid
+        - generic [ref=e281]: Codul tău, pe GitHub
+        - generic [ref=e282]: SEO configurat
+        - generic [ref=e283]: Training de utilizare
+        - generic [ref=e284]: Mentenanță lunară
+    - region "Integrări cu care lucrăm" [ref=e285]:
+      - generic [ref=e287]:
+        - generic [ref=e288]: Netopia •
+        - generic [ref=e289]: PayU •
+        - generic [ref=e290]: Stripe •
+        - generic [ref=e291]: PayPal •
+        - generic [ref=e292]: Revolut •
+        - generic [ref=e293]: FAN Courier •
+        - generic [ref=e294]: Cargus •
+        - generic [ref=e295]: Sameday •
+        - generic [ref=e296]: DPD •
+        - generic [ref=e297]: GLS •
+        - generic [ref=e298]: eMAG •
+        - generic [ref=e299]: SmartBill •
+        - generic [ref=e300]: Oblio •
+        - generic [ref=e301]: Netopia •
+        - generic [ref=e302]: PayU •
+        - generic [ref=e303]: Stripe •
+        - generic [ref=e304]: PayPal •
+        - generic [ref=e305]: Revolut •
+        - generic [ref=e306]: FAN Courier •
+        - generic [ref=e307]: Cargus •
+        - generic [ref=e308]: Sameday •
+        - generic [ref=e309]: DPD •
+        - generic [ref=e310]: GLS •
+        - generic [ref=e311]: eMAG •
+        - generic [ref=e312]: SmartBill •
+        - generic [ref=e313]: Oblio •
+    - generic [ref=e314]:
+      - generic [ref=e315]: AI & Automatizări
+      - heading "Pune tehnologia să lucreze în locul tău" [level=2] [ref=e316]
+      - generic [ref=e317]:
+        - generic [ref=e318]:
+          - generic [ref=e319]: Chatbot pe site
+          - generic [ref=e320]: Răspunde clienților 24/7, în română, pe baza serviciilor tale.
+        - generic [ref=e321]:
+          - generic [ref=e322]: Automatizări de comenzi
+          - generic [ref=e323]: Comandă → AWB curier → email client → factură, fără mâna omului.
+        - generic [ref=e324]:
+          - generic [ref=e325]: Generare de conținut
+          - generic [ref=e326]: Descrieri de produse și articole de blog optimizate SEO.
+        - generic [ref=e327]:
+          - generic [ref=e328]: Integrări no-code
+          - generic [ref=e329]: n8n / Make / Zapier între site, CRM, WhatsApp și email.
+    - generic [ref=e330]:
+      - generic [ref=e331]: Prețuri
+      - heading "Pachete transparente" [level=2] [ref=e332]
+      - generic [ref=e333]:
+        - generic [ref=e334]:
+          - generic [ref=e335]: Landing page
+          - generic [ref=e336]:
+            - generic [ref=e337]: — 1 pagină
+            - generic [ref=e338]: — Formular de contact
+            - generic [ref=e339]: — SEO de bază
+            - generic [ref=e340]: — Mobile-first
+          - generic [ref=e341]:
+            - text: €150
+            - generic [ref=e342]: de la
+        - generic [ref=e343]:
+          - generic [ref=e344]: Site prezentare
+          - generic [ref=e345]:
+            - generic [ref=e346]: — 5–10 pagini
+            - generic [ref=e347]: — Multilingv
+            - generic [ref=e348]: — SEO on-page
+            - generic [ref=e349]: — Panou admin
+          - generic [ref=e350]:
+            - text: €400
+            - generic [ref=e351]: de la
+        - generic [ref=e352]:
+          - generic [ref=e353]: Magazin online
+          - generic [ref=e354]:
+            - generic [ref=e355]: — Catalog + checkout
+            - generic [ref=e356]: — 1 plată + 1 curier
+            - generic [ref=e357]: — Facturare
+            - generic [ref=e358]: — SEO produse
+          - generic [ref=e359]:
+            - text: €800
+            - generic [ref=e360]: de la
+      - paragraph [ref=e361]:
+        - text: Prețuri orientative, în EUR. Oferta finală după brief.
+        - link "Cere o ofertă →" [ref=e362]:
+          - /url: "#contact"
+    - generic [ref=e363]:
+      - generic [ref=e364]: Ce spun clienții
+      - generic [ref=e365]:
+        - blockquote [ref=e366]:
+          - paragraph [ref=e367]: “Site nou, comenzi în prima săptămână. Integrarea cu curierul ne-a scăpat de muncă manuală zilnică.”
+          - generic [ref=e368]: Fondator, magazin online
+        - blockquote [ref=e369]:
+          - paragraph [ref=e370]: “Ne-au dus pe prima pagină Google pe cuvintele care contează. Traficul a crescut constant.”
+          - generic [ref=e371]: Manager marketing
+        - blockquote [ref=e372]:
+          - paragraph [ref=e373]: “Rapizi, serioși, cod curat predat pe GitHub. Exact ce cauți la o agenție.”
+          - generic [ref=e374]: Administrator, clinică
+    - generic [ref=e375]:
+      - generic [ref=e376]:
+        - generic [ref=e377]:
+          - generic [ref=e378]: Suntem mereu deschiși pentru proiecte noi
+          - heading "Hai să discutăm." [level=2] [ref=e379]
+          - paragraph [ref=e380]: Dacă vrei să începi un proiect, să discuți o idee sau pur și simplu să ne saluți, scrie.
+          - generic [ref=e381]:
+            - link "Apel" [ref=e382]:
+              - /url: tel:+40730304478
+            - link "WhatsApp" [ref=e385]:
+              - /url: https://wa.me/40730304478
+        - generic [ref=e388]:
+          - generic [ref=e389]:
+            - generic [ref=e390]:
+              - generic [ref=e391]: Prenume
+              - textbox "Prenume" [ref=e392]
+            - generic [ref=e393]:
+              - generic [ref=e394]: Nume
+              - textbox "Nume" [ref=e395]
+          - generic [ref=e396]:
+            - generic [ref=e397]:
+              - generic [ref=e398]: Email
+              - textbox "Email" [ref=e399]:
+                - /placeholder: email@exemplu.com
+            - generic [ref=e400]:
+              - generic [ref=e401]: Telefon
+              - textbox "Telefon" [ref=e402]:
+                - /placeholder: +373 60 000 000
+          - generic [ref=e403]:
+            - generic [ref=e404]: Detalii proiect
+            - textbox "Detalii proiect" [ref=e405]:
+              - /placeholder: Descrie-ne proiectul tău...
+          - button "Trimite cererea →" [ref=e406]
+      - paragraph [ref=e407]:
+        - text: "Sau direct:"
+        - link "alex@lescinschi.art" [ref=e408]:
+          - /url: mailto:alex@lescinschi.art
+    - generic [ref=e409]:
+      - link "Vezi toate proiectele →" [ref=e410]:
+        - /url: "#portofoliu"
+      - generic [ref=e411]:
+        - link "Landing page Reusable Bottle" [ref=e413]:
+          - /url: https://readymag.website/u40993028/1423327
+          - generic [ref=e415]:
+            - generic [ref=e416]: Landing page
+            - generic [ref=e417]: Reusable Bottle
+        - link "Landing page Gur Gury" [ref=e419]:
+          - /url: https://gur-gury.space/en
+          - generic [ref=e421]:
+            - generic [ref=e422]: Landing page
+            - generic [ref=e423]: Gur Gury
+        - link "Landing page Balcon" [ref=e425]:
+          - /url: https://balcon.md
+          - generic [ref=e427]:
+            - generic [ref=e428]: Landing page
+            - generic [ref=e429]: Balcon
+  - contentinfo [ref=e430]:
+    - generic [ref=e431]:
+      - generic [ref=e432]:
+        - link "Sună" [ref=e433]:
+          - /url: tel:+40730304478
+        - link "WhatsApp" [ref=e436]:
+          - /url: https://wa.me/40730304478
+        - link "Email" [ref=e439]:
+          - /url: mailto:alex@lescinschi.art
+      - link "Comandă site" [ref=e443]:
+        - /url: "#contact"
+        - text: Comandă site
+        - generic [ref=e444]: ♥
+    - generic [ref=e445]:
+      - generic [ref=e446]:
+        - text: BUCUREȘTI_
+        - generic [ref=e450]: BUCUREȘTI_14:34:30
+      - navigation "Meniu" [ref=e451]:
+        - link "Servicii" [ref=e452]:
+          - /url: "#servicii"
+        - link "Proiecte" [ref=e453]:
+          - /url: "#portofoliu"
+        - link "Proces" [ref=e454]:
+          - /url: "#proces"
+        - link "Prețuri" [ref=e455]:
+          - /url: "#preturi"
+        - link "Blog" [ref=e456]:
+          - /url: /blog
+        - link "Contact" [ref=e457]:
+          - /url: "#contact"
+      - button "Înapoi sus ↑" [ref=e458]
+  - alert [ref=e459]
+  - dialog:
+    - button: ×
+    - list:
+      - listitem:
+        - link:
+          - /url: "#servicii"
+          - text: Servicii
+      - listitem:
+        - link:
+          - /url: "#portofoliu"
+          - text: Proiecte
+      - listitem:
+        - link:
+          - /url: "#proces"
+          - text: Proces
+      - listitem:
+        - link:
+          - /url: "#preturi"
+          - text: Prețuri
+      - listitem:
+        - link:
+          - /url: /blog
+          - text: Blog
+      - listitem:
+        - link:
+          - /url: "#contact"
+          - text: Contact

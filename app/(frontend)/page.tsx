@@ -37,13 +37,53 @@ async function getProjects() {
   }
 }
 
+// Prima imagine dintr-un richText Lexical (nodul `upload`), căutare recursivă.
+function firstImageFromRichText(node: any): string {
+  if (!node || typeof node !== "object") return "";
+  if (node.type === "upload" && node.value && typeof node.value === "object" && node.value.url) {
+    return node.value.url;
+  }
+  for (const child of node.children || []) {
+    const url = firstImageFromRichText(child);
+    if (url) return url;
+  }
+  return "";
+}
+
+// ponytail: servicii din Payload CMS (câmpul `ordine` controlează ordinea pe home)
+async function getServices() {
+  try {
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "servicii",
+      depth: 2,
+      limit: 50,
+      sort: "ordine",
+    });
+    return docs.map((s: any) => {
+      const imagine = s.imagine && typeof s.imagine === "object" && "url" in s.imagine
+        ? (s.imagine as { url: string }).url
+        : "";
+      return {
+        title: s.titlu as string,
+        desc: (s.descriereScurta as string) || "",
+        href: `/servicii/${s.slug}`,
+        // hover pe home = prima imagine din conținut (richText); fallback: câmpul imagine
+        image: firstImageFromRichText(s.continut) || imagine,
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
 export default async function Home() {
-  const projects = await getProjects();
+  const [projects, services] = await Promise.all([getProjects(), getServices()]);
 
   return (
     <main>
       <Hero />
-      <Services />
+      <Services services={services} />
       <Portfolio projects={projects} />
       <WhyUs />
       <Process />

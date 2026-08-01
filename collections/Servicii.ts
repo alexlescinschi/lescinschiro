@@ -29,6 +29,7 @@ export const Servicii: CollectionConfig = {
       },
     },
     { name: 'categorie', type: 'text', admin: { position: 'sidebar' } },
+    { name: 'ordine', type: 'number', label: 'Ordine pe pagina de acasă', admin: { position: 'sidebar', description: 'Mai mic = mai sus în listă' } },
     { name: 'metaTitlu', type: 'text', label: 'Meta title (SEO — dacă e gol, se folosește titlul)', admin: { position: 'sidebar' } },
     // @ts-expect-error allowEdit works at runtime but missing from Payload 3 upload field types
     { name: 'imagine', type: 'upload', relationTo: 'media', required: true, admin: { allowEdit: false } },

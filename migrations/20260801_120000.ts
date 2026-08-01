@@ -1,0 +1,14 @@
+// Migrație: câmpul `ordine` pe servicii (ordonare secțiune Servicii pe home).
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+
+export async function up({ db }: MigrateUpArgs): Promise<void> {
+  await db.execute(sql`
+    ALTER TABLE "servicii" ADD COLUMN IF NOT EXISTS "ordine" numeric;
+  `)
+}
+
+export async function down({ db }: MigrateDownArgs): Promise<void> {
+  await db.execute(sql`
+    ALTER TABLE "servicii" DROP COLUMN IF EXISTS "ordine";
+  `)
+}

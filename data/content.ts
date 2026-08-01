@@ -32,10 +32,10 @@ export const nav = [
 ];
 
 export const services = [
-  { n: "01", title: "Creare site-uri", desc: "De la landing la platformă. Design pe brandul tău, rapid, optimizat pentru Google.", href: "/servicii/site-uri-de-prezentare" },
+  { n: "01", title: "Creare site-uri", desc: "De la landing la platformă. Design pe brandul tău, rapid, optimizat pentru Google.", href: "/servicii/creare-site-uri" },
   { n: "02", title: "Magazine online", desc: "Catalog, coș, checkout, plăți, curierat, facturare — gata de vânzare.", href: "/servicii/magazine-online" },
   { n: "03", title: "Landing page-uri", desc: "O pagină, un obiectiv: conversie. Viteză maximă și tracking pentru campanii.", href: "/servicii/landing-page-uri" },
-  { n: "04", title: "Site-uri corporative", desc: "Prezență profesională, structură clară, multilingv și SEO local.", href: "/servicii/site-uri-de-prezentare" },
+  { n: "04", title: "Site-uri corporative", desc: "Prezență profesională, structură clară, multilingv și SEO local.", href: "/servicii/site-uri-corporative" },
   { n: "05", title: "Integrări plăți", desc: "Netopia, PayU, Stripe, PayPal, Revolut + bănci din România. 3D Secure.", href: "/servicii/integrari-plati-online" },
   { n: "06", title: "Integrări curierat", desc: "FAN Courier, Cargus, Sameday, DPD, Nova Poshta — AWB și tracking automat.", href: "/servicii/integrari-curierat" },
   { n: "07", title: "Integrări API", desc: "ERP, CRM, eMAG, SmartBill, Oblio. Dacă are API, îl conectăm.", href: "/servicii/integrari-api" },
