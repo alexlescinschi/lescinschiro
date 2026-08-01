@@ -55,6 +55,7 @@ img { max-width: 100%; display: block; }
 h2.section-title {
   font-size: var(--fs-h2); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase;
 }
+#servicii h2.section-title { margin-bottom: 40px; }
 
 /* Reveal: starea inițială ascunsă e pusă din JS (GSAP), ca să nu blocheze conținutul fără JS / reduced-motion.
    Flash-ul de la primul paint e acoperit de cortina de intrare. */
