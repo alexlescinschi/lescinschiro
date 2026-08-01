@@ -300,7 +300,7 @@ async function main() {
       data: {
         titlu: s.titlu,
         slug: s.slug,
-        categorie: s.slug === 'magazine-online' ? 'magazin-online' : '',
+        categorie: s.slug === 'magazine-online' ? 'magazin-online' : s.slug === 'landing-page-uri' ? 'landing-page' : s.slug === 'site-uri-corporative' || s.slug === 'creare-site-uri' ? 'corporativ' : '',
         imagine: IMAGINE_ID,
         descriereScurta: s.descriereScurta,
         heroTitlu: s.heroTitlu,
