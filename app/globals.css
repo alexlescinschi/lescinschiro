@@ -233,7 +233,8 @@ h2.section-title {
 
 .wk__link {
   position: absolute; inset: 0; z-index: 20;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;
+  padding: 0 1.25rem 1.25rem;
   opacity: 0; color: #fff;
   transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
@@ -245,12 +246,21 @@ h2.section-title {
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   pointer-events: none;
 }
+.wk__btn {
+  display: inline-block; flex-shrink: 0;
+  text-transform: uppercase; font-weight: 900; line-height: 1;
+  letter-spacing: 0.02em;
+  border: 2px solid #fff; border-radius: 9999px;
+  background: #fff; color: #000;
+  padding: 10px 16px;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  pointer-events: none;
+}
 
 /* hover effects via parent */
 .wk__thumb:hover .wk__img { transform: scale3d(1.05, 1.05, 1); }
 .wk__thumb:hover .wk__overlay { opacity: 0.2; }
 .wk__thumb:hover .wk__link { opacity: 1; }
-.wk__thumb:hover .wk__content { visibility: visible; }
 
 /* mobile fallback — no hover, content always visible */
 @media (max-width: 699px) {

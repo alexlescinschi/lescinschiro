@@ -161,6 +161,7 @@ export default function Portfolio({
 
                   <a className="wk__link" href={p.href || "#portofoliu"}>
                     <span className="wk__pill">{p.name}</span>
+                    <span className="wk__btn">Vezi site-ul</span>
                   </a>
                 </article>
               </div>
