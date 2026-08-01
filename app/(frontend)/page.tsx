@@ -2,11 +2,13 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import WhyUs from "@/components/WhyUs";
+import Compare from "@/components/Compare";
 import Process from "@/components/Process";
 import Integrations from "@/components/Integrations";
 import AI from "@/components/AI";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
+import ChatProcess from "@/components/ChatProcess";
 import Contact from "@/components/Contact";
 import SelectedWorks from "@/components/SelectedWorks";
 import { getPayload } from "payload";
@@ -99,11 +101,13 @@ export default async function Home() {
       <Services services={services} />
       <Portfolio projects={projects} />
       <WhyUs />
+      <Compare />
       <Process />
       <Integrations />
       <AI />
       <Pricing />
       <Testimonials />
+      <ChatProcess />
       <Contact />
       <SelectedWorks projects={projects.slice(0, 3)} />
     </main>

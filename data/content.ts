@@ -144,6 +144,68 @@ export const deliverables = [
   "Mentenanță lunară",
 ];
 
+// === Chat: „Fără formulare. Fără hopuri. Doar atât." (inspirat ohhmydesign) ===
+export const chatProcess = {
+  eyebrow: "Cum începem",
+  title: "Fără formulare. Fără hopuri. Doar atât.",
+  channel: "LESCINSCHI × proiectul tău",
+  online: "răspundem în câteva ore",
+  cta: "Cere o ofertă",
+  steps: [
+    {
+      n: "01", label: "Scrie-ne",
+      you: "Bună! Am o idee de magazin online și vreau să discut. 🚀",
+      them: "Salut! Hai cu ea — ce vinzi și cine e clientul tău?",
+    },
+    {
+      n: "02", label: "Trimite brief-ul",
+      you: "Brief-ul e trimis. Am pus prea multe detalii?",
+      file: "brief-proiect.pdf",
+      them: "Niciodată prea multe. Macheta în 48h.",
+    },
+    {
+      n: "03", label: "Rafinezi",
+      them: "Prima variantă 👀",
+      you: "Ai citit în gândurile mele? Dar hero mai îndrăzneț 🔥",
+      them2: "Pe loc. Schimbi oricând, cât vrei.",
+    },
+    {
+      n: "04", label: "Lansăm",
+      them3: "Lansat ✨ Du-te și cucerește.",
+    },
+  ],
+};
+
+// === Comparație: „Același brief. Alt studio." (inspirat ohhmydesign) ===
+export const compare = {
+  eyebrow: "Diferența",
+  title: "Același brief. Alt studio.",
+  bad: {
+    label: "Cele mai multe agenții",
+    locked: "blocat",
+    items: [
+      "Vind cu prezentări frumoase, apoi te împing spre abonamente",
+      "Ședințe interminabile, răspunsuri în zile",
+      "Facturi-surpriză la final de proiect",
+      "Machetă după 5 telefoane și un contract",
+      "Șablon sigur, ușor de uitat",
+    ],
+  },
+  good: {
+    label: "LESCINSCHI",
+    selected: "ales",
+    items: [
+      "Discuți direct cu omul care scrie codul",
+      "Primele ecrane în zile, nu în luni",
+      "Preț fix scris. Zero surprize",
+      "Mai puține ședințe. Mai mult livrat",
+      "Custom, cu opinie, greu de uitat",
+    ],
+  },
+  tagline: "Același brief, același buget. Rezultat complet diferit.",
+  cta: "Vezi proiectele",
+};
+
 // Deliverables ca grilă cu iconițe (pentru pagina /proces)
 export const deliverablesGrid = [
   { icon: "🚀", label: "Site live și rapid" },

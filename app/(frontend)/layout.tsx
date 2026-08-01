@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { site } from "@/data/content";
+import { getPayload } from "payload";
+import config from "@payload-config";
+import { services as fallbackServices, site } from "@/data/content";
 import SmoothScroll from "@/components/SmoothScroll";
 import Cursor from "@/components/Cursor";
 import Intro from "@/components/Intro";
-import Nav from "@/components/Nav";
+import Nav, { type NavService } from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 // Font global: Helvetica Neue (cdnfonts) — montat via @import în globals.css.
+
+// Paginile statice reiau periodic serviciile, fără a interoga CMS-ul la fiecare vizită.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
@@ -47,7 +52,45 @@ const jsonLd = {
   ].map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })),
 };
 
-export default function FrontendLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+async function getNavServices(): Promise<NavService[]> {
+  try {
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "servicii",
+      depth: 1,
+      limit: 50,
+      sort: "ordine",
+      select: {
+        titlu: true,
+        slug: true,
+        descriereScurta: true,
+        imagine: true,
+        ordine: true,
+      },
+    });
+
+    const services = docs.flatMap((service) => {
+      if (!service.slug) return [];
+      const image = typeof service.imagine === "object" ? service.imagine.url || "" : "";
+      return [{
+        title: service.titlu,
+        desc: service.descriereScurta || "",
+        href: `/servicii/${service.slug}`,
+        image,
+      }];
+    });
+
+    if (services.length) return services;
+  } catch {
+    // Navigația rămâne utilizabilă și înainte ca baza de date să fie disponibilă.
+  }
+
+  return fallbackServices.map(({ title, desc, href }) => ({ title, desc, href, image: "" }));
+}
+
+export default async function FrontendLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const services = await getNavServices();
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -59,7 +102,7 @@ export default function FrontendLayout({ children }: Readonly<{ children: React.
       <Intro />
       <Cursor />
       <SmoothScroll>
-        <Nav />
+        <Nav services={services} />
         {children}
         <Footer />
       </SmoothScroll>

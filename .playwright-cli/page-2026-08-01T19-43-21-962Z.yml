@@ -1,0 +1,85 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]: LESCINSCHI.ART
+  - banner [ref=e5]:
+    - link "LESCINSCHI.ART" [ref=e6]:
+      - /url: /
+    - navigation "Principal" [ref=e8]:
+      - button "Servicii" [ref=e9]
+      - link "Proiecte" [ref=e10]:
+        - /url: "#portofoliu"
+      - link "Proces" [ref=e11]:
+        - /url: "#proces"
+      - link "Prețuri" [ref=e12]:
+        - /url: "#preturi"
+      - link "Blog" [ref=e13]:
+        - /url: /blog
+      - link "Contact" [ref=e14]:
+        - /url: "#contact"
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: Analiză preliminară gratuită
+        - heading "Poate AI să-ți înțeleagă afacerea?" [level=1] [ref=e20]
+      - generic [ref=e21]:
+        - paragraph [ref=e22]: Verificăm în câteva secunde dacă site-ul oferă semnalele de care motoarele AI au nevoie pentru a identifica și recomanda o companie.
+        - generic [ref=e23]:
+          - generic [ref=e24]: Fără card
+          - generic [ref=e25]: Rezultat imediat
+          - generic [ref=e26]: Verificări reale
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: 01 / DATELE COMPANIEI
+        - heading "Începe verificarea." [level=2] [ref=e31]
+        - paragraph [ref=e32]: Nu interogăm încă platformele AI. Analizăm gratuit fundația tehnică și claritatea informațiilor publice.
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]: Numele companiei
+          - textbox "Numele companiei" [ref=e36]:
+            - /placeholder: Ex. ACME Construct
+        - generic [ref=e37]:
+          - generic [ref=e38]: Website
+          - textbox "Website" [ref=e39]:
+            - /placeholder: exemplu.ro
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - generic [ref=e42]: Serviciul principal
+            - textbox "Serviciul principal" [ref=e43]:
+              - /placeholder: Ex. construcții case
+          - generic [ref=e44]:
+            - generic [ref=e45]: Oraș / zonă
+            - textbox "Oraș / zonă" [ref=e46]:
+              - /placeholder: Ex. București
+        - button "Generează raportul →" [ref=e47]
+        - paragraph [ref=e48]: Prin trimitere accepți analiza automată a informațiilor publice de pe website.
+  - contentinfo [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - link "Sună" [ref=e52]:
+          - /url: tel:+40730304478
+        - link "WhatsApp" [ref=e55]:
+          - /url: https://wa.me/40730304478
+        - link "Email" [ref=e58]:
+          - /url: mailto:alex@lescinschi.art
+      - link "Comandă site" [ref=e62]:
+        - /url: "#contact"
+        - text: Comandă site
+        - generic [ref=e63]: ♥
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - text: BUCUREȘTI_
+        - generic [ref=e69]: BUCUREȘTI_
+      - navigation "Meniu" [ref=e70]:
+        - link "Servicii" [ref=e71]:
+          - /url: "#servicii"
+        - link "Proiecte" [ref=e72]:
+          - /url: "#portofoliu"
+        - link "Proces" [ref=e73]:
+          - /url: "#proces"
+        - link "Prețuri" [ref=e74]:
+          - /url: "#preturi"
+        - link "Blog" [ref=e75]:
+          - /url: /blog
+        - link "Contact" [ref=e76]:
+          - /url: "#contact"
+      - button "Înapoi sus ↑" [ref=e77]
+  - button "Open Next.js Dev Tools" [ref=e83] [cursor=pointer]

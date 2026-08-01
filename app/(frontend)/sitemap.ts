@@ -24,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.domain}/proces`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${site.domain}/despre-noi`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${site.domain}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${site.domain}/verificare-ai`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.domain}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
   ];
 

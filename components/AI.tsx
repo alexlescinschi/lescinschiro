@@ -13,6 +13,7 @@ export default function AI() {
           </div>
         ))}
       </div>
+      <a className="btn ai__audit-link" href="/verificare-ai" data-reveal>Verifică vizibilitatea AI →</a>
     </section>
   );
 }

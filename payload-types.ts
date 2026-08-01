@@ -150,6 +150,10 @@ export interface Servicii {
   titlu: string;
   slug?: string | null;
   categorie?: string | null;
+  /**
+   * Mai mic = mai sus în listă
+   */
+  ordine?: number | null;
   metaTitlu?: string | null;
   imagine: number | Media;
   descriereScurta?: string | null;
@@ -421,6 +425,7 @@ export interface ServiciiSelect<T extends boolean = true> {
   titlu?: T;
   slug?: T;
   categorie?: T;
+  ordine?: T;
   metaTitlu?: T;
   imagine?: T;
   descriereScurta?: T;
