@@ -120,6 +120,7 @@ export default function PortfolioPage({ projects }: { projects: Project[] }) {
                   </div>
                   <a className="wk__link" href={p.href || "#portofoliu"} target={p.href?.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
                     <span className="wk__pill">{p.name}</span>
+                    <span className="wk__btn">Vezi site-ul</span>
                   </a>
                 </article>
               </div>
