@@ -6,10 +6,7 @@ import { heroImages } from "@/data/content";
 
 // Slider vertical lent (marquee pe verticală, ca milaro.ch dar pe Y).
 // 2 coloane care curg în jos, loop infinit via CSS animation + listă dublată de 4 ori.
-const COLS = [
-  heroImages.filter((_, i) => i % 2 === 0),
-  heroImages.filter((_, i) => i % 2 === 1),
-];
+// pozele vin din Payload (ultimele 10 proiecte); fallback pe heroImages dacă nu sunt.
 
 function Slides({ imgs }: { imgs: string[] }) {
   const list = [...imgs, ...imgs, ...imgs, ...imgs];
@@ -22,8 +19,13 @@ function Slides({ imgs }: { imgs: string[] }) {
   );
 }
 
-export default function Hero() {
+export default function Hero({ images }: { images?: string[] }) {
   const root = useRef<HTMLElement>(null);
+  const srcs = images && images.length ? images : heroImages;
+  const COLS = [
+    srcs.filter((_, i) => i % 2 === 0),
+    srcs.filter((_, i) => i % 2 === 1),
+  ];
 
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;

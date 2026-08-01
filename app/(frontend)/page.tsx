@@ -72,12 +72,25 @@ async function getServices() {
   }
 }
 
+// Ultimele 10 imagini distincte de proiect (pentru sliderul din hero)
+function getHeroImages(projects: { img: string }[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const p of projects) {
+    if (!p.img || seen.has(p.img)) continue;
+    seen.add(p.img);
+    out.push(p.img);
+    if (out.length === 10) break;
+  }
+  return out;
+}
+
 export default async function Home() {
   const [projects, services] = await Promise.all([getProjects(), getServices()]);
 
   return (
     <main>
-      <Hero />
+      <Hero images={getHeroImages(projects)} />
       <Services services={services} />
       <Portfolio projects={projects} />
       <WhyUs />
