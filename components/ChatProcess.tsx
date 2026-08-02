@@ -34,10 +34,12 @@ export default function ChatProcess() {
                 <span className="chat__step-label">{s.label}</span>
               </div>
 
-              <div className="chat__row">
-                <span className="chat__who chat__who--you">Tu</span>
-                <div className="chat__bubble chat__bubble--you">{s.you}</div>
-              </div>
+              {s.you && (
+                <div className="chat__row">
+                  <span className="chat__who chat__who--you">Tu</span>
+                  <div className="chat__bubble chat__bubble--you">{s.you}</div>
+                </div>
+              )}
 
               {s.file && (
                 <div className="chat__row">
@@ -52,10 +54,12 @@ export default function ChatProcess() {
                 </div>
               )}
 
-              <div className="chat__row">
-                <span className="chat__who chat__who--them">LESCINSCHI</span>
-                <div className="chat__bubble chat__bubble--them">{s.them}</div>
-              </div>
+              {s.them && (
+                <div className="chat__row">
+                  <span className="chat__who chat__who--them">LESCINSCHI</span>
+                  <div className="chat__bubble chat__bubble--them">{s.them}</div>
+                </div>
+              )}
 
               {s.them2 && (
                 <div className="chat__row">

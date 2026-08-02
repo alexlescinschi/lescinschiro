@@ -144,10 +144,10 @@ export const deliverables = [
   "Mentenanță lunară",
 ];
 
-// === Chat: „Fără formulare. Fără hopuri. Doar atât." (inspirat ohhmydesign) ===
+// === Chat: „Fără formalități. Fără bătăi de cap. Doar atât." (inspirat ohhmydesign) ===
 export const chatProcess = {
   eyebrow: "Cum începem",
-  title: "Fără formulare. Fără hopuri. Doar atât.",
+  title: "Fără formalități. Fără bătăi de cap. Doar atât.",
   channel: "LESCINSCHI × proiectul tău",
   online: "răspundem în câteva ore",
   cta: "Cere o ofertă",
@@ -166,11 +166,13 @@ export const chatProcess = {
     {
       n: "03", label: "Rafinezi",
       them: "Prima variantă 👀",
-      you: "Ai citit în gândurile mele? Dar hero mai îndrăzneț 🔥",
-      them2: "Pe loc. Schimbi oricând, cât vrei.",
+      you: "Mi-ai citit gândurile? Prima pagină s-o facem mai îndrăzneață 🔥",
+      them2: "Perfect, pe loc. Schimbi oricând vrei, cât de mult vrei.",
     },
     {
       n: "04", label: "Lansăm",
+      you: "Totul e verificat. Hai cu lansarea!",
+      them: "Gata, publicăm acum.",
       them3: "Lansat ✨ Du-te și cucerește.",
     },
   ],
