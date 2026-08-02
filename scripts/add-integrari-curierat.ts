@@ -44,7 +44,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Integrări curierat',
-      categorie: '',
       metaTitlu: 'Integrare Curierat & AWB Automat — FAN Courier, Cargus, Sameday | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Integrăm firme de curierat pentru România și Moldova: FAN Courier, Cargus, Sameday easybox, DPD, GLS, Nova Poshta, Poșta Moldovei. Generare AWB automată, calcul cost livrare live, tracking automat pe e-mail și SMS, re-expediere și retur.',

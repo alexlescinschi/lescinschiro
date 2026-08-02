@@ -4,6 +4,7 @@ import config from "@payload-config";
 import { projects as fallbackProjects, site } from "@/data/content";
 import ContactPage from "@/components/ContactPage";
 import type { ContactProject } from "@/components/ContactResults";
+import { getPrimaryService } from "@/lib/project-services";
 
 export const revalidate = 300;
 
@@ -41,12 +42,6 @@ const jsonLd = {
   priceRange: "€€",
 };
 
-const categoryLabels: Record<string, string> = {
-  "magazin-online": "Magazin online",
-  corporativ: "Site corporativ",
-  "landing-page": "Landing page",
-};
-
 async function getProjects(): Promise<ContactProject[]> {
   try {
     const payload = await getPayload({ config });
@@ -58,16 +53,17 @@ async function getProjects(): Promise<ContactProject[]> {
       select: {
         titlu: true,
         imagine: true,
-        categorie: true,
+        servicii: true,
         linkLive: true,
       },
     });
     const projects = docs.flatMap((project) => {
       const img = typeof project.imagine === "object" ? project.imagine.url || "" : "";
       if (!img) return [];
+      const primaryService = getPrimaryService(project);
       return [{
         name: project.titlu,
-        tag: categoryLabels[project.categorie || ""] || "Proiect digital",
+        tag: primaryService?.title || "Proiect digital",
         img,
         href: project.linkLive || "",
       }];

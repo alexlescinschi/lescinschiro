@@ -37,7 +37,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Reclame Meta',
-      categorie: '',
       metaTitlu: 'Reclame Meta — Facebook & Instagram Ads România | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Campanii Facebook & Instagram Ads pentru România: audience targeting precis (lookalike, retargeting, interest), creative care convertește, optimizare continuă. Buget controlat, ROAS urmărit, conversii măsurate în GA4 și Meta Ads Manager.',

@@ -236,7 +236,7 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
         </section>
       )}
 
-      {/* ====== PORTOFOLIU (proiecte din categoria paginii — aceeași componentă ca pe home) ====== */}
+      {/* ====== PORTOFOLIU (proiecte asociate serviciului — aceeași componentă ca pe home) ====== */}
       {projects.length > 0 && (
         <Portfolio projects={projects} eyebrow={page.titlu || "Portofoliu"} title="Proiecte realizate" />
       )}

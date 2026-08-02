@@ -148,8 +148,7 @@ export interface Media {
 export interface Servicii {
   id: number;
   titlu: string;
-  slug?: string | null;
-  categorie?: string | null;
+  slug: string;
   /**
    * Mai mic = mai sus în listă
    */
@@ -228,7 +227,6 @@ export interface Proiecte {
   titlu: string;
   slug: string;
   imagine: number | Media;
-  categorie?: ('magazin-online' | 'corporativ' | 'landing-page') | null;
   linkLive?: string | null;
   studiuDeCaz?: {
     root: {
@@ -245,7 +243,10 @@ export interface Proiecte {
     };
     [k: string]: unknown;
   } | null;
-  servicii?: (number | Servicii)[] | null;
+  /**
+   * Primul serviciu selectat este eticheta principală a proiectului.
+   */
+  servicii: (number | Servicii)[];
   seo?: {
     titluSEO?: string | null;
     descriereSEO?: string | null;
@@ -424,7 +425,6 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ServiciiSelect<T extends boolean = true> {
   titlu?: T;
   slug?: T;
-  categorie?: T;
   ordine?: T;
   metaTitlu?: T;
   imagine?: T;
@@ -485,7 +485,6 @@ export interface ProiecteSelect<T extends boolean = true> {
   titlu?: T;
   slug?: T;
   imagine?: T;
-  categorie?: T;
   linkLive?: T;
   studiuDeCaz?: T;
   servicii?: T;

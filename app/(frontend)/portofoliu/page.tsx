@@ -3,25 +3,20 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 import PortfolioPage from "@/components/PortfolioPage";
 import { site } from "@/data/content";
+import { getProjectServices } from "@/lib/project-services";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Portofoliu",
   description:
-    "Proiecte LESCINSCHI: magazine online, site-uri corporative și landing page-uri livrate în România, Moldova, Franța și SUA. Filtre pe categorii.",
+    "Proiecte LESCINSCHI: magazine online, site-uri corporative și landing page-uri livrate în România, Moldova, Franța și SUA. Filtre după servicii.",
   alternates: { canonical: "/portofoliu" },
   openGraph: {
     title: "Portofoliu — LESCINSCHI",
     description: "Magazine online, site-uri corporative, landing page-uri. 40+ proiecte livrate.",
     url: `${site.domain}/portofoliu`,
   },
-};
-
-const CATEGORIE_LABEL: Record<string, string> = {
-  "magazin-online": "Magazin online",
-  corporativ: "Corporativ",
-  "landing-page": "Landing page",
 };
 
 export default async function Page() {
@@ -33,16 +28,19 @@ export default async function Page() {
     sort: "-createdAt",
   });
 
-  const projects = docs.map((p) => ({
-    name: (p.titlu as string) || "",
-    tag: CATEGORIE_LABEL[(p.categorie as string) || ""] || "",
-    categorie: (p.categorie as string) || "",
-    img:
-      p.imagine && typeof p.imagine === "object" && "url" in p.imagine
-        ? (p.imagine as { url: string }).url
-        : "",
-    href: (p.linkLive as string) || "",
-  }));
+  const projects = docs.map((p) => {
+    const services = getProjectServices(p);
+    return {
+      name: (p.titlu as string) || "",
+      tag: services[0]?.title || "Proiect digital",
+      services,
+      img:
+        p.imagine && typeof p.imagine === "object" && "url" in p.imagine
+          ? (p.imagine as { url: string }).url
+          : "",
+      href: (p.linkLive as string) || "",
+    };
+  });
 
   // JSON-LD CollectionPage — ajută la SEO pentru indexarea listei.
   const jsonLd = {

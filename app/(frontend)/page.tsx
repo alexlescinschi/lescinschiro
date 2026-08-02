@@ -13,6 +13,7 @@ import Contact from "@/components/Contact";
 import SelectedWorks from "@/components/SelectedWorks";
 import { getPayload } from "payload";
 import config from "@payload-config";
+import { getPrimaryService } from "@/lib/project-services";
 
 export const dynamic = "force-dynamic";
 
@@ -27,12 +28,15 @@ async function getProjects() {
       limit: 20,
       sort: "-createdAt",
     });
-    return docs.map((p) => ({
-      name: p.titlu as string,
-      tag: (p.categorie === "magazin-online" ? "Magazin online" : p.categorie === "corporativ" ? "Corporativ" : "Landing page") as string,
-      img: (p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : "",
-      href: (p.linkLive as string) || "",
-    }));
+    return docs.map((p) => {
+      const primaryService = getPrimaryService(p);
+      return {
+        name: p.titlu as string,
+        tag: primaryService?.title || "Proiect digital",
+        img: (p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : "",
+        href: (p.linkLive as string) || "",
+      };
+    });
   } catch {
     // DB not migrated yet — admin login will trigger push
     return [];
@@ -40,12 +44,15 @@ async function getProjects() {
 }
 
 // Prima imagine dintr-un richText Lexical (nodul `upload`), căutare recursivă.
-function firstImageFromRichText(node: any): string {
+function firstImageFromRichText(node: unknown): string {
   if (!node || typeof node !== "object") return "";
-  if (node.type === "upload" && node.value && typeof node.value === "object" && node.value.url) {
-    return node.value.url;
+  const record = node as Record<string, unknown>;
+  const value = record.value;
+  if (record.type === "upload" && value && typeof value === "object" && "url" in value && typeof value.url === "string") {
+    return value.url;
   }
-  for (const child of node.children || []) {
+  const children = Array.isArray(record.children) ? record.children : [];
+  for (const child of children) {
     const url = firstImageFromRichText(child);
     if (url) return url;
   }
@@ -62,7 +69,7 @@ async function getServices() {
       limit: 50,
       sort: "ordine",
     });
-    return docs.map((s: any) => {
+    return docs.map((s) => {
       const imagine = s.imagine && typeof s.imagine === "object" && "url" in s.imagine
         ? (s.imagine as { url: string }).url
         : "";

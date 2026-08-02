@@ -41,13 +41,20 @@ async function seed() {
   })
   console.log('✅ Media uploaded:', media.id)
 
+  const { docs: services } = await payload.find({
+    collection: 'servicii',
+    where: { slug: { equals: 'magazine-online' } },
+    limit: 1,
+  })
+  if (!services[0]) throw new Error('Serviciul Magazine online trebuie creat înainte de proiecte')
+
   // creează proiectul
   const project = await payload.create({
     collection: 'proiecte',
     data: {
       titlu: 'Climatperfect',
       slug: 'climatperfect',
-      categorie: 'magazin-online',
+      servicii: [services[0].id],
       linkLive: 'https://climatperfect.ro',
       imagine: media.id,
     },

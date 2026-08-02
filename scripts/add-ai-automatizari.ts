@@ -44,7 +44,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'AI & Automatizări',
-      categorie: '',
       metaTitlu: 'AI & Automatizări — Chatbot, Fluxuri Auto, n8n, Make | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Implementăm AI și automatizări pentru afaceri: chatbot pe site care răspunde în română 24/7 pe baza produselor tale, automatizări de comenzi (comandă → AWB → factură → email), generare de conținut SEO, integrări n8n, Make, Zapier între site, CRM și WhatsApp.',

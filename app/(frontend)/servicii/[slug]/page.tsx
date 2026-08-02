@@ -20,41 +20,23 @@ async function getPage(slug: string) {
   return docs[0] || null;
 }
 
-async function getHeroImages(categorie?: string) {
-  const payload = await getPayload({ config });
-  const query: any = { collection: "proiecte", depth: 1, limit: 9, sort: "-createdAt" };
-  if (categorie) query.where = { categorie: { equals: categorie } };
-  const { docs } = await payload.find(query);
-  return docs.map((p: any) =>
-    p.imagine && typeof p.imagine === "object" && "url" in p.imagine
-      ? (p.imagine as { url: string }).url
-      : ""
-  ).filter(Boolean);
-}
-
-const CATEGORIE_LABEL: Record<string, string> = {
-  "magazin-online": "Magazin online",
-  corporativ: "Corporativ",
-  "landing-page": "Landing page",
-};
-
-async function getProjects(categorie: string) {
+async function getProjects(serviceId: number, serviceTitle: string) {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
     collection: "proiecte",
-    where: { categorie: { equals: categorie } },
+    where: { servicii: { equals: serviceId } },
     depth: 1,
     limit: 10,
     sort: "-createdAt",
   });
-  return docs.map((p) => ({
-    name: (p.titlu as string) || "",
-    tag: CATEGORIE_LABEL[categorie] || "",
+  return docs.map((project) => ({
+    name: project.titlu || "",
+    tag: serviceTitle,
     img:
-      p.imagine && typeof p.imagine === "object" && "url" in p.imagine
-        ? (p.imagine as { url: string }).url
+      project.imagine && typeof project.imagine === "object" && "url" in project.imagine
+        ? (project.imagine as { url: string }).url
         : "",
-    href: (p.linkLive as string) || "",
+    href: project.linkLive || "",
   }));
 }
 
@@ -63,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await getPage(slug);
   if (!page) return { title: "Pagina nu a fost găsită" };
 
-  const metaTitle = (page as any).metaTitlu || `${page.titlu} — LESCINSCHI`;
+  const metaTitle = page.metaTitlu || `${page.titlu} — LESCINSCHI`;
   const metaDesc = (page.descriereScurta as string) || "";
   return {
     title: { absolute: metaTitle }, // metaTitlu conține deja brandul — nu aplica template-ul din layout
@@ -84,9 +66,8 @@ export default async function ServiciuPage({ params }: Props) {
   const page = await getPage(slug);
   if (!page) notFound();
 
-  const categorie = (page.categorie as string) || "";
-  const projects = categorie ? await getProjects(categorie) : [];
-  const heroImages = categorie ? await getHeroImages(categorie) : [];
+  const projects = await getProjects(page.id, page.titlu);
+  const heroImages = projects.map((project) => project.img).filter(Boolean).slice(0, 9);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -139,7 +120,7 @@ export default async function ServiciuPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <ServicePage page={page as any} projects={projects} heroImages={heroImages} />
+      <ServicePage page={page} projects={projects} heroImages={heroImages} />
     </>
   );
 }

@@ -44,7 +44,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Social Media Management',
-      categorie: '',
       metaTitlu: 'Social Media Management — Facebook, Instagram, TikTok, LinkedIn | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Servicii complete de Social Media Management (SMM): strategie, content calendar, postări organice, community management și reclame plătite pe Facebook, Instagram, TikTok și LinkedIn. Creștere reală, nu doar followeri vanity.',

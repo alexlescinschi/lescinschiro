@@ -37,7 +37,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Reclame Google Ads',
-      categorie: '',
       metaTitlu: 'Reclame Google Ads (PPC) — Search, Shopping, YouTube România | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Campanii Google Ads pentru România: Search Ads pe cuvinte-cheie comerciale, Shopping Ads pentru magazine, Display și YouTube Ads pentru brand awareness. Buget controlat, ROAS urmărit, optimizare continuă.',

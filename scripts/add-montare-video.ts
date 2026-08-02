@@ -37,7 +37,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Montare & post-producție video',
-      categorie: '',
       metaTitlu: 'Montare & Post-Producție Video — Editare, Color, Motion | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Servicii de montare și post-producție video: editare, color grading cinematografic, motion graphics, animații, subtitrare, sound design și optimizare pentru Reels, TikTok, YouTube și reclame plătite. Din materia primă, conținut care convertește.',

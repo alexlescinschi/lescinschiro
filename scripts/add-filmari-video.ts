@@ -37,7 +37,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Filmări video',
-      categorie: '',
       metaTitlu: 'Filmări Video Profesionale — Clip Produs, Brand Film, Reclame | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Filmări video profesionale pentru afaceri: clipuri de produs, brand films, reclame video, corporate videos, interview-uri. Echipă profesională, echipamente cinema (4K/6K), lighting, sunet. De la storyboard la filmare pe locație în România și Moldova.',

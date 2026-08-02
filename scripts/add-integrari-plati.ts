@@ -47,7 +47,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Integrări plăți online',
-      categorie: '', // fără categorie — nu trage proiecte în hero
       metaTitlu: 'Integrare Plăți Online România — Netopia, PayU, Stripe | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Integrăm procesatori de plăți pentru România și Moldova: Netopia mobilPay, EuPlătesc, PayU, Stripe, PayPal, Revolut Business, MAIB, Victoriabank. Checkout 3D Secure, plată în rate, Apple Pay, Google Pay, plată la livrare.',

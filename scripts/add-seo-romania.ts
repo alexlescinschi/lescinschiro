@@ -44,7 +44,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'SEO România',
-      categorie: '',
       metaTitlu: 'SEO România — Optimizare SEO pentru Piața RO | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Servicii SEO pentru România: optimizare tehnică (Core Web Vitals, sitemap, schema.org), cercetare cuvinte-cheie în limba română, conținut optimizat, link building din surse RO, Google Business Profile și rapoarte lunare de poziții și trafic.',

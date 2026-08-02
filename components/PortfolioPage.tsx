@@ -11,22 +11,21 @@ type Project = {
   tag: string;
   img: string;
   href: string;
-  categorie: string;
+  services: { title: string; slug: string }[];
 };
-
-const FILTERS: { label: string; value: string }[] = [
-  { label: "Toate", value: "all" },
-  { label: "Magazine online", value: "magazin-online" },
-  { label: "Corporative", value: "corporativ" },
-  { label: "Landing page-uri", value: "landing-page" },
-];
 
 export default function PortfolioPage({ projects }: { projects: Project[] }) {
   const root = useRef<HTMLElement>(null);
   const [filter, setFilter] = useState("all");
   const [ready, setReady] = useState(false);
 
-  const filtered = filter === "all" ? projects : projects.filter((p) => p.categorie === filter);
+  const serviceFilters = Array.from(
+    new Map(projects.flatMap((project) => project.services.map((service) => [service.slug, service] as const))).values()
+  );
+  const filters = [{ title: "Toate", slug: "all" }, ...serviceFilters];
+  const filtered = filter === "all" ? projects : projects.filter((project) =>
+    project.services.some((service) => service.slug === filter)
+  );
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 100);
@@ -88,16 +87,18 @@ export default function PortfolioPage({ projects }: { projects: Project[] }) {
       <h2 className="section-title" data-reveal>Proiecte recente.</h2>
 
       <div className="pf__filters" data-reveal>
-        {FILTERS.map((f) => (
+        {filters.map((service) => (
           <button
-            key={f.value}
-            className={`pf__filter${filter === f.value ? " is-active" : ""}`}
-            onClick={() => setFilter(f.value)}
-            aria-pressed={filter === f.value}
+            key={service.slug}
+            className={`pf__filter${filter === service.slug ? " is-active" : ""}`}
+            onClick={() => setFilter(service.slug)}
+            aria-pressed={filter === service.slug}
           >
-            {f.label}
+            {service.title}
             <span className="pf__count">
-              {f.value === "all" ? projects.length : projects.filter((p) => p.categorie === f.value).length}
+              {service.slug === "all"
+                ? projects.length
+                : projects.filter((project) => project.services.some((item) => item.slug === service.slug)).length}
             </span>
           </button>
         ))}
@@ -130,7 +131,7 @@ export default function PortfolioPage({ projects }: { projects: Project[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="pf__empty" data-reveal>Nu există proiecte în această categorie.</p>
+        <p className="pf__empty" data-reveal>Nu există proiecte pentru acest serviciu.</p>
       )}
     </section>
   );

@@ -44,7 +44,6 @@ async function main() {
     collection: 'servicii',
     data: {
       titlu: 'Integrări API',
-      categorie: '',
       metaTitlu: 'Integrare API & ERP/CRM — eMAG, SmartBill, Oblio, 1C | LESCINSCHI',
       imagine: imagineId,
       descriereScurta: 'Integrăm orice API cu magazinul sau site-ul tău: ERP și contabilitate (SmartBill, Oblio, 1C, SAP), CRM, marketplace (eMAG, Altex), sisteme de rezervări, fluxuri custom. Sincronizare real-time a stocurilor, prețurilor și comenzilor, automatizări pe orice eveniment.',
