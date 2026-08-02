@@ -6,7 +6,7 @@ import ContactPage from "@/components/ContactPage";
 import type { ContactProject } from "@/components/ContactResults";
 import { getPrimaryService } from "@/lib/project-services";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Contact",
