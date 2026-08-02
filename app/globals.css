@@ -515,6 +515,18 @@ h2.section-title {
   display: grid; gap: 24px; text-align: left;
 }
 .contact-cta__row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+/* pastile servicii dorite — mici, stilul site-ului */
+.contact-cta__services { display: flex; flex-wrap: wrap; gap: 8px; }
+.contact-cta__service {
+  font: inherit; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.65);
+  border: 1px solid var(--line); border-radius: 9999px;
+  padding: 5px 12px; line-height: 1.4;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+@media (hover: hover) { .contact-cta__service:hover { border-color: rgba(255,255,255,0.45); color: var(--white); } }
+.contact-cta__service.is-selected { border-color: var(--lime); color: var(--lime); }
 .contact-cta__form .field input,
 .contact-cta__form .field textarea { font-size: 1.1rem; padding: 14px 2px; }
 .contact-cta__submit { justify-self: start; margin-top: 4px; }

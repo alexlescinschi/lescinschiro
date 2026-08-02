@@ -76,13 +76,28 @@ async function getProjects(): Promise<ContactProject[]> {
   return fallbackProjects.map((project) => ({ ...project, href: "" }));
 }
 
+async function getServices(): Promise<{ title: string; slug: string }[]> {
+  try {
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "servicii",
+      depth: 0,
+      limit: 50,
+      sort: "ordine",
+    });
+    return docs.map((s) => ({ title: (s as { titlu: string }).titlu, slug: (s as { slug: string }).slug }));
+  } catch {
+    return [];
+  }
+}
+
 export default async function Page() {
-  const projects = await getProjects();
+  const [projects, services] = await Promise.all([getProjects(), getServices()]);
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <ContactPage projects={projects} />
+      <ContactPage projects={projects} services={services} />
     </>
   );
 }

@@ -7,11 +7,11 @@ const MAX_REQUESTS = 5;
 const attempts = new Map<string, { count: number; resetAt: number }>();
 
 type ContactPayload = {
-  prenume?: unknown;
   nume?: unknown;
   email?: unknown;
   telefon?: unknown;
   detalii?: unknown;
+  servicii?: unknown;
   company?: unknown;
 };
 
@@ -71,13 +71,13 @@ export async function POST(request: Request) {
     return Response.json({ error: "Prea multe cereri. Încearcă din nou peste câteva minute." }, { status: 429 });
   }
 
-  const prenume = line(payload.prenume, 80);
   const nume = line(payload.nume, 80);
   const email = line(payload.email, 160).toLowerCase();
   const telefon = line(payload.telefon, 40);
+  const servicii = line(payload.servicii, 500);
   const detalii = text(payload.detalii, 4_000);
 
-  if (!prenume || !nume || !detalii || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!nume || !detalii || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return Response.json({ error: "Completează numele, un email valid și detaliile proiectului." }, { status: 400 });
   }
 
@@ -88,13 +88,14 @@ export async function POST(request: Request) {
     return Response.json({ error: "Trimiterea nu este configurată momentan." }, { status: 503 });
   }
 
-  const fullName = `${prenume} ${nume}`;
+  const fullName = nume;
   const plainText = [
     `Cerere nouă de pe ${site.domain}`,
     "",
     `Nume: ${fullName}`,
     `Email: ${email}`,
     `Telefon: ${telefon || "Nespecificat"}`,
+    `Servicii: ${servicii || "Nespecificate"}`,
     "",
     "Detalii proiect:",
     detalii,
@@ -119,6 +120,7 @@ export async function POST(request: Request) {
           <p><strong>Nume:</strong> ${escapeHtml(fullName)}</p>
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           <p><strong>Telefon:</strong> ${escapeHtml(telefon || "Nespecificat")}</p>
+          <p><strong>Servicii:</strong> ${escapeHtml(servicii || "Nespecificate")}</p>
           <h2>Detalii proiect</h2>
           <p>${escapeHtml(detalii).replace(/\n/g, "<br>")}</p>
         `,

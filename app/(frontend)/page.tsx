@@ -76,6 +76,7 @@ async function getServices() {
         : "";
       return {
         title: s.titlu as string,
+        slug: (s.slug as string) || "",
         desc: (s.descriereScurta as string) || "",
         href: `/servicii/${s.slug}`,
         // hover pe home = prima imagine din conținut (richText); dacă nu există → imaginea din câmpul „Imagine"
@@ -116,7 +117,7 @@ export default async function Home() {
       <Pricing />
       <Testimonials />
       <ChatProcess />
-      <Contact />
+      <Contact services={services} />
       <SelectedWorks projects={projects.slice(0, 3)} />
     </main>
   );

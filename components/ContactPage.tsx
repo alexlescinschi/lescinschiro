@@ -4,10 +4,16 @@ import Contact from "@/components/Contact";
 import ContactResults, { type ContactProject } from "@/components/ContactResults";
 import { contactFaqs, site } from "@/data/content";
 
-export default function ContactPage({ projects }: { projects: ContactProject[] }) {
+export default function ContactPage({
+  projects,
+  services,
+}: {
+  projects: ContactProject[];
+  services?: { title: string; slug: string }[];
+}) {
   return (
     <main>
-      <div className="ch-page-top"><Contact /></div>
+      <div className="ch-page-top"><Contact services={services} /></div>
       <ContactResults projects={projects} />
 
       <section className="section ch-info" aria-label="Date de contact">

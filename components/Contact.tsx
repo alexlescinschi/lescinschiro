@@ -1,19 +1,35 @@
 "use client";
 import { useState } from "react";
-import { site } from "@/data/content";
+import { site, services as defaultServices } from "@/data/content";
 
-export default function Contact() {
+type ServiceOption = { title: string; slug: string };
+
+// ponytail: serviciile vin din CMS (prop); fallback pe lista hardcodată.
+export default function Contact({ services: propServices }: { services?: ServiceOption[] }) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [whatsappHref, setWhatsappHref] = useState(`https://wa.me/${site.whatsapp}`);
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const services: ServiceOption[] =
+    propServices && propServices.length
+      ? propServices
+      : defaultServices.map((s) => ({ title: s.title, slug: s.title }));
+
+  const toggleService = (title: string) => {
+    setSelected((prev) => (prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]));
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const f = new FormData(form);
     const g = (k: string) => String(f.get(k) || "");
+    const serviciiText = selected.join(", ");
     const whatsappMessage = encodeURIComponent(
-      `Bună! Sunt ${g("prenume")} ${g("nume")} și vreau să discutăm despre un proiect.\n\n${g("detalii")}`
+      `Bună! Sunt ${g("nume")} și vreau să discutăm despre un proiect.${
+        serviciiText ? `\n\nServicii dorite: ${serviciiText}` : ""
+      }\n\n${g("detalii")}`
     );
     setWhatsappHref(`https://wa.me/${site.whatsapp}?text=${whatsappMessage}`);
     setStatus("sending");
@@ -23,11 +39,12 @@ export default function Contact() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(f.entries())),
+        body: JSON.stringify({ ...Object.fromEntries(f.entries()), servicii: serviciiText }),
       });
       const result = await response.json().catch(() => ({})) as { error?: string };
       if (!response.ok) throw new Error(result.error || "Mesajul nu a putut fi trimis.");
       form.reset();
+      setSelected([]);
       setStatus("success");
       setMessage("Cererea a fost trimisă. Îți răspundem în maximum 24h.");
     } catch (error) {
@@ -62,9 +79,27 @@ export default function Contact() {
             <label htmlFor="company">Companie</label>
             <input id="company" name="company" tabIndex={-1} autoComplete="off" />
           </div>
-          <div className="contact-cta__row">
-            <div className="field"><label htmlFor="prenume">Prenume</label><input id="prenume" name="prenume" required autoComplete="given-name" placeholder="Prenume" /></div>
-            <div className="field"><label htmlFor="nume">Nume</label><input id="nume" name="nume" required autoComplete="family-name" placeholder="Nume" /></div>
+
+          <div className="field">
+            <label>Servicii dorite</label>
+            <div className="contact-cta__services">
+              {services.map((s) => (
+                <button
+                  type="button"
+                  key={s.title}
+                  className={`contact-cta__service${selected.includes(s.title) ? " is-selected" : ""}`}
+                  aria-pressed={selected.includes(s.title)}
+                  onClick={() => toggleService(s.title)}
+                >
+                  {s.title}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="field">
+            <label htmlFor="nume">Nume</label>
+            <input id="nume" name="nume" required autoComplete="name" placeholder="Numele tău" />
           </div>
           <div className="contact-cta__row">
             <div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" required autoComplete="email" placeholder="email@exemplu.com" /></div>
