@@ -9,7 +9,7 @@ export default function Compare() {
       <h2 className="section-title" data-reveal>{compare.title}</h2>
 
       <div className="cmp">
-        <div className="cmp__col" data-reveal>
+        <div className="cmp__col cmp__col--bad" data-reveal>
           <div className="cmp__head">
             <span className="cmp__label">{compare.bad.label}</span>
             <span className="cmp__tag cmp__tag--bad">{compare.bad.locked}</span>
@@ -43,9 +43,6 @@ export default function Compare() {
           </ul>
         </div>
       </div>
-
-      <p className="cmp__tagline" data-reveal>{compare.tagline}</p>
-      <a className="cmp__cta" href="#portofoliu" data-reveal>{compare.cta} →</a>
     </section>
   );
 }

@@ -202,8 +202,6 @@ export const compare = {
       "Custom, cu opinie, greu de uitat",
     ],
   },
-  tagline: "Același brief, același buget. Rezultat complet diferit.",
-  cta: "Vezi proiectele",
 };
 
 // Deliverables ca grilă cu iconițe (pentru pagina /proces)

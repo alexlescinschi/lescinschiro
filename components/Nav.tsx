@@ -165,7 +165,6 @@ export default function Nav({ services }: { services: NavService[] }) {
             <div className="mega-menu__intro">
               <span className="mega-menu__eyebrow">Expertiză completă</span>
               <p>Construim ecosisteme digitale care cresc companii, nu doar pagini care arată bine.</p>
-              <Link href="/#servicii" onClick={() => setServicesOpen(false)}>Vezi toate serviciile ↗</Link>
             </div>
 
             <nav className="mega-menu__services" aria-label="Serviciile noastre">

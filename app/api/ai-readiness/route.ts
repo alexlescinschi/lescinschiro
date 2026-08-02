@@ -25,6 +25,9 @@ const MAX_BODY_SIZE = 800_000;
 const MAX_REDIRECTS = 3;
 
 function isPrivateAddress(address: string) {
+  const mappedIpv4 = address.toLowerCase().match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/)?.[1];
+  if (mappedIpv4) return isPrivateAddress(mappedIpv4);
+
   if (isIP(address) === 4) {
     const [a, b] = address.split(".").map(Number);
     return a === 10
@@ -45,9 +48,7 @@ function isPrivateAddress(address: string) {
     || value.startsWith("fe9")
     || value.startsWith("fea")
     || value.startsWith("feb")
-    || value.startsWith("::ffff:127.")
-    || value.startsWith("::ffff:10.")
-    || value.startsWith("::ffff:192.168.");
+    || value.startsWith("::ffff:");
 }
 
 async function assertPublicUrl(url: URL) {
@@ -123,6 +124,23 @@ function fold(value: string) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
+function decodeHtml(value: string) {
+  const entities: Record<string, string> = {
+    amp: "&",
+    quot: '"',
+    apos: "'",
+    lt: "<",
+    gt: ">",
+    nbsp: " ",
+  };
+  return value.replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (entity, code: string) => {
+    if (code[0] !== "#") return entities[code.toLowerCase()] ?? entity;
+    const hex = code[1]?.toLowerCase() === "x";
+    const point = Number.parseInt(code.slice(hex ? 2 : 1), hex ? 16 : 10);
+    return Number.isFinite(point) ? String.fromCodePoint(point) : entity;
+  });
+}
+
 function hasMeaningfulMatch(html: string, value: string) {
   const words = fold(value).split(/[^a-z0-9]+/).filter((word) => word.length >= 4);
   const page = fold(html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " "));
@@ -165,10 +183,12 @@ export async function POST(request: Request) {
       safeFetch(new URL("/llms.txt", origin)),
     ]);
     const html = home.text;
-    const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1].replace(/\s+/g, " ").trim() || "";
-    const description = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]
+    const rawTitle = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1].replace(/\s+/g, " ").trim() || "";
+    const rawDescription = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]
       || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+name=["']description["']/i)?.[1]
       || "";
+    const title = decodeHtml(rawTitle);
+    const description = decodeHtml(rawDescription);
     const h1Count = (html.match(/<h1\b/gi) || []).length;
     const hasSchema = /application\/ld\+json/i.test(html);
     const hasBusinessSchema = /"@type"\s*:\s*"(?:Organization|LocalBusiness|ProfessionalService)"/i.test(html);
@@ -182,7 +202,7 @@ export async function POST(request: Request) {
     const checks: AuditCheck[] = [
       check("access", "Website accesibil", "pass", `Pagina principală răspunde corect la ${home.url.hostname}.`, 15),
       check("title", "Titlu clar", title.length >= 25 && title.length <= 65 ? "pass" : title ? "partial" : "fail", title ? `Titlu detectat: „${title.slice(0, 90)}”` : "Pagina nu are un titlu detectabil.", 10),
-      check("description", "Descriere pentru motoare", description.length >= 70 && description.length <= 180 ? "pass" : description ? "partial" : "fail", description ? "Descrierea există, dar poate fi făcută mai explicită." : "Lipsește meta descrierea paginii principale.", 10),
+      check("description", "Descriere pentru motoare", description.length >= 70 && description.length <= 180 ? "pass" : description ? "partial" : "fail", description.length >= 70 && description.length <= 180 ? "Meta descrierea există și are o lungime potrivită." : description ? "Descrierea există, dar poate fi făcută mai explicită." : "Lipsește meta descrierea paginii principale.", 10),
       check("heading", "Structură principală", h1Count === 1 ? "pass" : h1Count > 0 ? "partial" : "fail", h1Count === 1 ? "Pagina are un singur titlu H1." : `Am detectat ${h1Count} titluri H1; recomandat este unul singur.`, 8),
       check("service", "Serviciu identificabil", serviceMatch ? "pass" : "fail", serviceMatch ? `Serviciul „${service}” este menționat pe homepage.` : `Serviciul „${service}” nu este suficient de vizibil pe homepage.`, 10),
       check("location", "Semnal local", locationMatch ? "pass" : "fail", locationMatch ? `Locația „${location}” este menționată.` : `Locația „${location}” nu a fost identificată pe homepage.`, 8),
@@ -198,7 +218,6 @@ export async function POST(request: Request) {
     const level = score >= 75 ? "Bun" : score >= 50 ? "Mediu" : "De îmbunătățit";
     const recommendations = checks
       .filter((item) => item.status !== "pass")
-      .sort((a, b) => b.points - a.points)
       .slice(0, 4)
       .map((item) => {
         const actions: Record<string, string> = {
@@ -216,6 +235,7 @@ export async function POST(request: Request) {
         };
         return actions[item.id] || item.detail;
       });
+    if (!recommendations.length) recommendations.push("Menține informațiile actualizate și publică periodic exemple concrete, rezultate și răspunsuri la întrebările clienților.");
 
     return Response.json({
       company,
