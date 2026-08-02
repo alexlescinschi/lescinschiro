@@ -4,7 +4,6 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 import { services as fallbackServices, site } from "@/data/content";
 import SmoothScroll from "@/components/SmoothScroll";
-import Cursor from "@/components/Cursor";
 import Intro from "@/components/Intro";
 import Nav, { type NavService } from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -100,7 +99,6 @@ export default async function FrontendLayout({ children }: Readonly<{ children: 
         <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
       </noscript>
       <Intro />
-      <Cursor />
       <SmoothScroll>
         <Nav services={services} />
         {children}

@@ -39,10 +39,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 img { max-width: 100%; display: block; }
 ::selection { background: var(--lime); color: var(--black); }
 
-@media (hover: hover) and (pointer: fine) {
-  body { cursor: none; }
-  a, button, .srv, .wk__thumb { cursor: none; }
-}
+/* Ascunde și instanțele rămase dintr-un bundle vechi după deploy/HMR. */
+.cursor { display: none !important; }
 
 /* ============ Utilitare ============ */
 .container { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad-x); }
@@ -69,7 +67,8 @@ h2.section-title {
   text-transform: uppercase; letter-spacing: 0.04em;
   transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.3s var(--ease);
 }
-.btn:hover { background: var(--white); color: var(--black); }
+.btn:hover { background: var(--white); color: var(--black); transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
 .btn--solid { background: var(--white); color: var(--black); }
 .btn--solid:hover { background: transparent; color: var(--white); }
 
@@ -524,15 +523,6 @@ h2.section-title {
   .footer__bar { position: static; flex-direction: column; align-items: flex-start; gap: 26px; }
   .footer__bottom { position: static; margin-top: clamp(120px, 30vh, 260px); flex-direction: column; align-items: flex-start; gap: 22px; }
 }
-
-/* ============ Cursor custom ============ */
-.cursor {
-  position: fixed; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--white); pointer-events: none; z-index: 90; mix-blend-mode: difference;
-  transform: translate(-50%, -50%); transition: width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s;
-}
-.cursor.is-hover { width: 56px; height: 56px; background: var(--lime); }
-@media (hover: none), (pointer: coarse) { .cursor { display: none; } }
 
 /* ============ Intro curtain ============ */
 .intro { position: fixed; inset: 0; z-index: 100; background: var(--black); display: flex; align-items: center; justify-content: center; }
