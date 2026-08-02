@@ -25,10 +25,10 @@ export const contactFaqs = [
 
 export const nav = [
   { label: "Servicii", href: "#servicii" },
-  { label: "Proiecte", href: "#portofoliu" },
-  { label: "Proces", href: "/proces" },
+  { label: "Portofoliu", href: "/portofoliu" },
+  { label: "Cum lucrăm", href: "/proces" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const services = [
