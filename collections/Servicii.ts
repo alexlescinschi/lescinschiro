@@ -33,6 +33,7 @@ export const Servicii: CollectionConfig = {
     { name: 'metaTitlu', type: 'text', label: 'Meta title (SEO — dacă e gol, se folosește titlul)', admin: { position: 'sidebar' } },
     // @ts-expect-error allowEdit works at runtime but missing from Payload 3 upload field types
     { name: 'imagine', type: 'upload', relationTo: 'media', required: true, admin: { allowEdit: false } },
+    { name: 'descriereMeniu', type: 'textarea', label: 'Descriere scurtă pentru meniul principal' },
     { name: 'descriereScurta', type: 'textarea', label: 'Descriere scurtă (și SEO description)' },
     { name: 'heroTitlu', type: 'text', label: 'Hero — titlu' },
     { name: 'heroSubtitlu', type: 'text', label: 'Hero — subtitlu' },

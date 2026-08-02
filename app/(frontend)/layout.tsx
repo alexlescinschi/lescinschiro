@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { unstable_cache } from "next/cache";
+import { connection } from "next/server";
 import "../globals.css";
 import { getPayload } from "payload";
 import config from "@payload-config";
@@ -10,7 +12,7 @@ import Footer from "@/components/Footer";
 
 // Font global: Helvetica Neue (cdnfonts) — montat via @import în globals.css.
 
-// Paginile statice reiau periodic serviciile, fără a interoga CMS-ul la fiecare vizită.
+// Datele globale din CMS sunt cache-uite cinci minute după prima cerere runtime.
 export const revalidate = 300;
 
 export const metadata: Metadata = {
@@ -51,8 +53,8 @@ const jsonLd = {
   ].map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })),
 };
 
-async function getNavServices(): Promise<NavService[]> {
-  try {
+const getCachedNavServices = unstable_cache(
+  async (): Promise<NavService[]> => {
     const payload = await getPayload({ config });
     const { docs } = await payload.find({
       collection: "servicii",
@@ -62,23 +64,33 @@ async function getNavServices(): Promise<NavService[]> {
       select: {
         titlu: true,
         slug: true,
+        descriereMeniu: true,
         descriereScurta: true,
         imagine: true,
         ordine: true,
       },
     });
 
-    const services = docs.flatMap((service) => {
+    return docs.flatMap((service) => {
       if (!service.slug) return [];
       const image = typeof service.imagine === "object" ? service.imagine.url || "" : "";
       return [{
         title: service.titlu,
-        desc: service.descriereScurta || "",
+        desc: service.descriereMeniu || service.descriereScurta || "",
         href: `/servicii/${service.slug}`,
         image,
       }];
     });
+  },
+  ["nav-services-v2"],
+  { revalidate: 300, tags: ["nav-services"] }
+);
 
+async function getNavServices(): Promise<NavService[]> {
+  // Buildul Docker nu are acces la PostgreSQL; meniul trebuie rezolvat după sosirea cererii.
+  await connection();
+  try {
+    const services = await getCachedNavServices();
     if (services.length) return services;
   } catch {
     // Navigația rămâne utilizabilă și înainte ca baza de date să fie disponibilă.

@@ -155,6 +155,7 @@ export interface Servicii {
   ordine?: number | null;
   metaTitlu?: string | null;
   imagine: number | Media;
+  descriereMeniu?: string | null;
   descriereScurta?: string | null;
   heroTitlu?: string | null;
   heroSubtitlu?: string | null;
@@ -432,6 +433,7 @@ export interface ServiciiSelect<T extends boolean = true> {
   ordine?: T;
   metaTitlu?: T;
   imagine?: T;
+  descriereMeniu?: T;
   descriereScurta?: T;
   heroTitlu?: T;
   heroSubtitlu?: T;

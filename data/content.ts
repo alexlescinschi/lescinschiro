@@ -44,7 +44,8 @@ export const services = [
   { n: "10", title: "Social Media Management", desc: "Facebook, Instagram, TikTok, LinkedIn. Strategie, content, reclame plătite.", href: "/servicii/social-media-management" },
   { n: "11", title: "Reclame Google Ads", desc: "Search, Shopping, Display, YouTube. Plătești doar la click. ROAS urmărit.", href: "/servicii/reclame-google-ads" },
   { n: "12", title: "Reclame Meta", desc: "Facebook & Instagram Ads. Lookalike, retargeting, creative care scală.", href: "/servicii/reclame-meta" },
-  { n: "13", title: "Filmări & Montare video", desc: "Clipuri produs, brand films, reclame video. Cinema + storytelling.", href: "/servicii/filmari-video" },
+  { n: "13", title: "Filmări video", desc: "Filmări de produs, reclame și brand films realizate cu imagine și sunet profesionist.", href: "/servicii/filmari-video" },
+  { n: "14", title: "Montare & post-producție video", desc: "Editare, color grading, animații și sound design pentru conținut care convinge.", href: "/servicii/montare-post-productie-video" },
 ];
 
 // Imagini reale de pe lescinschi.art (descărcate în public/work).
