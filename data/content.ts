@@ -25,7 +25,7 @@ export const contactFaqs = [
 
 export const nav = [
   { label: "Servicii", href: "#servicii" },
-  { label: "Proiecte", href: "#portofoliu" },
+  { label: "Portofoliu", href: "/portofoliu" },
   { label: "Proces", href: "#proces" },
   { label: "Prețuri", href: "#preturi" },
   { label: "Blog", href: "/blog" },
