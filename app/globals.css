@@ -724,6 +724,7 @@ h2.section-title {
 }
 
 /* ============ Pagina /contact ============ */
+.ch-page-top { padding-top: 60px; }
 .ch-hero { min-height: 86svh; display: flex; align-items: center; }
 .ch-hero__grid { width: 100%; display: grid; grid-template-columns: 1.35fr 0.65fr; gap: clamp(40px, 8vw, 140px); align-items: end; }
 .ch-hero__title { font-size: var(--fs-display); line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase; }

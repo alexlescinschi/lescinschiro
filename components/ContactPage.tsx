@@ -7,7 +7,7 @@ import { contactFaqs, site } from "@/data/content";
 export default function ContactPage({ projects }: { projects: ContactProject[] }) {
   return (
     <main>
-      <Contact />
+      <div className="ch-page-top"><Contact /></div>
       <ContactResults projects={projects} />
 
       <section className="section ch-info" aria-label="Date de contact">
