@@ -228,6 +228,10 @@ export interface Proiecte {
   slug: string;
   imagine: number | Media;
   linkLive?: string | null;
+  /**
+   * Ex: Next.js, Netopia, FAN Courier, SmartBill
+   */
+  tehnologii?: string | null;
   studiuDeCaz?: {
     root: {
       type: string;
@@ -486,6 +490,7 @@ export interface ProiecteSelect<T extends boolean = true> {
   slug?: T;
   imagine?: T;
   linkLive?: T;
+  tehnologii?: T;
   studiuDeCaz?: T;
   servicii?: T;
   seo?:

@@ -11,6 +11,7 @@ type Project = {
   tag: string;
   img: string;
   href: string;
+  tehnologii?: string[];
 };
 
 export default function Portfolio({
@@ -151,18 +152,25 @@ export default function Portfolio({
                       alt={`${p.name} — ${p.tag}`}
                       loading="lazy"
                     />
+                    <a className="wk__link" href={p.href || "#portofoliu"}>
+                      <span className="wk__pill">{p.name}</span>
+                      <span className="wk__btn">Vezi site-ul</span>
+                    </a>
                   </figure>
                   <div className="wk__overlay" aria-hidden="true" />
+
+                  {p.tehnologii && p.tehnologii.length > 0 && (
+                    <div className="wk__chips">
+                      {p.tehnologii.map((t) => (
+                        <span className="wk__chip" key={t}>{t}</span>
+                      ))}
+                    </div>
+                  )}
 
                   <div className="wk__content">
                     <h3 className="wk__title">{p.name}</h3>
                     <span className="wk__sub">{p.tag}</span>
                   </div>
-
-                  <a className="wk__link" href={p.href || "#portofoliu"}>
-                    <span className="wk__pill">{p.name}</span>
-                    <span className="wk__btn">Vezi site-ul</span>
-                  </a>
                 </article>
               </div>
             </div>

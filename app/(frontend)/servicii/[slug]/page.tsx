@@ -37,6 +37,7 @@ async function getProjects(serviceId: number, serviceTitle: string) {
         ? (project.imagine as { url: string }).url
         : "",
     href: project.linkLive || "",
+    tehnologii: ((project.tehnologii as string) || "").split(",").map((t) => t.trim()).filter(Boolean),
   }));
 }
 

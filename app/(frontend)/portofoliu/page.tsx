@@ -39,6 +39,7 @@ export default async function Page() {
           ? (p.imagine as { url: string }).url
           : "",
       href: (p.linkLive as string) || "",
+      tehnologii: ((p.tehnologii as string) || "").split(",").map((t) => t.trim()).filter(Boolean),
     };
   });
 

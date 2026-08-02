@@ -35,6 +35,7 @@ async function getProjects() {
         tag: primaryService?.title || "Proiect digital",
         img: (p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : "",
         href: (p.linkLive as string) || "",
+        tehnologii: ((p.tehnologii as string) || "").split(",").map((t) => t.trim()).filter(Boolean),
       };
     });
   } catch {

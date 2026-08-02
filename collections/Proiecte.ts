@@ -10,6 +10,7 @@ export const Proiecte: CollectionConfig = {
     // @ts-expect-error allowEdit works at runtime but missing from Payload 3 upload field types
     { name: 'imagine', type: 'upload', relationTo: 'media', required: true, admin: { allowEdit: false } },
     { name: 'linkLive', type: 'text', label: 'Link live', admin: { position: 'sidebar' } },
+    { name: 'tehnologii', type: 'text', label: 'Tehnologii (separate prin virgulă)', admin: { position: 'sidebar', description: 'Ex: Next.js, Netopia, FAN Courier, SmartBill' } },
     { name: 'studiuDeCaz', type: 'richText', label: 'Studiu de caz (opțional)' },
     {
       name: 'servicii',
