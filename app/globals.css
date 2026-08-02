@@ -18,6 +18,7 @@
   --pad-x: clamp(20px, 5vw, 80px);
   --pad-y: clamp(80px, 12vh, 180px);
   --maxw: 1600px;
+  --notice-h: 36px;
 
   --line: rgba(255, 255, 255, 0.16);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -73,8 +74,31 @@ h2.section-title {
 .btn--solid:hover { background: transparent; color: var(--white); }
 
 /* ============ Nav ============ */
+.ai-notice {
+  position: fixed; inset: 0 0 auto; z-index: 44; height: var(--notice-h);
+  display: block; padding-inline: var(--pad-x); overflow: hidden;
+  background: var(--lime); color: var(--black);
+  transition: background 0.25s var(--ease);
+}
+.ai-notice:hover { background: #e0ff7d; }
+.ai-notice:focus-visible { outline: 2px solid var(--black); outline-offset: -4px; }
+.ai-notice__inner {
+  width: 100%; max-width: var(--maxw); height: 100%; margin-inline: auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.ai-notice__message { display: inline-flex; align-items: center; gap: 12px; }
+.ai-notice__message strong {
+  border: 1px solid currentColor; border-radius: 999px; padding: 2px 7px;
+  font-size: 0.58rem; letter-spacing: 0.12em;
+}
+.ai-notice__cta { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.ai-notice__arrow { transition: transform 0.25s var(--ease); }
+.ai-notice:hover .ai-notice__arrow { transform: translate(3px, -3px); }
+.ai-notice__mobile { display: none; }
+
 .nav {
-  position: fixed; inset: 0 0 auto 0; z-index: 40;
+  position: fixed; inset: var(--notice-h) 0 auto 0; z-index: 40;
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px var(--pad-x);
   mix-blend-mode: difference; /* rămâne lizibil peste orice fundal */
@@ -94,6 +118,14 @@ h2.section-title {
 .nav__services-trigger span { font-size: 1rem; font-weight: 500; line-height: 0; transition: transform 0.35s var(--ease); }
 .nav__services-trigger[aria-expanded="true"] span { transform: rotate(45deg); }
 @media (max-width: 860px) { .nav__pills { display: none; } }
+
+@media (max-width: 600px) {
+  :root { --notice-h: 38px; }
+  .ai-notice { padding-inline: 14px; }
+  .ai-notice__inner { justify-content: center; font-size: 0.64rem; letter-spacing: 0.08em; }
+  .ai-notice__message, .ai-notice__desktop { display: none; }
+  .ai-notice__mobile { display: inline; }
+}
 
 .menu-btn {
   display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center;

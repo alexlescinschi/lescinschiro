@@ -114,6 +114,16 @@ export default function Nav({ services }: { services: NavService[] }) {
 
   return (
     <>
+      <Link className="ai-notice" href="/verificare-ai" aria-label="Verifică gratuit dacă site-ul este pregătit pentru căutarea AI">
+        <span className="ai-notice__inner">
+          <span className="ai-notice__message"><strong>Nou</strong> Este site-ul tău pregătit pentru căutarea AI?</span>
+          <span className="ai-notice__cta">
+            <span className="ai-notice__desktop">Verifică gratuit</span>
+            <span className="ai-notice__mobile">Verifică gratuit site-ul pentru AI</span>
+            <span className="ai-notice__arrow" aria-hidden>↗</span>
+          </span>
+        </span>
+      </Link>
       <header
         className={`nav${servicesOpen ? " nav--mega-open" : ""}`}
         ref={navRef}
