@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { site } from "@/data/content";
+import { getPayload } from "payload";
+import config from "@payload-config";
+import { projects as fallbackProjects, site } from "@/data/content";
 import ContactPage from "@/components/ContactPage";
+import type { ContactProject } from "@/components/ContactResults";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -36,11 +41,52 @@ const jsonLd = {
   priceRange: "€€",
 };
 
-export default function Page() {
+const categoryLabels: Record<string, string> = {
+  "magazin-online": "Magazin online",
+  corporativ: "Site corporativ",
+  "landing-page": "Landing page",
+};
+
+async function getProjects(): Promise<ContactProject[]> {
+  try {
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "proiecte",
+      depth: 1,
+      limit: 12,
+      sort: "-createdAt",
+      select: {
+        titlu: true,
+        imagine: true,
+        categorie: true,
+        linkLive: true,
+      },
+    });
+    const projects = docs.flatMap((project) => {
+      const img = typeof project.imagine === "object" ? project.imagine.url || "" : "";
+      if (!img) return [];
+      return [{
+        name: project.titlu,
+        tag: categoryLabels[project.categorie || ""] || "Proiect digital",
+        img,
+        href: project.linkLive || "",
+      }];
+    });
+    if (projects.length) return projects;
+  } catch {
+    // Pagina rămâne completă și dacă CMS-ul nu este disponibil temporar.
+  }
+
+  return fallbackProjects.map((project) => ({ ...project, href: "" }));
+}
+
+export default async function Page() {
+  const projects = await getProjects();
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <ContactPage />
+      <ContactPage projects={projects} />
     </>
   );
 }
