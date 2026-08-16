@@ -129,6 +129,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: var(--integration-white, #fff);
   color: var(--integration-black, #000);
+  transition: background-color 240ms var(--integration-ease), border-color 240ms var(--integration-ease);
 }
 
 .logoImage {
@@ -530,22 +531,36 @@
   border-bottom: 1px solid var(--integration-lime);
 }
 
-.cardLinked:focus-within {
+.card:focus-within {
   background: var(--integration-lime);
   color: var(--integration-black);
 }
 
-.cardLinked:focus-within :is(.cardCategory, .cardSummary, .cardCapabilities li) {
+.card:focus-within :is(.cardCategory, .cardSummary, .cardCapabilities li) {
   color: rgba(0, 0, 0, 0.7);
 }
 
-.cardLinked:focus-within .regionList li {
+.card:focus-within .regionList li {
   border-color: rgba(0, 0, 0, 0.35);
   color: var(--integration-black);
 }
 
-.cardLinked:focus-within .cardCapabilities li::before {
+.card:focus-within .cardCapabilities li::before {
   background: var(--integration-black);
+}
+
+.card:focus-within .cardRequest {
+  border-color: rgba(0, 0, 0, 0.4);
+  color: var(--integration-black);
+}
+
+.card:focus-within .logo {
+  background: var(--integration-lime, #d3fd50);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.card:focus-within .logoDark .logoImage {
+  filter: invert(1);
 }
 
 .catalogEmpty {
@@ -1334,22 +1349,45 @@
     color: var(--integration-white);
   }
 
-  .cardLinked:hover {
+  .card:hover {
     background: var(--integration-lime);
     color: var(--integration-black);
   }
 
-  .cardLinked:hover :is(.cardCategory, .cardSummary, .cardCapabilities li) {
+  .card:hover :is(.cardCategory, .cardSummary, .cardCapabilities li) {
     color: rgba(0, 0, 0, 0.7);
   }
 
-  .cardLinked:hover .regionList li {
+  .card:hover .regionList li {
     border-color: rgba(0, 0, 0, 0.35);
     color: var(--integration-black);
   }
 
-  .cardLinked:hover .cardCapabilities li::before {
+  .card:hover .cardCapabilities li::before {
     background: var(--integration-black);
+  }
+
+  .card:hover .cardRequest {
+    border-color: rgba(0, 0, 0, 0.4);
+    color: var(--integration-black);
+  }
+
+  .card:hover .logo {
+    background: var(--integration-lime, #d3fd50);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover .logoDark .logoImage {
+    filter: invert(1);
+  }
+
+  .logo:hover {
+    background: var(--integration-lime, #d3fd50);
+    border-color: var(--integration-lime, #d3fd50);
+  }
+
+  .logoDark:hover .logoImage {
+    filter: invert(1);
   }
 
   .cardRequest:hover,
