@@ -152,6 +152,16 @@ function lexical(blocks: readonly LexicalSourceBlock[]): PayloadLexicalJSON {
 
 // Logo-uri locale din public/integrari, descărcate din sursele oficiale sau Simple Icons.
 // logoFundalInchis marchează variante albe care cer fundal întunecat.
+// Surse:
+//   - Simple Icons (cdn.simpleicons.org / jsdelivr simple-icons@11): adyen, amazon, braintree,
+//     calendly, dhl, dpd, fedex, google-*, hubspot, linkedin, mailchimp, make, meta-*, n8n,
+//     paypal, revolut, salesforce, sap, slack, stripe, telegram, twilio, ups, usps, whatsapp,
+//     x, zapier, zoho
+//   - Site-uri oficiale: 1c.com, maib.md, micb.md, fincombank.com, paynet.md, bpay.md,
+//     netopia-payments.com, fancourier.ro, smartbill.ro, oblio.eu, una.md, liqpay.ua, 999.md,
+//     bitrix24.com, kommo.com, euplatesc.ro, plationline.ro (plati.online), mollie.com,
+//     victoriabank.md, emag.ro (akamaized)
+//   - Wikimedia Commons: nova-poshta.png (Nova Poshta 2022 logo)
 export const integrationLogos: Record<string, { logoFisier: string; logoFundalInchis?: boolean }> = {
   '1c': { logoFisier: '/integrari/1c.png' },
   '999-md': { logoFisier: '/integrari/999-md.svg' },
