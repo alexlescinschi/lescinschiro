@@ -57,13 +57,13 @@ export const migrations = [
     name: '20260815_193732_integrari_schema',
   },
   {
-    up: migration_20260815_194000_integrari_data.up,
-    down: migration_20260815_194000_integrari_data.down,
-    name: '20260815_194000_integrari_data',
-  },
-  {
     up: migration_20260816_141249_integrari_logo_fundal.up,
     down: migration_20260816_141249_integrari_logo_fundal.down,
     name: '20260816_141249_integrari_logo_fundal'
+  },
+  {
+    up: migration_20260815_194000_integrari_data.up,
+    down: migration_20260815_194000_integrari_data.down,
+    name: '20260815_194000_integrari_data',
   },
 ];
