@@ -5,6 +5,7 @@ import { projects as fallbackProjects, site } from "@/data/content";
 import ContactPage from "@/components/ContactPage";
 import type { ContactProject } from "@/components/ContactResults";
 import { getPrimaryService } from "@/lib/project-services";
+import { getPublishedIntegrationRequest } from "@/lib/integrations";
 
 export const dynamic = "force-dynamic";
 
@@ -91,13 +92,30 @@ async function getServices(): Promise<{ title: string; slug: string }[]> {
   }
 }
 
-export default async function Page() {
-  const [projects, services] = await Promise.all([getProjects(), getServices()]);
+type Props = {
+  searchParams: Promise<{ integrare?: string | string[] }>;
+};
+
+export default async function Page({ searchParams }: Props) {
+  const params = await searchParams;
+  const requestedValue = Array.isArray(params.integrare) ? params.integrare[0] : params.integrare;
+  const requestedSlug = requestedValue?.trim().toLowerCase() || "";
+  const canResolveIntegration = /^[a-z0-9-]{1,80}$/.test(requestedSlug);
+  const [projects, services, integration] = await Promise.all([
+    getProjects(),
+    getServices(),
+    canResolveIntegration ? getPublishedIntegrationRequest(requestedSlug) : Promise.resolve(null),
+  ]);
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <ContactPage projects={projects} services={services} />
+      <ContactPage
+        projects={projects}
+        services={services}
+        integration={integration}
+        integrationMode={Boolean(requestedValue)}
+      />
     </>
   );
 }

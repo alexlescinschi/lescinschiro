@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Backfill: completează câmpul `tehnologii` pe proiecte, din relația `servicii`.
 // Rulare: NODE_ENV=production + DATABASE_URI (tunel) — vezi istoricul sesiunii.
 // Idempotent: suprascrie tehnologiile doar dacă proiectul nu are deja.

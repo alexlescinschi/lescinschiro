@@ -10,7 +10,8 @@
     "lint": "eslint",
     "payload": "payload",
     "generate:importmap": "payload generate:importmap",
-    "generate:types": "payload generate:types"
+    "generate:types": "payload generate:types",
+    "integrations:import": "payload run scripts/import-integrations.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.86.0",

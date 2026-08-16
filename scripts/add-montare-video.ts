@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Insert: Serviciu "Montare & post-producție video"
 // ponytail: run once with `npx tsx --env-file=.env scripts/add-montare-video.ts`
 // Idempotent: dacă slug-ul există, face skip.

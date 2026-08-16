@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Insert: 4 servicii de bază lipsă + setare ordine 1–14 pentru toate serviciile.
 // Rulare: NODE_ENV=production + DATABASE_URI (tunel) — vezi istoricul sesiunii.
 // Idempotent: skip pe slug existent; ordinea se resetează la fiecare rulare.

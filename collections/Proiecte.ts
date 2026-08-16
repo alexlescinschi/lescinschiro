@@ -11,6 +11,14 @@ export const Proiecte: CollectionConfig = {
     { name: 'imagine', type: 'upload', relationTo: 'media', required: true, admin: { allowEdit: false } },
     { name: 'linkLive', type: 'text', label: 'Link live', admin: { position: 'sidebar' } },
     { name: 'tehnologii', type: 'text', label: 'Tehnologii (separate prin virgulă)', admin: { position: 'sidebar', description: 'Ex: Next.js, Netopia, FAN Courier, SmartBill' } },
+    {
+      name: 'integrariConfirmate',
+      type: 'relationship',
+      relationTo: 'integrari',
+      hasMany: true,
+      label: 'Integrări confirmate',
+      admin: { description: 'Selectează numai integrările verificate în proiect.' },
+    },
     { name: 'studiuDeCaz', type: 'richText', label: 'Studiu de caz (opțional)' },
     {
       name: 'servicii',

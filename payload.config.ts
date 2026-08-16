@@ -7,6 +7,7 @@ import { Media } from './collections/Media'
 import { Servicii } from './collections/Servicii'
 import { Proiecte } from './collections/Proiecte'
 import { Blog } from './collections/Blog'
+import { Integrari } from './collections/Integrari'
 import { migrations } from './migrations'
 
 // ponytail: sqlite local (push automat), postgres pe vps (prodMigrations la boot).
@@ -18,12 +19,12 @@ function getDB() {
       prodMigrations: migrations,
     })
   }
-  return sqliteAdapter({ client: { url: 'file:./payload.db' } })
+  return sqliteAdapter({ client: { url: process.env.SQLITE_URL || 'file:./payload.db' } })
 }
 
 export default buildConfig({
   editor: lexicalEditor(),
-  collections: [Media, Servicii, Proiecte, Blog],
+  collections: [Media, Servicii, Proiecte, Blog, Integrari],
   secret: process.env.PAYLOAD_SECRET || '',
   db: getDB(),
   sharp,

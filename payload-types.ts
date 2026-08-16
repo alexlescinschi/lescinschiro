@@ -71,6 +71,7 @@ export interface Config {
     servicii: Servicii;
     proiecte: Proiecte;
     blog: Blog;
+    integrari: Integrari;
     'payload-kv': PayloadKv;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
@@ -83,6 +84,7 @@ export interface Config {
     servicii: ServiciiSelect<false> | ServiciiSelect<true>;
     proiecte: ProiecteSelect<false> | ProiecteSelect<true>;
     blog: BlogSelect<false> | BlogSelect<true>;
+    integrari: IntegrariSelect<false> | IntegrariSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -200,6 +202,10 @@ export interface Servicii {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Lista structurată folosită pe site. Câmpul text vechi rămâne temporar ca fallback.
+   */
+  integrariCatalog?: (number | Integrari)[] | null;
   preturi?:
     | {
         nume: string;
@@ -221,6 +227,89 @@ export interface Servicii {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "integrari".
+ */
+export interface Integrari {
+  id: number;
+  nume: string;
+  slug: string;
+  aliasuri?:
+    | {
+        valoare: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Cale din public, de exemplu /integrari/maib.svg
+   */
+  logoFisier?: string | null;
+  /**
+   * Bifează pentru logo-uri albe care au nevoie de fundal închis
+   */
+  logoFundalInchis?: boolean | null;
+  logoAlt?: string | null;
+  categorie:
+    | 'plati-online'
+    | 'rate-finantare'
+    | 'curierat-fulfillment'
+    | 'erp-stoc-contabilitate'
+    | 'crm-vanzari'
+    | 'marketplace-feeduri'
+    | 'marketing-analytics'
+    | 'automatizari-comunicare'
+    | 'programari-sisteme-custom';
+  regiuni: ('md' | 'ro' | 'ue' | 'international')[];
+  rezumat: string;
+  capabilitati?:
+    | {
+        valoare: string;
+        id?: string | null;
+      }[]
+    | null;
+  cerinte?:
+    | {
+        valoare: string;
+        id?: string | null;
+      }[]
+    | null;
+  durata?: string | null;
+  pret?: string | null;
+  featuredHome?: boolean | null;
+  ordine?: number | null;
+  paginaPublica?: boolean | null;
+  continut?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  faq?:
+    | {
+        intrebare: string;
+        raspuns: string;
+        id?: string | null;
+      }[]
+    | null;
+  urlOficial?: string | null;
+  seo?: {
+    metaTitlu?: string | null;
+    metaDescriere?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "proiecte".
  */
 export interface Proiecte {
@@ -233,6 +322,10 @@ export interface Proiecte {
    * Ex: Next.js, Netopia, FAN Courier, SmartBill
    */
   tehnologii?: string | null;
+  /**
+   * Selectează numai integrările verificate în proiect.
+   */
+  integrariConfirmate?: (number | Integrari)[] | null;
   studiuDeCaz?: {
     root: {
       type: string;
@@ -287,6 +380,7 @@ export interface Blog {
     };
     [k: string]: unknown;
   };
+  integrariMentionate?: (number | Integrari)[] | null;
   seo?: {
     titluSEO?: string | null;
     descriereSEO?: string | null;
@@ -359,6 +453,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'blog';
         value: number | Blog;
+      } | null)
+    | ({
+        relationTo: 'integrari';
+        value: number | Integrari;
       } | null)
     | ({
         relationTo: 'users';
@@ -464,6 +562,7 @@ export interface ServiciiSelect<T extends boolean = true> {
         elemente?: T;
         id?: T;
       };
+  integrariCatalog?: T;
   preturi?:
     | T
     | {
@@ -493,6 +592,7 @@ export interface ProiecteSelect<T extends boolean = true> {
   imagine?: T;
   linkLive?: T;
   tehnologii?: T;
+  integrariConfirmate?: T;
   studiuDeCaz?: T;
   servicii?: T;
   seo?:
@@ -517,11 +617,67 @@ export interface BlogSelect<T extends boolean = true> {
   publicatLa?: T;
   coverImage?: T;
   continut?: T;
+  integrariMentionate?: T;
   seo?:
     | T
     | {
         titluSEO?: T;
         descriereSEO?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "integrari_select".
+ */
+export interface IntegrariSelect<T extends boolean = true> {
+  nume?: T;
+  slug?: T;
+  aliasuri?:
+    | T
+    | {
+        valoare?: T;
+        id?: T;
+      };
+  logoFisier?: T;
+  logoFundalInchis?: T;
+  logoAlt?: T;
+  categorie?: T;
+  regiuni?: T;
+  rezumat?: T;
+  capabilitati?:
+    | T
+    | {
+        valoare?: T;
+        id?: T;
+      };
+  cerinte?:
+    | T
+    | {
+        valoare?: T;
+        id?: T;
+      };
+  durata?: T;
+  pret?: T;
+  featuredHome?: T;
+  ordine?: T;
+  paginaPublica?: T;
+  continut?: T;
+  faq?:
+    | T
+    | {
+        intrebare?: T;
+        raspuns?: T;
+        id?: T;
+      };
+  urlOficial?: T;
+  seo?:
+    | T
+    | {
+        metaTitlu?: T;
+        metaDescriere?: T;
       };
   updatedAt?: T;
   createdAt?: T;

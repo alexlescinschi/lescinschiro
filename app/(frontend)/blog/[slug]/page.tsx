@@ -42,9 +42,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost(slug);
   if (!post) return { title: "Articolul nu a fost găsit" };
 
-  const seo = (post as any).seo || {};
+  const seo = post.seo || {};
   const metaTitle = seo.titluSEO || `${post.titlu} — LESCINSCHI`;
-  const metaDesc = seo.descriereSEO || (post.excerpt as string) || "";
+  const metaDesc = seo.descriereSEO || post.excerpt || "";
   const cover =
     post.coverImage && typeof post.coverImage === "object" && "url" in post.coverImage
       ? (post.coverImage as { url: string }).url

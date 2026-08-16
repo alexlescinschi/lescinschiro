@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Insert bulk: proiectele reale ale agenției.
 // ponytail: run once with `npx tsx --env-file=.env scripts/add-proiecte-bulk.ts`
 // Toate primesc imagine_id=1 (prima media din DB) — schimbi din admin pentru fiecare.

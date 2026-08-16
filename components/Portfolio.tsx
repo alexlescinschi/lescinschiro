@@ -11,7 +11,6 @@ type Project = {
   tag: string;
   img: string;
   href: string;
-  tehnologii?: string[];
 };
 
 export default function Portfolio({
@@ -61,7 +60,7 @@ export default function Portfolio({
 
     // count items per row (for grid-aware animation)
     let nbPerRow = 1;
-    let lastTop = itemEls[0].getBoundingClientRect().top;
+    const lastTop = itemEls[0].getBoundingClientRect().top;
     for (let i = 1; i < itemEls.length; i++) {
       if (itemEls[i].getBoundingClientRect().top !== lastTop) {
         nbPerRow = i;
@@ -158,14 +157,6 @@ export default function Portfolio({
                     </a>
                   </figure>
                   <div className="wk__overlay" aria-hidden="true" />
-
-                  {p.tehnologii && p.tehnologii.length > 0 && (
-                    <div className="wk__chips">
-                      {p.tehnologii.map((t) => (
-                        <span className="wk__chip" key={t}>{t}</span>
-                      ))}
-                    </div>
-                  )}
 
                   <div className="wk__content">
                     <h3 className="wk__title">{p.name}</h3>

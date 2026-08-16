@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Seed: creează utilizatorul admin + proiectul de exemplu Climatperfect
 import { getPayload } from 'payload'
 import config from '../payload.config'

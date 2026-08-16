@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Insert: Serviciu "Filmări video"
 // ponytail: run once with `npx tsx --env-file=.env scripts/add-filmari-video.ts`
 // Idempotent: dacă slug-ul există, face skip.

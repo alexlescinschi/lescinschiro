@@ -65,6 +65,13 @@ export const Blog: CollectionConfig = {
     // @ts-expect-error allowEdit works at runtime but missing from Payload 3 upload field types
     { name: 'coverImage', type: 'upload', relationTo: 'media', required: true, label: 'Imagine cover', admin: { allowEdit: false } },
     { name: 'continut', type: 'richText', required: true, label: 'Conținut articol' },
+    {
+      name: 'integrariMentionate',
+      type: 'relationship',
+      relationTo: 'integrari',
+      hasMany: true,
+      label: 'Integrări menționate',
+    },
 
     // SEO group (copiat din Proiecte.ts).
     {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Seed: 3 articole de blog SEO-aligned.
 // ponytail: run once with `npx tsx --env-file=.env scripts/add-blog-seed.ts`
 // Idempotent: skip pe slug existent. Toate primesc _status: 'published'.

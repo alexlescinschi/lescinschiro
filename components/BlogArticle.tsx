@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 
 type Post = {
   titlu: string;
@@ -10,7 +12,7 @@ type Post = {
   data: string;
   cover: string;
   readingTime: number;
-  continut: any;
+  continut: DefaultTypedEditorState | null;
 };
 
 const CATEGORIE_LABEL: Record<string, string> = {
@@ -64,12 +66,12 @@ export default function BlogArticle({ post }: { post: Post }) {
   const catLabel = CATEGORIE_LABEL[post.categorie] || post.categorie;
 
   return (
-    <main ref={root as any}>
+    <main ref={root}>
       {/* Hero articol */}
       <section className="ba-hero section">
         <div className="container">
           <div className="ba-hero__breadcrumb" data-reveal>
-            <a href="/blog">← Blog</a>
+            <Link href="/blog">← Blog</Link>
           </div>
           <div data-reveal className="eyebrow" style={{ marginBottom: "1.4rem" }}>— {catLabel}</div>
           <h1 className="ba-hero__title">
@@ -109,7 +111,7 @@ export default function BlogArticle({ post }: { post: Post }) {
           <h2 data-reveal className="ba-cta__title">Vrei un proiect ca cele despre care scriem?</h2>
           <div data-reveal className="ba-cta__btns">
             <a className="btn btn--solid" href="/contact">Cere ofertă →</a>
-            <a className="btn" href="/servicii/magazine-online">Vezi serviciile</a>
+            <Link className="btn" href="/servicii/magazine-online">Vezi serviciile</Link>
           </div>
         </div>
       </section>

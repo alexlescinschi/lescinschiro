@@ -44,7 +44,7 @@ export default function ProcessPage() {
   }, []);
 
   return (
-    <main ref={root as any}>
+    <main ref={root}>
       {/* 1. Hero */}
       <section className="pp-hero section">
         <div className="container">

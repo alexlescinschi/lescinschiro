@@ -24,7 +24,8 @@ export const contactFaqs = [
 ];
 
 export const nav = [
-  { label: "Servicii", href: "#servicii" },
+  { label: "Servicii", href: "/#servicii" },
+  { label: "Integrări", href: "/integrari" },
   { label: "Portofoliu", href: "/portofoliu" },
   { label: "Cum lucrăm", href: "/proces" },
   { label: "Blog", href: "/blog" },
@@ -265,11 +266,6 @@ export const processFaqs = [
   { q: "Cine deține codul după lansare?", a: "Tu. Predăm totul pe GitHub, cu documentație. Poți pleca oricând cu codul tău la altă echipă — nu te blocăm." },
   { q: "Oferiți mentenanță după lansare?", a: "Da, opțional, lunar. Include backup, actualizări de securitate, monitorizare uptime și suport pe email. Pornește de la 30€/lună." },
   { q: "Care sunt termenele de plată?", a: "30% avans la semnarea contractului, 40% la aprobarea machetei, 30% la lansare. Facturăm în EUR sau RON, la cursul zilei." },
-];
-
-export const integrations = [
-  "Netopia", "PayU", "Stripe", "PayPal", "Revolut", "FAN Courier",
-  "Cargus", "Sameday", "DPD", "GLS", "eMAG", "SmartBill", "Oblio",
 ];
 
 export const ai = [

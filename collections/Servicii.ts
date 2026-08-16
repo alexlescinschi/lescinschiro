@@ -23,7 +23,7 @@ export const Servicii: CollectionConfig = {
       hooks: {
         beforeChange: [
           ({ data }) => {
-            if (data?.titlu) data.slug = slugFromTitle(data.titlu as string)
+            if (!data?.slug && data?.titlu) data.slug = slugFromTitle(data.titlu as string)
             return data?.slug
           },
         ],
@@ -75,6 +75,14 @@ export const Servicii: CollectionConfig = {
         { name: 'eticheta', type: 'text', required: true, label: 'Categorie' },
         { name: 'elemente', type: 'text', required: true, label: 'Elemente (separate prin virgulă)' },
       ],
+    },
+    {
+      name: 'integrariCatalog',
+      type: 'relationship',
+      relationTo: 'integrari',
+      hasMany: true,
+      label: 'Integrări din catalog',
+      admin: { description: 'Lista structurată folosită pe site. Câmpul text vechi rămâne temporar ca fallback.' },
     },
 
     // Pricing rows

@@ -4,7 +4,7 @@ import Portfolio from "@/components/Portfolio";
 import WhyUs from "@/components/WhyUs";
 import Compare from "@/components/Compare";
 import Process from "@/components/Process";
-import Integrations from "@/components/Integrations";
+import IntegrationStrip from "@/components/integrations/IntegrationStrip";
 import AI from "@/components/AI";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
@@ -14,6 +14,7 @@ import SelectedWorks from "@/components/SelectedWorks";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import { getPrimaryService } from "@/lib/project-services";
+import { getFeaturedIntegrations, getIntegrationCatalog } from "@/lib/integrations";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +36,6 @@ async function getProjects() {
         tag: primaryService?.title || "Proiect digital",
         img: (p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : "",
         href: (p.linkLive as string) || "",
-        tehnologii: ((p.tehnologii as string) || "").split(",").map((t) => t.trim()).filter(Boolean),
       };
     });
   } catch {
@@ -102,17 +102,22 @@ function getHeroImages(projects: { img: string }[]): string[] {
 }
 
 export default async function Home() {
-  const [projects, services] = await Promise.all([getProjects(), getServices()]);
+  const [projects, services, featuredIntegrations, integrationCatalog] = await Promise.all([
+    getProjects(),
+    getServices(),
+    getFeaturedIntegrations(),
+    getIntegrationCatalog(),
+  ]);
 
   return (
     <main>
       <Hero images={getHeroImages(projects)} />
       <Services services={services} />
+      <IntegrationStrip items={featuredIntegrations} total={integrationCatalog.total} />
       <Portfolio projects={projects} />
       <WhyUs />
       <Compare />
       <Process />
-      <Integrations />
       <AI />
       <Pricing />
       <Testimonials />

@@ -1,4 +1,5 @@
 import { site } from "@/data/content";
+import { getPublishedIntegrationRequest } from "@/lib/integrations";
 
 export const runtime = "nodejs";
 
@@ -12,6 +13,12 @@ type ContactPayload = {
   telefon?: unknown;
   detalii?: unknown;
   servicii?: unknown;
+  integrareSlug?: unknown;
+  sistemSursa?: unknown;
+  sistemDestinatie?: unknown;
+  accesApi?: unknown;
+  volum?: unknown;
+  termen?: unknown;
   company?: unknown;
 };
 
@@ -76,10 +83,31 @@ export async function POST(request: Request) {
   const telefon = line(payload.telefon, 40);
   const servicii = line(payload.servicii, 500);
   const detalii = text(payload.detalii, 4_000);
+  const integrareSlug = line(payload.integrareSlug, 80).toLowerCase();
+  const sistemSursa = line(payload.sistemSursa, 160);
+  const sistemDestinatie = line(payload.sistemDestinatie, 160);
+  const accesApiValue = line(payload.accesApi, 20);
+  const volum = line(payload.volum, 120);
+  const termen = line(payload.termen, 120);
+  const accesApiLabels: Record<string, string> = {
+    da: "Da",
+    nu: "Nu",
+    "nu-stiu": "Nu știe încă",
+  };
+  const accesApi = accesApiLabels[accesApiValue] || "Nespecificat";
 
   if (!nume || !detalii || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return Response.json({ error: "Completează numele, un email valid și detaliile proiectului." }, { status: 400 });
   }
+
+  if ((sistemSursa && !sistemDestinatie) || (!sistemSursa && sistemDestinatie)) {
+    return Response.json({ error: "Completează ambele sisteme care trebuie conectate." }, { status: 400 });
+  }
+
+  const integration = /^[a-z0-9-]{1,80}$/.test(integrareSlug)
+    ? await getPublishedIntegrationRequest(integrareSlug)
+    : null;
+  const integrationLabel = integration?.name || (sistemSursa ? `Custom: ${sistemSursa}` : "");
 
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.CONTACT_FROM_EMAIL;
@@ -96,6 +124,12 @@ export async function POST(request: Request) {
     `Email: ${email}`,
     `Telefon: ${telefon || "Nespecificat"}`,
     `Servicii: ${servicii || "Nespecificate"}`,
+    `Integrare: ${integrationLabel || "Nespecificată"}`,
+    `Sistem de conectat: ${sistemSursa || "Nespecificat"}`,
+    `Conectare cu: ${sistemDestinatie || "Nespecificat"}`,
+    `Documentație / acces API: ${accesApi}`,
+    `Volum: ${volum || "Nespecificat"}`,
+    `Termen: ${termen || "Nespecificat"}`,
     "",
     "Detalii proiect:",
     detalii,
@@ -113,7 +147,7 @@ export async function POST(request: Request) {
         from,
         to: [to],
         reply_to: email,
-        subject: `Cerere ofertă — ${fullName}`,
+        subject: `Cerere ofertă${integrationLabel ? ` ${integrationLabel}` : ""} — ${fullName}`,
         text: plainText,
         html: `
           <h1>Cerere nouă de ofertă</h1>
@@ -121,6 +155,12 @@ export async function POST(request: Request) {
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           <p><strong>Telefon:</strong> ${escapeHtml(telefon || "Nespecificat")}</p>
           <p><strong>Servicii:</strong> ${escapeHtml(servicii || "Nespecificate")}</p>
+          <p><strong>Integrare:</strong> ${escapeHtml(integrationLabel || "Nespecificată")}</p>
+          <p><strong>Sistem de conectat:</strong> ${escapeHtml(sistemSursa || "Nespecificat")}</p>
+          <p><strong>Conectare cu:</strong> ${escapeHtml(sistemDestinatie || "Nespecificat")}</p>
+          <p><strong>Documentație / acces API:</strong> ${escapeHtml(accesApi)}</p>
+          <p><strong>Volum:</strong> ${escapeHtml(volum || "Nespecificat")}</p>
+          <p><strong>Termen:</strong> ${escapeHtml(termen || "Nespecificat")}</p>
           <h2>Detalii proiect</h2>
           <p>${escapeHtml(detalii).replace(/\n/g, "<br>")}</p>
         `,

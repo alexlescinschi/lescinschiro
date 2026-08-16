@@ -33,7 +33,7 @@ export default function Footer() {
             </svg>
           </a>
         </div>
-        <a className="footer__cta" href="#contact">Comandă site <span aria-hidden="true">♥</span></a>
+        <a className="footer__cta" href="/contact">Comandă site <span aria-hidden="true">♥</span></a>
       </div>
 
       {/* rândul de jos, lipit de baza footerului */}

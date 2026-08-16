@@ -7,13 +7,19 @@ import { contactFaqs, site } from "@/data/content";
 export default function ContactPage({
   projects,
   services,
+  integration,
+  integrationMode = false,
 }: {
   projects: ContactProject[];
   services?: { title: string; slug: string }[];
+  integration?: { slug: string; name: string } | null;
+  integrationMode?: boolean;
 }) {
   return (
     <main>
-      <div className="ch-page-top"><Contact services={services} /></div>
+      <div className="ch-page-top">
+        <Contact services={services} integration={integration} integrationMode={integrationMode} />
+      </div>
       <ContactResults projects={projects} />
 
       <section className="section ch-info" aria-label="Date de contact">

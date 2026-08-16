@@ -6,6 +6,9 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import LiveClock from "@/components/LiveClock";
 import Portfolio from "@/components/Portfolio";
 import Process from "@/components/Process";
+import ServiceIntegrations from "@/components/integrations/ServiceIntegrations";
+import type { IntegrationCardData } from "@/lib/integrations";
+import type { Servicii } from "@/payload-types";
 
 type Project = { name: string; tag: string; img: string; href: string };
 
@@ -26,25 +29,10 @@ const DEFAULT_FEATURES = [
   { icon: "🔌", titlu: "Automatizări", descriere: "ERP/CRM ↔ magazin: produse, stoc, comenzi sync automat. n8n, Make, Zapier." },
   { icon: "🎯", titlu: "SEO produse", descriere: "Rich snippets, schema Product, recenzii, optimizare imagini și viteză." },
 ];
-const DEFAULT_INTEGRATIONS = [
-  { eticheta: "Plăți online", elemente: "Netopia, PayU, Stripe, PayPal, Revolut, MAIB, Victoriabank" },
-  { eticheta: "Curierat & AWB", elemente: "FAN Courier, Cargus, Sameday, DPD, GLS, Nova Poshta" },
-  { eticheta: "Facturare", elemente: "SmartBill, Oblio" },
-  { eticheta: "Marketplace", elemente: "eMAG" },
-  { eticheta: "ERP & CRM", elemente: "1C, SAP, custom API, n8n, Make, Zapier" },
-];
 const DEFAULT_PRICING = [
   { nume: "Magazin de bază", pret: "€800", include: "Catalog + coș + checkout, 1 plată + 1 curierat, Panou admin, SEO de bază" },
   { nume: "Magazin avansat", pret: "€1.500", include: "ERP sync, Multi-lingv & monede, Coș abandonat, Analytics avansat" },
   { nume: "Magazin enterprise", pret: "€3.000", include: "Marketplace (eMAG), AI recomandări, B2B preț per client, Integrare custom nelimitată" },
-];
-const DEFAULT_FAQ = [
-  { intrebare: "Cât durează construcția unui magazin online?", raspuns: "Un magazin de bază: 3-5 săptămâni. Avansat: 6-10 săptămâni. Enterprise: 8-16 săptămâni, în funcție de complexitate." },
-  { intrebare: "Pot să gestionez singur produsele și comenzile după lansare?", raspuns: "Da. Toate magazinele includ un panou de administrare. Primești training de utilizare la predare." },
-  { intrebare: "Ce se întâmplă cu SEO-ul dacă migrez de pe o platformă veche?", raspuns: "Păstrăm toate URL-urile (redirect 301), structura de link-uri și metadatele. Migrarea nu afectează pozițiile în Google." },
-  { intrebare: "Oferiți mentenanță după lansare?", raspuns: "Da. Mentenanța lunară include: backup, actualizări de securitate, monitorizare uptime, modificări minore." },
-  { intrebare: "Integrați cu ERP-ul / CRM-ul meu existent?", raspuns: "Da. Dacă sistemul tău are API, îl conectăm. Am integrat deja cu 1C, SAP, SmartBill, Oblio și sisteme custom." },
-  { intrebare: "Sunt datele clienților în siguranță?", raspuns: "Da. Toate magazinele sunt SSL, respectă GDPR. Datele de plată sunt procesate direct de procesatorul de plăți — nu trec prin serverul nostru." },
 ];
 const DEFAULT_DELIVERABLES = "Site live și rapid, Codul tău pe GitHub, SEO configurat, Training de utilizare, Mentenanță lunară";
 
@@ -54,25 +42,32 @@ function parseCsv(s: string): string[] {
 
 // ---- componenta principală ----
 
-export default function ServicePage({ page, projects, heroImages = [] }: { page: any; projects: Project[]; heroImages?: string[] }) {
+export default function ServicePage({
+  page,
+  projects,
+  heroImages = [],
+  integrations,
+}: {
+  page: Servicii;
+  projects: Project[];
+  heroImages?: string[];
+  integrations: IntegrationCardData[];
+}) {
   const heroRef = useRef<HTMLElement>(null);
   const heroTitle = page.heroTitlu || (page.titlu ? `${page.titlu} care CONVERTESC` : "Servicii");
   const heroSub = page.heroSubtitlu || page.descriereScurta || "";
   const heroRingWord = page.heroCuvantInel || "CONVERTESC";
-  const types: any[] = page.tipuri?.length ? page.tipuri : DEFAULT_TYPES;
-  const feats: any[] = page.features?.length ? page.features : DEFAULT_FEATURES;
-  const intgs: any[] = page.integrari?.length ? page.integrari : DEFAULT_INTEGRATIONS;
-  const pricing: any[] = page.preturi?.length ? page.preturi : DEFAULT_PRICING;
-  const faq: any[] = page.faq?.length ? page.faq : DEFAULT_FAQ;
+  const types = page.tipuri ?? DEFAULT_TYPES;
+  const feats = page.features ?? DEFAULT_FEATURES;
+  const legacyIntegrations = page.integrari ?? [];
+  const pricing = page.preturi ?? DEFAULT_PRICING;
+  const faq = page.faq ?? [];
   const deliv: string[] = page.deliverables ? parseCsv(page.deliverables) : parseCsv(DEFAULT_DELIVERABLES);
 
-  // split hero title around ring word
-  const ringWordRE = new RegExp(`\\b(${heroRingWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'i');
-  const titleParts = heroTitle.split(ringWordRE);
-  // titleParts: [before, match, after] or just [full] if no match
-  const before = titleParts[0] || "";
-  const ringWord = titleParts[1] || heroRingWord;
-  const after = titleParts[2] || "";
+  const ringStart = heroTitle.toLocaleLowerCase("ro-RO").indexOf(heroRingWord.toLocaleLowerCase("ro-RO"));
+  const before = ringStart >= 0 ? heroTitle.slice(0, ringStart).trim() : heroTitle;
+  const ringWord = ringStart >= 0 ? heroTitle.slice(ringStart, ringStart + heroRingWord.length) : "";
+  const after = ringStart >= 0 ? heroTitle.slice(ringStart + heroRingWord.length).trim() : "";
 
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -145,16 +140,17 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
           </>
         )}
         <h1 className="svc-hero__title">
-          <span className="svc-hero__line"><span className="svc-hero__line-inner">{before}</span></span>
-          <span className="svc-hero__line"><span className="svc-hero__line-inner">
-            {before ? "" : ""}
-            <span className="svc-hero__ring-word">{ringWord}
-              <svg className="svc-hero__ring" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
-                <path pathLength={1} d="M150 12 C 62 8, 14 42, 22 68 C 30 98, 132 112, 212 105 C 286 98, 296 58, 248 34 C 206 14, 118 6, 66 22" />
-              </svg>
-            </span>
-            {after ? ` ${after}` : ""}
-          </span></span>
+          {before && <span className="svc-hero__line"><span className="svc-hero__line-inner">{before}</span></span>}
+          {ringWord && (
+            <span className="svc-hero__line"><span className="svc-hero__line-inner">
+              <span className="svc-hero__ring-word">{ringWord}
+                <svg className="svc-hero__ring" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+                  <path pathLength={1} d="M150 12 C 62 8, 14 42, 22 68 C 30 98, 132 112, 212 105 C 286 98, 296 58, 248 34 C 206 14, 118 6, 66 22" />
+                </svg>
+              </span>
+              {after ? ` ${after}` : ""}
+            </span></span>
+          )}
         </h1>
         {heroSub && <p className="svc-hero__sub">{heroSub}</p>}
         <div className="svc-hero__ctas">
@@ -181,8 +177,8 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
         <section className="svc-types section container">
           <h2 className="section-title" data-reveal>Tipuri de {page.titlu || "servicii"}</h2>
           <div className="svc-types__grid">
-            {types.map((t: any) => (
-              <div className="svc-type" key={t.titlu || t.id} data-reveal>
+            {types.map((t) => (
+              <div className="svc-type" key={t.titlu} data-reveal>
                 <div className="svc-type__tags">
                   {parseCsv(t.logouri || "").map((l: string) => <span key={l} className="svc-type__tag">{l}</span>)}
                 </div>
@@ -200,8 +196,8 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
         <section className="svc-features section container">
           <h2 className="section-title" data-reveal>Ce primești</h2>
           <div className="svc-features__grid">
-            {feats.map((f: any) => (
-              <div className="svc-feature" key={f.titlu || f.id} data-reveal>
+            {feats.map((f) => (
+              <div className="svc-feature" key={f.titlu} data-reveal>
                 {f.icon && (
                   <span className="svc-feature__icon">
                     {String(f.icon).trim().startsWith("<svg") ? (
@@ -220,21 +216,7 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
       )}
 
       {/* ====== INTEGRĂRI ====== */}
-      {intgs.length > 0 && (
-        <section className="svc-integrations section container">
-          <h2 className="section-title" data-reveal>Integrăm orice</h2>
-          <div className="svc-integrations__list">
-            {intgs.map((g: any) => (
-              <div className="svc-intg" key={g.eticheta || g.id} data-reveal>
-                <span className="svc-intg__label">{g.eticheta}</span>
-                <div className="svc-intg__items">
-                  {parseCsv(g.elemente || "").map((item: string) => <span key={item} className="svc-intg__item">{item}</span>)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      <ServiceIntegrations items={integrations} legacyGroups={legacyIntegrations} />
 
       {/* ====== PORTOFOLIU (proiecte asociate serviciului — aceeași componentă ca pe home) ====== */}
       {projects.length > 0 && (
@@ -256,8 +238,8 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
         <section className="svc-pricing section container">
           <h2 className="section-title" data-reveal>Prețuri orientative</h2>
           <div className="svc-pricing__list" data-reveal>
-            {pricing.map((r: any) => (
-              <div className="svc-price" key={r.nume || r.id}>
+            {pricing.map((r) => (
+              <div className="svc-price" key={r.nume}>
                 <span className="svc-price__name">{r.nume}</span>
                 <div className="svc-price__items">
                   {parseCsv(r.include || "").map((item: string) => <span key={item}>{item}</span>)}
@@ -276,8 +258,8 @@ export default function ServicePage({ page, projects, heroImages = [] }: { page:
         <section className="svc-faq section container">
           <h2 className="section-title" data-reveal>Întrebări frecvente</h2>
           <div className="svc-faq__list" data-reveal>
-            {faq.map((f: any, i: number) => (
-              <div className={`svc-faq__item${i === 0 ? " is-open" : ""}`} key={f.intrebare || f.id}>
+            {faq.map((f, i) => (
+              <div className={`svc-faq__item${i === 0 ? " is-open" : ""}`} key={f.intrebare}>
                 <button className="svc-faq__btn" onClick={toggleFaq}>
                   <span>{f.intrebare}</span>
                   <svg className="svc-faq__arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ transform: i === 0 ? "rotate(45deg)" : "rotate(0deg)" }}>

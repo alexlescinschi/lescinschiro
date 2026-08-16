@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any -- script one-off de import */
 // Insert: Serviciu "Reclame Google Ads (PPC)"
 // ponytail: run once with `npx tsx --env-file=.env scripts/add-google-ads.ts`
 // Idempotent: dacă slug-ul există, face skip.

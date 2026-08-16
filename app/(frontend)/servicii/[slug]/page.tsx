@@ -3,11 +3,17 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 import type { Metadata } from "next";
 import ServicePage from "@/components/servicii/ServicePage";
+import { getPublishedIntegrationsByIds } from "@/lib/integrations";
 
 // ponytail: nu prerandera la build (DB inaccesibil în Docker build stage)
 export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
+
+function exactEuroPrice(value: string | null | undefined) {
+  const match = value?.trim().match(/^(?:€\s*)?(\d+(?:[.,]\d{1,2})?)\s*(?:€|EUR)?$/i);
+  return match?.[1]?.replace(",", ".");
+}
 
 async function getPage(slug: string) {
   const payload = await getPayload({ config });
@@ -37,7 +43,6 @@ async function getProjects(serviceId: number, serviceTitle: string) {
         ? (project.imagine as { url: string }).url
         : "",
     href: project.linkLive || "",
-    tehnologii: ((project.tehnologii as string) || "").split(",").map((t) => t.trim()).filter(Boolean),
   }));
 }
 
@@ -67,8 +72,15 @@ export default async function ServiciuPage({ params }: Props) {
   const page = await getPage(slug);
   if (!page) notFound();
 
-  const projects = await getProjects(page.id, page.titlu);
+  const integrationIds = (page.integrariCatalog ?? []).map((integration) =>
+    typeof integration === "number" ? integration : integration.id
+  );
+  const [projects, integrations] = await Promise.all([
+    getProjects(page.id, page.titlu),
+    getPublishedIntegrationsByIds(integrationIds),
+  ]);
   const heroImages = projects.map((project) => project.img).filter(Boolean).slice(0, 9);
+  const exactPrice = exactEuroPrice(page.pret);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -76,8 +88,8 @@ export default async function ServiciuPage({ params }: Props) {
     name: page.titlu,
     description: page.descriereScurta,
     provider: { "@type": "Organization", name: "LESCINSCHI" },
-    offers: page.pret
-      ? { "@type": "Offer", price: String(page.pret).replace(/[^0-9]/g, ""), priceCurrency: "EUR" }
+    offers: exactPrice
+      ? { "@type": "Offer", price: exactPrice, priceCurrency: "EUR" }
       : undefined,
   };
 
@@ -121,7 +133,7 @@ export default async function ServiciuPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <ServicePage page={page} projects={projects} heroImages={heroImages} />
+      <ServicePage page={page} projects={projects} heroImages={heroImages} integrations={integrations} />
     </>
   );
 }

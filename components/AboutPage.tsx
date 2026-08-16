@@ -50,7 +50,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <main ref={root as any}>
+    <main ref={root}>
       {/* 1. Hero */}
       <section className="ab-hero section">
         <div className="container">
