@@ -7,6 +7,18 @@ import { site, nav } from "@/data/content";
 
 const subscribe = () => () => {};
 
+// Header: Blog, Calculator și Integrări stau doar în footer (Integrări intră în mega meniul Servicii).
+const headerNav = nav.filter((n) => !["Blog", "Calculator", "Integrări"].includes(n.label));
+
+// ponytail: „Integrări API” din mega meniu devine „Integrări” cu link la catalogul /integrari.
+function toMegaServices(services: NavService[]): NavService[] {
+  return services.map((service) =>
+    service.href === "/servicii/integrari-api"
+      ? { title: "Integrări", desc: "Catalogul de integrări: plăți, curierat, API și automatizări.", href: "/integrari", image: "" }
+      : service
+  );
+}
+
 export type NavService = {
   title: string;
   desc: string;
@@ -15,6 +27,7 @@ export type NavService = {
 };
 
 export default function Nav({ services }: { services: NavService[] }) {
+  const megaServices = toMegaServices(services);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -64,7 +77,7 @@ export default function Nav({ services }: { services: NavService[] }) {
     setMobileServicesOpen(false);
   };
 
-  const selectedService = services[activeService] || services[0];
+  const selectedService = megaServices[activeService] || megaServices[0];
 
   // ponytail: portal la body ca să scape de Lenis wrapper care strică position:fixed.
   // inert (React 19) când e închis → link-urile nu sunt focusabile din greșeală.
@@ -79,7 +92,7 @@ export default function Nav({ services }: { services: NavService[] }) {
     >
       <button className="menu__close" aria-label="Închide meniul" onClick={() => setOpen(false)}>×</button>
       <ul className="menu__list">
-        {nav.map((n) => n.label === "Servicii" ? (
+        {headerNav.map((n) => n.label === "Servicii" ? (
           <li className="menu__services-item" key={n.href}>
             <button
               className="menu__link menu__services-toggle"
@@ -92,7 +105,7 @@ export default function Nav({ services }: { services: NavService[] }) {
             </button>
             <div className={`menu__services${mobileServicesOpen ? " open" : ""}`} id="mobile-services" inert={!mobileServicesOpen ? true : undefined}>
               <ol>
-                {services.map((service, index) => (
+                {megaServices.map((service, index) => (
                   <li key={service.href}>
                     <Link href={service.href} onClick={closeMobileMenu}>
                       <span>{String(index + 1).padStart(2, "0")}</span>
@@ -138,7 +151,7 @@ export default function Nav({ services }: { services: NavService[] }) {
         <Link className="nav__logo" href="/">{site.brand}</Link>
         <div className="nav__right">
           <nav className="nav__pills" aria-label="Principal">
-            {nav.map((n) => n.label === "Servicii" ? (
+            {headerNav.map((n) => n.label === "Servicii" ? (
               <button
                 key={n.href}
                 className="pill nav__services-trigger"
@@ -179,7 +192,7 @@ export default function Nav({ services }: { services: NavService[] }) {
 
             <nav className="mega-menu__services" aria-label="Serviciile noastre">
               <ol>
-                {services.map((service, index) => (
+                {megaServices.map((service, index) => (
                   <li key={service.href}>
                     <Link
                       className={index === activeService ? "active" : ""}

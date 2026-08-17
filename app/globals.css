@@ -956,16 +956,18 @@ h2.section-title {
 
 /* ============ Calculator Google Ads ============ */
 .adcalc { min-height: 100vh; }
-.adcalc-hero { padding-top: clamp(150px, 20vh, 230px); }
-.adcalc-hero__grid {
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(50px, 10vw, 160px); align-items: end;
-}
+.adcalc-hero { background: var(--lime); color: var(--black); padding-top: clamp(150px, 20vh, 230px); }
+.adcalc-hero .eyebrow { color: rgba(0,0,0,0.5); }
+.adcalc-hero .eyebrow::before { background: rgba(0,0,0,0.5); }
 .adcalc-hero__title { font-size: var(--fs-h1); line-height: 0.92; letter-spacing: -0.04em; text-transform: uppercase; }
-.adcalc-hero__aside > p { color: rgba(255,255,255,0.72); font-size: var(--fs-lead); line-height: 1.55; }
+.adcalc-hero__msg {
+  max-width: 62ch; margin-top: 2rem;
+  font-size: clamp(1.05rem, 2vw, 1.5rem); line-height: 1.45; color: rgba(0,0,0,0.78);
+}
 .adcalc-hero__facts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
 .adcalc-hero__facts span {
-  border: 1px solid var(--line); border-radius: 9999px; padding: 6px 14px;
-  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.35); border-radius: 9999px; padding: 6px 14px;
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,0,0,0.65);
 }
 
 .adcalc-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(50px, 8vw, 130px); align-items: start; }
@@ -1022,7 +1024,6 @@ h2.section-title {
 .adcalc-consult__note { color: var(--gray); font-size: 0.75rem; }
 
 @media (max-width: 900px) {
-  .adcalc-hero__grid,
   .adcalc-grid,
   .adcalc-consult__grid { grid-template-columns: 1fr; }
   .adcalc-results { position: static; }

@@ -134,18 +134,14 @@ export default function AdsCalculatorPage() {
   return (
     <main className="adcalc">
       <section className="adcalc-hero section">
-        <div className="container adcalc-hero__grid">
-          <div>
-            <span className="eyebrow">Calculator gratuit</span>
-            <h1 className="adcalc-hero__title">Cât profit aduce Google Ads?</h1>
-          </div>
-          <div className="adcalc-hero__aside">
-            <p>Estimează traficul, venitul și profitul unei campanii Google Ads pe baza bugetului și a indicatorilor afacerii tale. Rezultatul apare instant, fără înregistrare.</p>
-            <div className="adcalc-hero__facts">
-              <span>Fără date personale</span>
-              <span>Rezultat instant</span>
-              <span>Fără obligații</span>
-            </div>
+        <div className="container">
+          <span className="eyebrow">Calculator de profit</span>
+          <h1 className="adcalc-hero__title">Calculator Reclame Google</h1>
+          <p className="adcalc-hero__msg">Află dacă publicitatea ta în Google Ads este profitabilă — și cu cât anume. Completezi bugetul și indicatorii afacerii tale și primești instant traficul, venitul, profitul net, ROMI și ROAS.</p>
+          <div className="adcalc-hero__facts">
+            <span>Fără date personale</span>
+            <span>Rezultat instant</span>
+            <span>Fără obligații</span>
           </div>
         </div>
       </section>

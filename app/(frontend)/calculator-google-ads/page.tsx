@@ -3,12 +3,12 @@ import AdsCalculatorPage from "@/components/AdsCalculatorPage";
 import { site } from "@/data/content";
 
 export const metadata: Metadata = {
-  title: "Calculator Google Ads — ROI & profit",
-  description: "Estimează gratuit traficul, venitul și profitul unei campanii Google Ads: buget, cost per click, marjă, conversie, ROMI și ROAS.",
+  title: "Calculator Reclame Google — află dacă ești profitabil",
+  description: "Află dacă publicitatea ta în Google Ads este profitabilă și cu cât anume. Calculează instant traficul, venitul, profitul net, ROMI și ROAS.",
   alternates: { canonical: "/calculator-google-ads" },
   openGraph: {
-    title: "Calculator Google Ads — LESCINSCHI",
-    description: "Calculează în câteva secunde profitul estimat al unei campanii Google Ads pentru afacerea ta.",
+    title: "Calculator Reclame Google — LESCINSCHI",
+    description: "Află dacă publicitatea ta în Google Ads este profitabilă și cu cât anume. Calculator gratuit de profit.",
     url: `${site.domain}/calculator-google-ads`,
     type: "website",
   },
