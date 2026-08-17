@@ -53,6 +53,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.domain}/verificare-ai`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.domain}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${site.domain}/integrari`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${site.domain}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.2 },
+    { url: `${site.domain}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.2 },
   ];
 
   return [

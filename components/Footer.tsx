@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import LiveClock from "./LiveClock";
 import { site, nav } from "@/data/content";
 
@@ -50,6 +51,8 @@ export default function Footer() {
           {nav.map((n) => (
             <a key={n.href} href={n.href} className="footer__mi">{n.label}</a>
           ))}
+          <Link href="/privacy" className="footer__mi">Confidențialitate</Link>
+          <Link href="/terms" className="footer__mi">Termeni</Link>
         </nav>
 
         <button className="footer__totop" onClick={toTop}>Înapoi sus ↑</button>

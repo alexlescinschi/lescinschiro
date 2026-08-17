@@ -1367,3 +1367,35 @@ h2.section-title {
 @media (max-width: 900px) {
   .cmp { grid-template-columns: 1fr; }
 }
+
+/* ============ Pagini legale (privacy / terms) ============ */
+.legal { max-width: 1000px; }
+.legal__title {
+  font-size: clamp(2rem, 7vw, 5rem); line-height: 0.9; letter-spacing: -0.03em;
+  text-transform: uppercase; font-weight: 600;
+}
+.legal__intro {
+  margin-top: 1.8rem; max-width: 60ch; color: rgba(255,255,255,0.7);
+  font-size: var(--fs-lead); line-height: 1.55;
+}
+.legal__updated {
+  margin-top: 1rem; color: var(--gray); font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.legal__item { margin-top: 4.5rem; max-width: 72ch; }
+.legal__heading {
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem); line-height: 1.05; text-transform: uppercase;
+  letter-spacing: -0.01em; margin-bottom: 1.4rem;
+}
+.legal__item p, .legal__item li {
+  color: rgba(255,255,255,0.64); font-size: 0.97rem; line-height: 1.7;
+}
+.legal__item p + p, .legal__item ul { margin-top: 1rem; }
+.legal__item ul { list-style: none; padding: 0; }
+.legal__item li {
+  position: relative; padding-left: 1.3rem; margin-top: 0.55rem;
+}
+.legal__item li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--lime);
+}
