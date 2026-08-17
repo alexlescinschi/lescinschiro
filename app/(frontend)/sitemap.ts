@@ -51,6 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${site.domain}/despre-noi`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${site.domain}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${site.domain}/verificare-ai`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.domain}/calculator-google-ads`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.domain}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${site.domain}/integrari`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${site.domain}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.2 },

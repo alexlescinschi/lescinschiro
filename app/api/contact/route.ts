@@ -20,6 +20,8 @@ type ContactPayload = {
   volum?: unknown;
   termen?: unknown;
   company?: unknown;
+  domeniu?: unknown;
+  calculator?: unknown;
 };
 
 function text(value: unknown, max: number) {
@@ -89,6 +91,8 @@ export async function POST(request: Request) {
   const accesApiValue = line(payload.accesApi, 20);
   const volum = line(payload.volum, 120);
   const termen = line(payload.termen, 120);
+  const domeniu = line(payload.domeniu, 160);
+  const calculator = text(payload.calculator, 2_000);
   const accesApiLabels: Record<string, string> = {
     da: "Da",
     nu: "Nu",
@@ -130,6 +134,8 @@ export async function POST(request: Request) {
     `Documentație / acces API: ${accesApi}`,
     `Volum: ${volum || "Nespecificat"}`,
     `Termen: ${termen || "Nespecificat"}`,
+    `Domeniu: ${domeniu || "Nespecificat"}`,
+    ...(calculator ? ["", "Rezumat calculator:", calculator] : []),
     "",
     "Detalii proiect:",
     detalii,
@@ -147,7 +153,7 @@ export async function POST(request: Request) {
         from,
         to: [to],
         reply_to: email,
-        subject: `Cerere ofertă${integrationLabel ? ` ${integrationLabel}` : ""} — ${fullName}`,
+        subject: `Cerere ofertă${integrationLabel ? ` ${integrationLabel}` : ""}${domeniu ? ` (${domeniu})` : ""} — ${fullName}`,
         text: plainText,
         html: `
           <h1>Cerere nouă de ofertă</h1>
@@ -161,6 +167,8 @@ export async function POST(request: Request) {
           <p><strong>Documentație / acces API:</strong> ${escapeHtml(accesApi)}</p>
           <p><strong>Volum:</strong> ${escapeHtml(volum || "Nespecificat")}</p>
           <p><strong>Termen:</strong> ${escapeHtml(termen || "Nespecificat")}</p>
+          <p><strong>Domeniu:</strong> ${escapeHtml(domeniu || "Nespecificat")}</p>
+          ${calculator ? `<h2>Rezumat calculator</h2><p>${escapeHtml(calculator).replace(/\n/g, "<br>")}</p>` : ""}
           <h2>Detalii proiect</h2>
           <p>${escapeHtml(detalii).replace(/\n/g, "<br>")}</p>
         `,

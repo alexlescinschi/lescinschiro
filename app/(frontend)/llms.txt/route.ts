@@ -19,6 +19,7 @@ export async function GET() {
     `- [Portofoliu](${site.domain}/portofoliu)`,
     `- [Proces](${site.domain}/proces)`,
     `- [Blog](${site.domain}/blog)`,
+    `- [Calculator Google Ads](${site.domain}/calculator-google-ads)`,
     `- [Contact](${site.domain}/contact)`,
     "",
     "## Integrări cu pagini editoriale publice",

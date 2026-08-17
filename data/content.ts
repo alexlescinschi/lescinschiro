@@ -29,6 +29,7 @@ export const nav = [
   { label: "Portofoliu", href: "/portofoliu" },
   { label: "Cum lucrăm", href: "/proces" },
   { label: "Blog", href: "/blog" },
+  { label: "Calculator", href: "/calculator-google-ads" },
   { label: "Contact", href: "/contact" },
 ];
 
