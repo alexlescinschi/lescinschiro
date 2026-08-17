@@ -3,24 +3,12 @@
 import { useMemo, useState } from "react";
 import { site } from "@/data/content";
 
-type Currency = "EUR" | "RON";
-
-const currencyLabel: Record<Currency, string> = { EUR: "EUR", RON: "RON" };
-
-const presets: Record<Currency, { id: string; label: string; click: number }[]> = {
-  EUR: [
-    { id: "low", label: "Joasă", click: 0.2 },
-    { id: "med", label: "Medie", click: 0.5 },
-    { id: "high", label: "Ridicată", click: 1 },
-    { id: "veryhigh", label: "Înaltă", click: 2.5 },
-  ],
-  RON: [
-    { id: "low", label: "Joasă", click: 1 },
-    { id: "med", label: "Medie", click: 2.5 },
-    { id: "high", label: "Ridicată", click: 5 },
-    { id: "veryhigh", label: "Înaltă", click: 10 },
-  ],
-};
+const presets = [
+  { id: "low", label: "Joasă", click: 0.2 },
+  { id: "med", label: "Medie", click: 0.5 },
+  { id: "high", label: "Ridicată", click: 1 },
+  { id: "veryhigh", label: "Înaltă", click: 2.5 },
+];
 
 const domenii = [
   "Stomatologie",
@@ -49,7 +37,6 @@ function fmt(value: number, max = 2, min = 0) {
 }
 
 export default function AdsCalculatorPage() {
-  const [currency, setCurrency] = useState<Currency>("EUR");
   const [presetId, setPresetId] = useState("med");
   const [budget, setBudget] = useState("3000");
   const [ownCpc, setOwnCpc] = useState("0.8");
@@ -68,7 +55,7 @@ export default function AdsCalculatorPage() {
   const result = useMemo(() => {
     const click = presetId === "own"
       ? num(ownCpc)
-      : (presets[currency].find((p) => p.id === presetId)?.click ?? 0);
+      : (presets.find((p) => p.id === presetId)?.click ?? 0);
     const b = num(budget);
     const order = num(srcheck);
     const margin = num(revenue);
@@ -85,9 +72,9 @@ export default function AdsCalculatorPage() {
     const romi = totalInv ? ((income - totalInv) / totalInv) * 100 : 0;
     const roas = b ? income / b : 0;
     return { click, visitors, sells, income, profitPerOrder, gross, profit, romi, roas };
-  }, [presetId, ownCpc, currency, budget, srcheck, revenue, conv, investment, other]);
+  }, [presetId, ownCpc, budget, srcheck, revenue, conv, investment, other]);
 
-  const unit = currencyLabel[currency];
+  const unit = "EUR";
 
   const summary = [
     `Domeniu: ${domeniu}${domeniu === "Altul" ? ` (${altDomeniu.trim() || "nespecificat"})` : ""}`,
@@ -157,7 +144,7 @@ export default function AdsCalculatorPage() {
             <div className="field">
               <label>Cost per click (CPC)</label>
               <div className="adcalc-presets">
-                {presets[currency].map((p) => (
+                {presets.map((p) => (
                   <button
                     type="button"
                     key={p.id}
@@ -218,19 +205,7 @@ export default function AdsCalculatorPage() {
           <aside className="adcalc-results" data-reveal aria-live="polite">
             <div className="adcalc-results__head">
               <span>Estimare lunară</span>
-              <div className="adcalc-currency" role="group" aria-label="Monedă">
-                {(Object.keys(currencyLabel) as Currency[]).map((c) => (
-                  <button
-                    key={c}
-                    type="button"
-                    className={currency === c ? "is-active" : ""}
-                    aria-pressed={currency === c}
-                    onClick={() => setCurrency(c)}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
+              <span className="adcalc-currency" aria-label="Monedă: EUR">EUR</span>
             </div>
             <div className="adcalc-result">
               <span>Trafic (vizite)</span>
