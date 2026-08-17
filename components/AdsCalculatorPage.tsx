@@ -146,7 +146,7 @@ export default function AdsCalculatorPage() {
         </div>
       </section>
 
-      <section className="adcalc-main section" style={{ paddingTop: 0 }}>
+      <section className="adcalc-main section">
         <div className="container adcalc-grid">
           <div className="adcalc-inputs" data-reveal>
             <div className="field">

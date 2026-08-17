@@ -14,7 +14,7 @@ const headerNav = nav.filter((n) => !["Blog", "Calculator", "Integrări"].includ
 function toMegaServices(services: NavService[]): NavService[] {
   return services.map((service) =>
     service.href === "/servicii/integrari-api"
-      ? { title: "Integrări", desc: "Catalogul de integrări: plăți, curierat, API și automatizări.", href: "/integrari", image: "" }
+      ? { title: "Integrări API", desc: "Catalogul de integrări: plăți, curierat, API și automatizări.", href: "/integrari", image: "" }
       : service
   );
 }

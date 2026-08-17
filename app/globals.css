@@ -971,6 +971,7 @@ h2.section-title {
 }
 
 .adcalc-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(50px, 8vw, 130px); align-items: start; }
+.adcalc-main { padding-top: 60px; }
 .adcalc-inputs { display: grid; gap: 30px; }
 .adcalc-inputs .field input { width: 100%; font-size: 1.15rem; padding: 15px 2px; }
 .adcalc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
@@ -1030,6 +1031,7 @@ h2.section-title {
 }
 @media (max-width: 600px) {
   .adcalc-hero { padding-top: 130px; }
+  .adcalc-main { padding-top: 30px; }
   .adcalc-row { grid-template-columns: 1fr; }
   .adcalc-consult__submit { justify-self: stretch; justify-content: center; }
   .adcalc-result strong { font-size: 1.1rem; }
