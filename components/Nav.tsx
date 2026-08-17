@@ -7,8 +7,8 @@ import { site, nav } from "@/data/content";
 
 const subscribe = () => () => {};
 
-// Header: Blog, Calculator și Integrări stau doar în footer (Integrări intră în mega meniul Servicii).
-const headerNav = nav.filter((n) => !["Blog", "Calculator", "Integrări"].includes(n.label));
+// Header: Blog și Integrări stau doar în footer (Integrări intră în mega meniul Servicii).
+const headerNav = nav.filter((n) => !["Blog", "Integrări"].includes(n.label));
 
 // ponytail: „Integrări API” din mega meniu devine „Integrări” cu link la catalogul /integrari.
 function toMegaServices(services: NavService[]): NavService[] {

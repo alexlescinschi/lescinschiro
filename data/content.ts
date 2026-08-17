@@ -25,11 +25,11 @@ export const contactFaqs = [
 
 export const nav = [
   { label: "Servicii", href: "/#servicii" },
+  { label: "Calculator Reclame", href: "/calculator-google-ads" },
   { label: "Integrări", href: "/integrari" },
   { label: "Portofoliu", href: "/portofoliu" },
   { label: "Cum lucrăm", href: "/proces" },
   { label: "Blog", href: "/blog" },
-  { label: "Calculator", href: "/calculator-google-ads" },
   { label: "Contact", href: "/contact" },
 ];
 
