@@ -187,6 +187,7 @@ export const integrationLogos: Record<string, { logoFisier: string; logoFundalIn
   'linkedin-insight-lead-gen': { logoFisier: '/integrari/linkedin-insight-lead-gen.svg' },
   liqpay: { logoFisier: '/integrari/liqpay.svg', logoFundalInchis: true },
   maib: { logoFisier: '/integrari/maib.svg' },
+  mia: { logoFisier: '/integrari/mia.png', logoFundalInchis: true },
   mailchimp: { logoFisier: '/integrari/mailchimp.svg', logoFundalInchis: true },
   make: { logoFisier: '/integrari/make.svg' },
   'meta-catalog': { logoFisier: '/integrari/meta-catalog.svg' },

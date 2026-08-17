@@ -10,7 +10,7 @@ type IntegrationRequestLinkProps = {
 export default function IntegrationRequestLink({
   slug,
   className,
-  children = "Solicită integrarea",
+  children = "Vreau o consultanță",
 }: IntegrationRequestLinkProps) {
   return (
     <Link href={`/contact?integrare=${encodeURIComponent(slug)}`} className={className}>

@@ -73,7 +73,7 @@ export default function IntegrationDetailPage({ integration, relations }: Integr
               <p>{integration.summary}</p>
               <div className={styles.ctaActions}>
                 <IntegrationRequestLink slug={integration.slug} className={`${styles.button} ${styles.buttonLime}`}>
-                  Cere o evaluare
+                  Vreau o consultanță
                 </IntegrationRequestLink>
                 <Link href="/integrari" className={`${styles.button} ${styles.buttonOutline}`}>
                   Înapoi la catalog
@@ -244,7 +244,7 @@ export default function IntegrationDetailPage({ integration, relations }: Integr
             <h2 id="detail-cta-title">Verificăm fluxul tău concret.</h2>
           </div>
           <IntegrationRequestLink slug={integration.slug} className={`${styles.button} ${styles.buttonDark}`}>
-            Cere o evaluare
+            Vreau o consultanță
           </IntegrationRequestLink>
         </div>
       </section>

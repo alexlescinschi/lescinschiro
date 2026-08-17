@@ -75,7 +75,7 @@ export default function IntegrationCard({ item }: IntegrationCardProps) {
           </span>
         ) : (
           <IntegrationRequestLink slug={item.slug} className={styles.cardRequest}>
-            Cere evaluarea
+            Vreau o consultanță
           </IntegrationRequestLink>
         )}
       </div>
