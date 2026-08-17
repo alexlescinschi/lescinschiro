@@ -1,6 +1,7 @@
 import config from '@payload-config'
 import type { Integrari } from '@/payload-types'
 import { getPayload, type Where } from 'payload'
+import { getProjectServices } from '@/lib/project-services'
 
 export type IntegrationCategory = Integrari['categorie']
 export type IntegrationRegion = Integrari['regiuni'][number]
@@ -100,6 +101,7 @@ export type IntegrationDetailData = IntegrationCardData & {
 export type IntegrationRelations = {
   services: { title: string; slug: string }[]
   posts: { title: string; slug: string }[]
+  projects: { name: string; tag: string; img: string; href: string }[]
 }
 
 const cardSelect = {
@@ -269,7 +271,7 @@ export async function getIntegrationRelations(id: number): Promise<IntegrationRe
   try {
     const payload = await getPayload({ config })
     const now = new Date().toISOString()
-    const [services, posts] = await Promise.all([
+    const [services, posts, projectDocs] = await Promise.all([
       payload.find({
         collection: 'servicii',
         where: { integrariCatalog: { equals: id } },
@@ -297,16 +299,38 @@ export async function getIntegrationRelations(id: number): Promise<IntegrationRe
         limit: 100,
         overrideAccess: true,
       }),
+      payload.find({
+        collection: 'proiecte',
+        where: { integrariConfirmate: { equals: id } },
+        depth: 1,
+        limit: 100,
+        sort: '-createdAt',
+        overrideAccess: true,
+      }),
     ])
+
+    const projects = projectDocs.docs.map((doc) => {
+      const image = doc.imagine && typeof doc.imagine === 'object' && 'url' in doc.imagine
+        ? (doc.imagine as { url: string }).url
+        : ''
+      const tag = getProjectServices(doc)[0]?.title || 'Proiect digital'
+      return {
+        name: doc.titlu ?? '',
+        tag,
+        img: image,
+        href: doc.linkLive ?? '',
+      }
+    }).filter((project) => project.name && project.img)
 
     return {
       services: services.docs.map((doc) => ({ title: doc.titlu, slug: doc.slug })),
       posts: posts.docs
         .filter((doc) => Boolean(doc.slug))
         .map((doc) => ({ title: doc.titlu ?? '', slug: doc.slug ?? '' })),
+      projects,
     }
   } catch {
-    return { services: [], posts: [] }
+    return { services: [], posts: [], projects: [] }
   }
 }
 

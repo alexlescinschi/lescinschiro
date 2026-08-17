@@ -5,6 +5,7 @@ import type { IntegrationDetailData, IntegrationRelations } from "@/lib/integrat
 import { CATEGORY_LABELS, REGION_LABELS } from "./IntegrationCard";
 import IntegrationLogo from "./IntegrationLogo";
 import IntegrationRequestLink from "./IntegrationRequestLink";
+import Portfolio from "@/components/Portfolio";
 import styles from "./integrations.module.css";
 
 function isRenderableRichText(value: unknown): value is DefaultTypedEditorState {
@@ -133,10 +134,18 @@ export default function IntegrationDetailPage({ integration, relations }: Integr
         </section>
       )}
 
+      {relations.projects.length > 0 && (
+        <Portfolio
+          projects={relations.projects}
+          eyebrow="Proiecte realizate"
+          title={`Proiecte cu ${integration.name}.`}
+        />
+      )}
+
       <section className={styles.deliveryBand} aria-labelledby="delivery-title">
         <div className={styles.shell}>
           <header className={styles.deliveryHeader}>
-            <p className={styles.kicker}>03 / Cadru de lucru</p>
+            <p className={styles.kicker}>04 / Cadru de lucru</p>
             <h2 id="delivery-title" className={styles.sectionTitle}>Estimare, proces, siguranță.</h2>
           </header>
           <dl className={styles.deliveryGrid}>
@@ -169,7 +178,7 @@ export default function IntegrationDetailPage({ integration, relations }: Integr
         <section className={`${styles.section} ${styles.relationsSection}`} aria-labelledby="relations-title">
           <div className={styles.shell}>
             <header className={styles.sectionHeader}>
-              <p className={styles.kicker}>04 / În context</p>
+              <p className={styles.kicker}>05 / În context</p>
               <h2 id="relations-title" className={styles.sectionTitle}>Mai departe în proiect.</h2>
             </header>
             <div className={styles.relationsGrid}>
@@ -207,7 +216,7 @@ export default function IntegrationDetailPage({ integration, relations }: Integr
         <section className={`${styles.section} ${styles.faqSection}`} aria-labelledby="detail-faq-title">
           <div className={styles.shell}>
             <header className={styles.sectionHeader}>
-              <p className={styles.kicker}>05 / FAQ</p>
+              <p className={styles.kicker}>06 / FAQ</p>
               <h2 id="detail-faq-title" className={styles.sectionTitle}>Întrebări despre {integration.name}.</h2>
             </header>
             <div className={styles.faqGrid}>
