@@ -7,20 +7,19 @@ export const site = {
   // ponytail: schimbă cu domeniul real de producție când e cumpărat
   domain: "https://lescinschi.art",
   email: "alex@lescinschi.art",
-  phone: "+40 730 304 478",        // RO
-  phoneMD: "+373 67 550 980",      // MD
-  whatsapp: "40730304478",
-  address: "București, Sectorul 3, România",
-  city: "BUCUREȘTI",
-  tz: "Europe/Bucharest",
+  phone: "+373 67 550 980",
+  whatsapp: "37367550980",
+  address: "Chișinău, Moldova",
+  city: "CHIȘINĂU",
+  tz: "Europe/Chisinau",
   github: "https://github.com/alexlescinschi/lescinschiro",
 };
 
 export const contactFaqs = [
   { q: "Cât de repede răspundeți?", a: "Sub 24h în zilele lucrătoare. Pentru urgențe, WhatsApp e cel mai rapid." },
-  { q: "Lucrați cu clienți din afara României?", a: "Da — MD, RO, FR, US. Comunicăm în română, engleză, franceză." },
+  { q: "Lucrați cu clienți din afara Moldovei?", a: "Da — MD, GB, IT, BG, SK, PL, UA, CY, ES, PT. Comunicăm în română, engleză, franceză." },
   { q: "Faceți oferte gratuit?", a: "Da. Ofertă fixă în 24–48h după un scurt brief telefonic sau pe email." },
-  { q: "Pot veni la birou?", a: "Suntem în București, Sectorul 3. Întâlnirile se programează în avans." },
+  { q: "Pot veni la birou?", a: "Suntem în Chișinău. Întâlnirile se programează în avans." },
 ];
 
 export const nav = [
@@ -41,7 +40,7 @@ export const services = [
   { n: "05", title: "Integrări plăți", desc: "Netopia, PayU, Stripe, PayPal, Revolut + bănci din România. 3D Secure.", href: "/servicii/integrari-plati-online" },
   { n: "06", title: "Integrări curierat", desc: "FAN Courier, Cargus, Sameday, DPD, Nova Poshta — AWB și tracking automat.", href: "/servicii/integrari-curierat" },
   { n: "07", title: "Integrări API", desc: "ERP, CRM, eMAG, SmartBill, Oblio. Dacă are API, îl conectăm.", href: "/servicii/integrari-api" },
-  { n: "08", title: "SEO România", desc: "Optimizare tehnică și de conținut pentru piața din România.", href: "/servicii/seo-romania" },
+  { n: "08", title: "SEO Moldova", desc: "Optimizare tehnică și de conținut pentru piața din Moldova.", href: "/servicii/seo-moldova" },
   { n: "09", title: "AI & Automatizări", desc: "Chatbot, automatizări de comenzi, generare de conținut.", href: "/servicii/ai-automatizari" },
   { n: "10", title: "Social Media Management", desc: "Facebook, Instagram, TikTok, LinkedIn. Strategie, content, reclame plătite.", href: "/servicii/social-media-management" },
   { n: "11", title: "Reclame Google Ads", desc: "Search, Shopping, Display, YouTube. Plătești doar la click. ROAS urmărit.", href: "/servicii/reclame-google-ads" },
@@ -72,7 +71,7 @@ export const heroImages = [
 
 export const why = [
   { num: 40, suffix: "+", label: "proiecte livrate" },
-  { num: 4, suffix: "", label: "țări: MD · RO · FR · US" },
+  { num: 10, suffix: "", label: "țări: MD · GB · IT · BG · SK · PL · UA · CY · ES · PT" },
   { num: 24, suffix: "h", label: "răspuns la ofertă" },
   { num: 100, suffix: "%", label: "cod al tău, pe GitHub" },
 ];
@@ -80,13 +79,13 @@ export const why = [
 // === Pagina /despre-noi ===
 export const aboutStory = [
   "Am început cu un singur magazin online. În 2016, primul proiect a fost un magazin în Moldova. Nu aveam echipă, nu aveam portofoliu — aveam un client care avea încredere și un deadline de două săptămâni. Am livrat. Apoi a venit al doilea, al zecelea, al treizecilea.",
-  "Acum suntem o echipă mică, cu procese clare. Nu suntem o agenție mare cu account manageri și ședințe. Suntem oamenii care scriu codul, care discută cu tine direct, care răspund pe WhatsApp la 22:00 când pică un plugin. Lucrăm cu clienți din România, Moldova, Franța și SUA — de la clinici stomatologice la magazine cu 10.000 de produse.",
+  "Acum suntem o echipă mică, cu procese clare. Nu suntem o agenție mare cu account manageri și ședințe. Suntem oamenii care scriu codul, care discută cu tine direct, care răspund pe WhatsApp la 22:00 când pică un plugin. Lucrăm cu clienți din Moldova, Marea Britanie, Italia, Bulgaria, Slovacia, Polonia, Ucraina, Cipru, Spania și Portugalia — de la clinici stomatologice la magazine cu 10.000 de produse.",
   "Nu vindem promisiuni, vindem cod care merge. Fiecare proiect e tratat ca al nostru: preț fix scris, machetă aprobată înainte de cod, predare pe GitHub. Dacă nu putem livra bine, refuzăm — nu luăm proiecte pe care nu le putem onora.",
 ];
 
 export const aboutStats = [
   { num: 40, suffix: "+", label: "proiecte livrate" },
-  { num: 4, suffix: "", label: "țări: MD · RO · FR · US" },
+  { num: 10, suffix: "", label: "țări: MD · GB · IT · BG · SK · PL · UA · CY · ES · PT" },
   { num: 10, suffix: " ani", label: "experiență în web" },
   { num: 100, suffix: "%", label: "cod predat pe GitHub" },
 ];
@@ -121,7 +120,7 @@ export const founder = {
   role: "Fondator & Lead Developer",
   bio: "Programez de 10 ani. Am început în Chișinău cu un singur client și un magazin online care trebuia gata în două săptămâni. De atunci, am livrat peste 40 de proiecte — de la landing page-uri de 150€ la magazine enterprise cu 10.000 de produse, integrări ERP, marketplace eMAG și plăți multi-acquirer. Specializarea mea: magazine online cu integrări complexe și site-uri unde performanța și SEO contează cu adevărat.",
   principles: "Cred că un cod curat și un client informat fac mai mult decât orice contract de mentenanță. Predau totul pe GitHub. Răspund direct, fără account manager.",
-  location: "București, România · originar din Chișinău, MD",
+  location: "Chișinău, Moldova",
 };
 
 export const aboutFaqs = [
@@ -277,9 +276,9 @@ export const ai = [
 ];
 
 export const pricing = [
-  { name: "Landing page", from: "€150", items: ["1 pagină", "Formular de contact", "SEO de bază", "Mobile-first"] },
-  { name: "Site prezentare", from: "€400", items: ["5–10 pagini", "Multilingv", "SEO on-page", "Panou admin"] },
-  { name: "Magazin online", from: "€800", items: ["Catalog + checkout", "1 plată + 1 curier", "Facturare", "SEO produse"] },
+  { name: "Landing page", from: "€100", items: ["1 pagină", "Formular de contact", "SEO de bază", "Mobile-first"] },
+  { name: "Site prezentare", from: "€250", items: ["5–10 pagini", "Multilingv", "SEO on-page", "Panou admin"] },
+  { name: "Magazin online", from: "€400", items: ["Catalog + checkout", "1 plată + 1 curier", "Facturare", "SEO produse"] },
 ];
 
 // ponytail: testimoniale placeholder — înlocuiește cu citate reale de la clienți.

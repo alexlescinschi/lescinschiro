@@ -65,7 +65,7 @@ export default function Page() {
         {
           heading: "Legea aplicabilă și litigii",
           paragraphs: [
-            "Acești termeni sunt guvernați de legea română. Orice neînțelegere se rezolvă mai întâi pe cale amiabilă; în caz contrar, competența revine instanțelor din București.",
+            "Acești termeni sunt guvernați de legislația Republicii Moldova. Orice neînțelegere se rezolvă mai întâi pe cale amiabilă; în caz contrar, competența revine instanțelor din Chișinău.",
           ],
         },
         {

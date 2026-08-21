@@ -6,12 +6,12 @@ import { site } from "@/data/content";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Integrări API, plăți, curierat și ERP pentru România și Moldova",
+  title: "Integrări API, plăți, curierat și ERP pentru Moldova și internațional",
   description: "Catalog de integrări pentru magazine și site-uri: plăți, curieri, ERP, facturare, CRM, marketplace, analytics și automatizări.",
   alternates: { canonical: "/integrari" },
   openGraph: {
     title: "Integrări care conectează sistemele afacerii tale",
-    description: "Plăți, curierat, ERP, CRM, marketplace și automatizări pentru România, Moldova și proiecte internaționale.",
+    description: "Plăți, curierat, ERP, CRM, marketplace și automatizări pentru Moldova și proiecte internaționale.",
     url: `${site.domain}/integrari`,
   },
 };

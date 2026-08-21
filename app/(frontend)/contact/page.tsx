@@ -12,12 +12,12 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contactează LESCINSCHI: telefon, email, WhatsApp. București, Sectorul 3. Ofertă fixă în 24–48h. Site-uri, magazine online, integrări și SEO pentru România și Moldova.",
+    "Contactează LESCINSCHI: telefon, email, WhatsApp. Chișinău, Moldova. Ofertă fixă în 24–48h. Site-uri, magazine online, integrări și SEO pentru Moldova.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact — LESCINSCHI",
     description:
-      "Site-uri, magazine online, integrări, SEO. Răspundem în 24h. București, Sectorul 3.",
+      "Site-uri, magazine online, integrări, SEO. Răspundem în 24h. Chișinău, Moldova.",
     url: `${site.domain}/contact`,
     type: "website",
   },
@@ -30,15 +30,14 @@ const jsonLd = {
   name: site.name,
   url: `${site.domain}/contact`,
   email: site.email,
-  telephone: [site.phone, site.phoneMD],
+  telephone: [site.phone],
   image: `${site.domain}/work/p05.png`,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "București",
-    addressRegion: "Sectorul 3",
-    addressCountry: "RO",
+    addressLocality: "Chișinău",
+    addressCountry: "MD",
   },
-  areaServed: ["RO", "MD", "FR", "US"],
+  areaServed: ["MD", "GB", "IT", "BG", "SK", "PL", "UA", "CY", "ES", "PT"],
   openingHours: "Mo-Fr 09:00-18:00",
   priceRange: "€€",
 };

@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Blog — Articole Web, SEO & Magazin Online",
   description:
-    "Articole despre creare site-uri, magazine online, SEO pentru România, integrări plăți & curierat, AI și automatizări. Ghiduri practice scrise de echipa LESCINSCHI.",
+    "Articole despre creare site-uri, magazine online, SEO pentru Moldova, integrări plăți & curierat, AI și automatizări. Ghiduri practice scrise de echipa LESCINSCHI.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Blog — LESCINSCHI",

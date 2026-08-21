@@ -26,8 +26,7 @@ export default function ContactPage({
         <div className="container ch-info__grid">
           <div className="ch-info__item" data-reveal>
             <span>Telefon</span>
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone} · RO</a>
-            <a href={`tel:${site.phoneMD.replace(/\s/g, "")}`}>{site.phoneMD} · MD</a>
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a>
           </div>
           <div className="ch-info__item" data-reveal>
             <span>Email</span>

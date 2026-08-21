@@ -17,7 +17,7 @@ export default function Page() {
         {
           heading: "Cine prelucrează datele",
           paragraphs: [
-            "Operatorul datelor este Alex Lescinschi, persoană fizică, care operează sub numele LESCINSCHI. Contact: alex@lescinschi.art, București, România.",
+            "Operatorul datelor este Alex Lescinschi, persoană fizică, care operează sub numele LESCINSCHI. Contact: alex@lescinschi.art, Chișinău, Moldova.",
           ],
         },
         {

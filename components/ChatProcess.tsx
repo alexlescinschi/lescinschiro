@@ -80,7 +80,7 @@ export default function ChatProcess() {
 
         <div className="chat__cta">
           <a className="btn btn--solid" href="#contact">{chatProcess.cta}</a>
-          <a className="btn" href="https://wa.me/40730304478" target="_blank" rel="noopener noreferrer">Scrie pe WhatsApp</a>
+          <a className="btn" href="https://wa.me/37367550980" target="_blank" rel="noopener noreferrer">Scrie pe WhatsApp</a>
         </div>
       </div>
     </section>

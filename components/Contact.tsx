@@ -169,7 +169,7 @@ export default function Contact({
           </div>
           <div className="contact-cta__row">
             <div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" required autoComplete="email" placeholder="email@exemplu.com" /></div>
-            <div className="field"><label htmlFor="telefon">Telefon</label><input id="telefon" name="telefon" type="tel" autoComplete="tel" placeholder="+373 60 000 000" /></div>
+            <div className="field"><label htmlFor="telefon">Telefon</label><input id="telefon" name="telefon" type="tel" autoComplete="tel" placeholder="+373 67 550 980" /></div>
           </div>
           <div className="field">
             <label htmlFor="detalii">Detalii proiect</label>

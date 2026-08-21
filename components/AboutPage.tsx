@@ -66,7 +66,7 @@ export default function AboutPage() {
               </span>
             </span></span>
           </h1>
-          <p className="ab-hero__aside">De la Chișinău la București, din 2016 livrăm site-uri, magazine și integrări pentru clienți din 4 țări.</p>
+          <p className="ab-hero__aside">Din Chișinău, din 2016 livrăm site-uri, magazine și integrări pentru clienți din 10 țări.</p>
         </div>
       </section>
 

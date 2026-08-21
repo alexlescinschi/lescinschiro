@@ -18,14 +18,14 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "LESCINSCHI — Creare site-uri, magazine online & SEO România",
+    default: "LESCINSCHI — Creare site-uri, magazine online & SEO Moldova",
     template: "%s — LESCINSCHI",
   },
   description:
-    "Agenție web: creare site-uri, magazine online, landing page-uri și site-uri corporative. Integrări plăți, curierat și API. SEO pentru România și automatizări AI.",
+    "Agenție web: creare site-uri, magazine online, landing page-uri și site-uri corporative. Integrări plăți, curierat și API. SEO pentru Moldova și automatizări AI.",
   keywords: [
     "creare site", "magazin online", "site corporativ", "landing page",
-    "SEO România", "integrare plăți online", "integrare curierat", "agenție web",
+    "SEO Moldova", "integrare plăți online", "integrare curierat", "agenție web",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     locale: "ro_RO",
     url: site.domain,
     siteName: site.name,
-    title: "LESCINSCHI — Creare site-uri, magazine online & SEO România",
+    title: "LESCINSCHI — Creare site-uri, magazine online & SEO Moldova",
     description:
-      "Site-uri, magazine online și integrări care aduc clienți. SEO pentru România, automatizări AI.",
+      "Site-uri, magazine online și integrări care aduc clienți. SEO pentru Moldova, automatizări AI.",
   },
   robots: { index: true, follow: true },
 };
@@ -46,10 +46,10 @@ const jsonLd = {
   name: site.name,
   url: site.domain,
   email: site.email,
-  areaServed: ["RO", "MD", "FR", "US"],
+  areaServed: ["MD", "GB", "IT", "BG", "SK", "PL", "UA", "CY", "ES", "PT"],
   makesOffer: [
     "Creare site-uri", "Magazine online", "Landing page-uri", "Site-uri corporative",
-    "Integrări plăți online", "Integrări curierat", "Integrări API", "SEO România", "AI & Automatizări",
+    "Integrări plăți online", "Integrări curierat", "Integrări API", "SEO Moldova", "AI & Automatizări",
   ].map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })),
 };
 

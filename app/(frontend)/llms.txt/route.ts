@@ -9,7 +9,7 @@ export async function GET() {
   const lines = [
     `# ${site.name}`,
     "",
-    "> Studio web pentru site-uri, magazine online, integrări software, SEO și automatizări, cu proiecte în România și Moldova.",
+    "> Studio web pentru site-uri, magazine online, integrări software, SEO și automatizări, cu proiecte în Moldova și internațional.",
     "",
     "## Pagini principale",
     "",

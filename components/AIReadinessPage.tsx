@@ -136,7 +136,7 @@ export default function AIReadinessPage() {
                   </div>
                   <div className="field">
                     <label htmlFor="location">Oraș / zonă</label>
-                    <input id="location" name="location" required maxLength={100} autoComplete="address-level2" placeholder="Ex. București" />
+                    <input id="location" name="location" required maxLength={100} autoComplete="address-level2" placeholder="Ex. Chișinău" />
                   </div>
                 </div>
                 {error && <p className="agrader-error" role="alert">{error}</p>}

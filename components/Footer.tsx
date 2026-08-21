@@ -43,7 +43,7 @@ export default function Footer() {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" width="15" height="15">
             <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
           </svg>
-          BUCUREȘTI_<LiveClock />
+          <LiveClock />
         </span>
 
         {/* meniu inline (nu sub buton); dacă un punct capătă subpuncte, ele se deschid în SUS */}

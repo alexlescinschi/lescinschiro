@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Portofoliu",
   description:
-    "Proiecte LESCINSCHI: magazine online, site-uri corporative și landing page-uri livrate în România, Moldova, Franța și SUA. Filtre după servicii.",
+    "Proiecte LESCINSCHI: magazine online, site-uri corporative și landing page-uri livrate în Moldova, Marea Britanie, Italia, Bulgaria, Slovacia, Polonia, Ucraina, Cipru, Spania și Portugalia. Filtre după servicii.",
   alternates: { canonical: "/portofoliu" },
   openGraph: {
     title: "Portofoliu — LESCINSCHI",

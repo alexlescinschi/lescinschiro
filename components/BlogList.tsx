@@ -56,7 +56,7 @@ export default function BlogList({ posts }: { posts: Post[] }) {
       <span className="eyebrow" data-reveal>Blog</span>
       <h2 className="section-title" data-reveal>Articole & ghiduri.</h2>
       <p className="blog__lead" data-reveal>
-        Ghiduri practice despre magazin online, SEO, web design și integrări pentru piața din România și Moldova.
+        Ghiduri practice despre magazin online, SEO, web design și integrări pentru piața din Moldova.
       </p>
 
       {/* Filtru pe categorii (reuse .pf__filter style) */}
