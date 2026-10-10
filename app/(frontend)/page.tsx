@@ -78,14 +78,14 @@ async function getServices(projects: { slug: string; img: string; serviceSlugs: 
       const imagine = s.imagine && typeof s.imagine === "object" && "url" in s.imagine
         ? (s.imagine as { url: string }).url
         : "";
-      const preferredProject = projects.find((project) => project.slug === HOME_SERVICE_EXAMPLES[slug] && project.img);
+      const preferredImage = getProjectScreenshot(HOME_SERVICE_EXAMPLES[slug]);
       const relatedProject = projects.find((project) => project.serviceSlugs.includes(slug) && project.img);
       return {
         title: s.titlu as string,
         slug,
         desc: (s.descriereScurta as string) || "",
         href: `/servicii/${slug}`,
-        image: preferredProject?.img || relatedProject?.img || firstImageFromRichText(s.continut) || imagine,
+        image: preferredImage || relatedProject?.img || firstImageFromRichText(s.continut) || imagine,
       };
     });
   } catch {
