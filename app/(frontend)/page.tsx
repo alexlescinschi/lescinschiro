@@ -75,9 +75,6 @@ async function getServices(projects: { slug: string; img: string; serviceSlugs: 
     });
     return docs.map((s) => {
       const slug = (s.slug as string) || "";
-      const imagine = s.imagine && typeof s.imagine === "object" && "url" in s.imagine
-        ? (s.imagine as { url: string }).url
-        : "";
       const preferredImage = getProjectScreenshot(HOME_SERVICE_EXAMPLES[slug]);
       const relatedProject = projects.find((project) => project.serviceSlugs.includes(slug) && project.img);
       return {
@@ -85,7 +82,7 @@ async function getServices(projects: { slug: string; img: string; serviceSlugs: 
         slug,
         desc: (s.descriereScurta as string) || "",
         href: `/servicii/${slug}`,
-        image: preferredImage || relatedProject?.img || firstImageFromRichText(s.continut) || imagine,
+        image: preferredImage || relatedProject?.img || firstImageFromRichText(s.continut),
       };
     });
   } catch {
