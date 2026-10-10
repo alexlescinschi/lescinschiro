@@ -4,6 +4,7 @@ import config from "@payload-config";
 import PortfolioPage from "@/components/PortfolioPage";
 import { site } from "@/data/content";
 import { getProjectServices } from "@/lib/project-services";
+import { getProjectScreenshot } from "@/lib/project-screenshots";
 
 export const dynamic = "force-dynamic";
 
@@ -35,9 +36,9 @@ export default async function Page() {
       tag: services[0]?.title || "Proiect digital",
       services,
       img:
-        p.imagine && typeof p.imagine === "object" && "url" in p.imagine
+        getProjectScreenshot(p.slug) || (p.imagine && typeof p.imagine === "object" && "url" in p.imagine
           ? (p.imagine as { url: string }).url
-          : "",
+          : ""),
       href: (p.linkLive as string) || "",
     };
   });

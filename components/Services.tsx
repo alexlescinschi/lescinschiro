@@ -16,7 +16,12 @@ export default function Services({ services: propServices }: { services?: Servic
     const el = previewRef.current;
     if (!el || matchMedia("(pointer: coarse)").matches) return;
 
-    const move = (e: PointerEvent) => { el.style.left = e.clientX + "px"; el.style.top = e.clientY + "px"; };
+    const move = (e: PointerEvent) => {
+      const halfWidth = el.offsetWidth / 2;
+      const halfHeight = el.offsetHeight / 2;
+      el.style.left = `${Math.min(Math.max(e.clientX, halfWidth + 12), window.innerWidth - halfWidth - 12)}px`;
+      el.style.top = `${Math.min(Math.max(e.clientY, halfHeight + 12), window.innerHeight - halfHeight - 12)}px`;
+    };
     const rows = Array.from(document.querySelectorAll<HTMLElement>(".srv"));
     const cleanups: (() => void)[] = [];
     window.addEventListener("pointermove", move);

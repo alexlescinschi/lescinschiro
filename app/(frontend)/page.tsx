@@ -13,7 +13,8 @@ import Contact from "@/components/Contact";
 import SelectedWorks from "@/components/SelectedWorks";
 import { getPayload } from "payload";
 import config from "@payload-config";
-import { getPrimaryService } from "@/lib/project-services";
+import { getPrimaryService, getProjectServices } from "@/lib/project-services";
+import { getProjectScreenshot, HOME_SERVICE_EXAMPLES } from "@/lib/project-screenshots";
 import { getFeaturedIntegrations, getIntegrationCatalog } from "@/lib/integrations";
 
 export const dynamic = "force-dynamic";
@@ -33,9 +34,11 @@ async function getProjects() {
       const primaryService = getPrimaryService(p);
       return {
         name: p.titlu as string,
+        slug: (p.slug as string) || "",
         tag: primaryService?.title || "Proiect digital",
-        img: (p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : "",
+        img: getProjectScreenshot(p.slug) || ((p.imagine && typeof p.imagine === "object" && "url" in p.imagine) ? (p.imagine as { url: string }).url : ""),
         href: (p.linkLive as string) || "",
+        serviceSlugs: getProjectServices(p).map((service) => service.slug),
       };
     });
   } catch {
@@ -61,7 +64,7 @@ function firstImageFromRichText(node: unknown): string {
 }
 
 // ponytail: servicii din Payload CMS (câmpul `ordine` controlează ordinea pe home)
-async function getServices() {
+async function getServices(projects: { slug: string; img: string; serviceSlugs: string[] }[]) {
   try {
     const payload = await getPayload({ config });
     const { docs } = await payload.find({
@@ -71,16 +74,18 @@ async function getServices() {
       sort: "ordine",
     });
     return docs.map((s) => {
+      const slug = (s.slug as string) || "";
       const imagine = s.imagine && typeof s.imagine === "object" && "url" in s.imagine
         ? (s.imagine as { url: string }).url
         : "";
+      const preferredProject = projects.find((project) => project.slug === HOME_SERVICE_EXAMPLES[slug] && project.img);
+      const relatedProject = projects.find((project) => project.serviceSlugs.includes(slug) && project.img);
       return {
         title: s.titlu as string,
-        slug: (s.slug as string) || "",
+        slug,
         desc: (s.descriereScurta as string) || "",
-        href: `/servicii/${s.slug}`,
-        // hover pe home = prima imagine din conținut (richText); dacă nu există → imaginea din câmpul „Imagine"
-        image: firstImageFromRichText(s.continut) || imagine,
+        href: `/servicii/${slug}`,
+        image: preferredProject?.img || relatedProject?.img || firstImageFromRichText(s.continut) || imagine,
       };
     });
   } catch {
@@ -102,12 +107,12 @@ function getHeroImages(projects: { img: string }[]): string[] {
 }
 
 export default async function Home() {
-  const [projects, services, featuredIntegrations, integrationCatalog] = await Promise.all([
+  const [projects, featuredIntegrations, integrationCatalog] = await Promise.all([
     getProjects(),
-    getServices(),
     getFeaturedIntegrations(),
     getIntegrationCatalog(),
   ]);
+  const services = await getServices(projects);
 
   return (
     <main>

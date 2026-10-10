@@ -2,6 +2,7 @@ import config from '@payload-config'
 import type { Integrari } from '@/payload-types'
 import { getPayload, type Where } from 'payload'
 import { getProjectServices } from '@/lib/project-services'
+import { getProjectScreenshot } from '@/lib/project-screenshots'
 
 export type IntegrationCategory = Integrari['categorie']
 export type IntegrationRegion = Integrari['regiuni'][number]
@@ -317,7 +318,7 @@ export async function getIntegrationRelations(id: number): Promise<IntegrationRe
       return {
         name: doc.titlu ?? '',
         tag,
-        img: image,
+        img: getProjectScreenshot(doc.slug) || image,
         href: doc.linkLive ?? '',
       }
     }).filter((project) => project.name && project.img)

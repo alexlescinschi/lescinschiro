@@ -259,7 +259,7 @@ h2.section-title {
 
 /* imagine care urmărește cursorul pe hover serviciu */
 .srv-preview {
-  position: fixed; top: 0; left: 0; width: 260px; height: 320px; border-radius: 4px; z-index: 5;
+  position: fixed; top: 0; left: 0; width: 320px; height: 225px; border-radius: 4px; z-index: 5;
   pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(0.85);
   background-size: cover; background-position: center; transition: opacity 0.3s, transform 0.3s;
 }

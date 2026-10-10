@@ -6,6 +6,7 @@ import ContactPage from "@/components/ContactPage";
 import type { ContactProject } from "@/components/ContactResults";
 import { getPrimaryService } from "@/lib/project-services";
 import { getPublishedIntegrationRequest } from "@/lib/integrations";
+import { getProjectScreenshot } from "@/lib/project-screenshots";
 
 export const dynamic = "force-dynamic";
 
@@ -52,6 +53,7 @@ async function getProjects(): Promise<ContactProject[]> {
       sort: "-createdAt",
       select: {
         titlu: true,
+        slug: true,
         imagine: true,
         servicii: true,
         linkLive: true,
@@ -59,12 +61,13 @@ async function getProjects(): Promise<ContactProject[]> {
     });
     const projects = docs.flatMap((project) => {
       const img = typeof project.imagine === "object" ? project.imagine.url || "" : "";
-      if (!img) return [];
+      const screenshot = getProjectScreenshot(project.slug);
+      if (!screenshot && !img) return [];
       const primaryService = getPrimaryService(project);
       return [{
         name: project.titlu,
         tag: primaryService?.title || "Proiect digital",
-        img,
+        img: screenshot || img,
         href: project.linkLive || "",
       }];
     });
